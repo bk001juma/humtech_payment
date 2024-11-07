@@ -19,7 +19,9 @@ return new class extends Migration
             $table->longText('api_key')->nullable();
             $table->longText('client_id')->nullable();
             $table->longText('client_secret')->nullable();
+            $table->longText('sandbox_public_key')->nullable();
             $table->longText('public_key')->nullable();
+            $table->longText('active_session_key')->nullable();
             $table->string('status')->default('active');
             $table->string('prefix')->nullable();
             $table->string('currency')->default('TZS');

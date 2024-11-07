@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Payment\AirtelController;
 use App\Http\Controllers\Payment\VodacomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('vodacom')->group(function () {
 
-    Route::get('create_session', [VodacomController::class, 'createSession']);
+    Route::get('create_session', [VodacomController::class, 'getSession']);
+    Route::get('send_money', [VodacomController::class, 'sendToCustomer']);
+
+});
+
+Route::prefix('airtel')->group(function () {
+
+    Route::get('get_token', [AirtelController::class, 'getToken']);
+    Route::get('get_enc', [AirtelController::class, 'keys']);
+    Route::get('collect', [AirtelController::class, 'collect']);
+    Route::get('disbursement', [AirtelController::class, 'disbursement']);
 
 });
