@@ -149,10 +149,8 @@ class AirtelController extends Controller
 
         unset($trans['id']);
 
-//        return $trans;
-
         $callback = AirtelCallback::create($trans);
 
-        return $callback;
+        return 'success';
     }
 }
