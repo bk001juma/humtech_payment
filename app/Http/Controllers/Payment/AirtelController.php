@@ -151,6 +151,6 @@ class AirtelController extends Controller
 
         $callback = AirtelCallback::create($trans);
 
-        return response('success',200);
+        return response()->json('success');
     }
 }
