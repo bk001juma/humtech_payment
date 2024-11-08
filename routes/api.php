@@ -37,4 +37,7 @@ Route::prefix('airtel')->group(function () {
     Route::get('collect', [AirtelController::class, 'collect']);
     Route::get('disbursement', [AirtelController::class, 'disbursement']);
 
+
+    Route::post('callback', [AirtelController::class, 'callBack']);
+
 });

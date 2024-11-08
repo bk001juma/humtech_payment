@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
+use App\Models\Payment\AirtelCallback;
 use App\Models\Payment\Operator;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
@@ -119,13 +120,13 @@ class AirtelController extends Controller
 
         $data = [
             "payee" => [
-                "msisdn" => "785008133"
+                "msisdn" => "696433848"
             ],
-            "reference" => "1234321A",
+            "reference" => "1234321K",
             "pin" => $key,
             "transaction" => [
-                "amount" => 400,
-                "id" => "random-unique-id-A"
+                "amount" => 1000,
+                "id" => "random-unique-id-K"
             ]
         ];
 
@@ -136,8 +137,22 @@ class AirtelController extends Controller
             goto b;
         }
 
-
-
         return response()->json([$response->json(),$response->status(),$response->headers()]);
+    }
+
+    public function callBack(Request $request)
+    {
+        $trans = $request['transaction'];
+        $trans['raw_response'] = $request;
+        $trans['operator_id'] = 2;
+        $trans['request_id'] = $request['transaction']['id'];
+
+        unset($trans['id']);
+
+//        return $trans;
+
+        $callback = AirtelCallback::create($trans);
+
+        return $callback;
     }
 }

@@ -34,6 +34,8 @@ class VodacomController extends Controller
     {
         return $this->execute('session');
     }
+
+
     public function execute($action,$data = null)
     {
         ini_set('max_execution_time', 300);
