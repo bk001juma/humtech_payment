@@ -24,18 +24,7 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $slides = Slide::get();
-        $categories = CarCategory::get();
 
-        $cars = $user->hasRole('admin') ? Car::where('status','active')->get() : $user->cars;
-        return view('office.dash',compact('slides','cars','categories'));
-
-        $user = Auth::user();
-
-        if ($user->isAdmin()) {
-            return view('pages.admin.home');
-        }
-
-        return view('pages.user.home');
+        return view('papi.dashboard',compact('user'));
     }
 }

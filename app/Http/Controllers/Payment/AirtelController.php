@@ -23,7 +23,7 @@ class AirtelController extends Controller
         $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
-        ])->post('https://openapiuat.airtel.africa/auth/oauth2/token/',$data);
+        ])->post('https://openapi.airtel.africa/auth/oauth2/token/',$data);
 
         $operator->active_session_key = $response['access_token'];
         $operator->save();
@@ -45,9 +45,9 @@ class AirtelController extends Controller
 
 
         $response = Http::withHeaders($headers)
-            ->get('https://openapiuat.airtel.africa/v1/rsa/encryption-keys');
+            ->get('https://openapi.airtel.africa/v1/rsa/encryption-keys');
 
-        $operator->sandbox_public_key = $response['data']['key'];
+        $operator->public_key = $response['data']['key'];
         $operator->save();
 
         return response()->json([$response->json(),$response->status(),$response->headers()]);
@@ -68,26 +68,26 @@ class AirtelController extends Controller
 
 
         $data = [
-            "reference" => "Testing 87654",
+            "reference" => "Testing AAB",
             "subscriber" => [
                 "country" => "TZ",
                 "currency" => "TZS",
                 "msisdn" => "785008133"
             ],
             "transaction" => [
-                "amount" => 1000,
+                "amount" => 100,
                 "country" => "TZ",
                 "currency" => "TZS",
-                "id" => "random-unique-id23"
+                "id" => "random-unique-AAB"
             ]
         ];
 
 
-        $response = Http::withHeaders($headers)->post('https://openapiuat.airtel.africa/merchant/v1/payments/',$data);
+        $response = Http::withHeaders($headers)->post('https://openapi.airtel.africa/merchant/v1/payments/',$data);
 
 //        return $response['error'];
 
-        if (isset($response['error'])){
+        if (isset($response['error_description']) || isset($response['error'])) {
             $this->getToken();
             goto a;
         }
@@ -108,7 +108,7 @@ class AirtelController extends Controller
             'Authorization' => 'Bearer '.$operator->active_session_key,
         ];
 
-        $context = array( "public_key" => "-----BEGIN PUBLIC KEY-----\n" . $operator->sandbox_public_key . "\n-----END PUBLIC KEY-----", "api_key" => env('AIRTEL_KEY'));
+        $context = array( "public_key" => "-----BEGIN PUBLIC KEY-----\n" . $operator->public_key . "\n-----END PUBLIC KEY-----", "api_key" => env('AIRTEL_KEY'));
 
         // Load the public key
         $public_key_pem = $context['public_key'];
@@ -120,19 +120,19 @@ class AirtelController extends Controller
 
         $data = [
             "payee" => [
-                "msisdn" => "696433848"
+                "msisdn" => "785008133"
             ],
-            "reference" => "1234321K",
+            "reference" => "VOCHA-PAY",
             "pin" => $key,
             "transaction" => [
                 "amount" => 1000,
-                "id" => "random-unique-id-K"
+                "id" => "vocha-pay-A"
             ]
         ];
 
-        $response = Http::withHeaders($headers)->post('https://openapiuat.airtel.africa/standard/v1/disbursements/',$data);
+        $response = Http::withHeaders($headers)->post('https://openapi.airtel.africa/standard/v1/disbursements/',$data);
 
-        if (isset($response['error'])){
+        if (isset($response['error']) || isset($response['error'])){
             $this->getToken();
             goto b;
         }
