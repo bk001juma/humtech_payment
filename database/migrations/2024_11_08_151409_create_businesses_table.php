@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('logo')->nullable();
             $table->string('name');
-            $table->longText('token');
-            $table->string('name');
-            $table->string('name');
+            $table->longText('token')->nullable();
+            $table->double('balance')->default(0);
+            $table->string('status')->default('pending');
             $table->timestamps();
             $table->softDeletes();
         });

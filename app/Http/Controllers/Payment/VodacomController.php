@@ -16,13 +16,13 @@ class VodacomController extends Controller
         set_time_limit(300);
 
         $data = [
-            "input_Amount" => "1000.00",
+            "input_Amount" => "500.00",
             "input_Country" => "TZN",
             "input_Currency" => "TZS",
-            "input_CustomerMSISDN" => "000000000001",
-            "input_ServiceProviderCode" => "000000",
-            "input_ThirdPartyConversationID" => "asv02e5958774f7ba228d83dd0d6897A",
-            "input_TransactionReference" => "T1234A",
+            "input_CustomerMSISDN" => "255765204506",
+            "input_ServiceProviderCode" => "311936",
+            "input_ThirdPartyConversationID" => "asv02e5958774f7ba228d83dd0d6897B",
+            "input_TransactionReference" => "T1234B",
             "input_PurchasedItemsDesc" => "Shoes"
         ];
 
@@ -38,13 +38,14 @@ class VodacomController extends Controller
 
     public function execute($action,$data = null)
     {
+        a:
         ini_set('max_execution_time', 300);
         set_time_limit(300);
 
         $operator = Operator::where('id',1)->first();
 
         //        Change pub key
-        $public_key = $operator->sandbox_public_key;
+        $public_key = $operator->public_key;
         $api_key    = $action == 'session' ? $operator->api_key : $operator->active_session_key;
 
         $token = $this->generateAccessToken($api_key,$public_key);
@@ -60,7 +61,7 @@ class VodacomController extends Controller
                 'Origin' => '*',
                 'Authorization' => 'Bearer '.$token,
                 'Accept' => 'application/json',
-            ])->get('https://openapi.m-pesa.com/sandbox/ipg/v2/vodacomTZN/'.$target);
+            ])->get('https://openapi.m-pesa.com/openapi/ipg/v2/vodacomTZN/'.$target);
             $operator->active_session_key = $response['output_SessionID'];
             $operator->save();
         }else{
@@ -68,7 +69,12 @@ class VodacomController extends Controller
                 'Origin' => '*',
                 'Authorization' => 'Bearer ' .$token,
                 'Accept' => 'application/json',
-            ])->post('https://openapi.m-pesa.com/sandbox/ipg/v2/vodacomTZN/'.$target,$data);
+            ])->post('https://openapi.m-pesa.com/openapi/ipg/v2/vodacomTZN/'.$target,$data);
+
+            if ($response->status() != 201) {
+                $this->getSession();
+                goto a;
+            }
 
             return response()->json([$response->json(),$response->status(),$response->headers()]);
         }
