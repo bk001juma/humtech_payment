@@ -105,7 +105,7 @@ class PaymentController extends Controller
 
             }elseif($operator_id == 2){
 
-                return env('AIRTEL_CLIENT_ID');
+                return env('APP_NAME');
 
 
                 $pool->add(function () use ($transaction, $amount, $phone) {
