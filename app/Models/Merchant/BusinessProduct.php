@@ -25,4 +25,9 @@ class BusinessProduct extends Model
     {
         return $this->belongsTo(Business::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(BusinessTransaction::class,'product_id');
+    }
 }

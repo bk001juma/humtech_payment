@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
+use App\Models\Merchant\BusinessTransaction;
 use App\Models\Payment\AirtelCallback;
 use App\Models\Payment\Operator;
 use Illuminate\Support\Facades\Http;
@@ -53,7 +54,7 @@ class AirtelController extends Controller
         return response()->json([$response->json(),$response->status(),$response->headers()]);
     }
 
-    public function collect()
+    public function collect($phone,$amount,$trans_id)
     {
         a:
         $operator = Operator::where('id',2)->first();
@@ -68,31 +69,30 @@ class AirtelController extends Controller
 
 
         $data = [
-            "reference" => "Testing AAB",
+            "reference" => $trans_id,
             "subscriber" => [
                 "country" => "TZ",
                 "currency" => "TZS",
-                "msisdn" => "785008133"
+                "msisdn" => preg_replace('/^255/', '', $phone)
             ],
             "transaction" => [
-                "amount" => 100,
+                "amount" => $amount,
                 "country" => "TZ",
                 "currency" => "TZS",
-                "id" => "random-unique-AAB"
+                "id" => $trans_id
             ]
         ];
 
 
         $response = Http::withHeaders($headers)->post('https://openapi.airtel.africa/merchant/v1/payments/',$data);
 
-//        return $response['error'];
 
         if (isset($response['error_description']) || isset($response['error'])) {
             $this->getToken();
             goto a;
         }
 
-        return response()->json([$response->json(),$response->status(),$response->headers()]);
+        return $response;
     }
 
     public function disbursement()
@@ -151,6 +151,83 @@ class AirtelController extends Controller
 
         $callback = AirtelCallback::create($trans);
 
+        $transaction = BusinessTransaction::where('unique_id',$trans['request_id'])->first();
+
+        $transaction->status = $callback->status_code == "TS" ? 'paid' : 'failed';
+        $transaction->message = $callback->message;
+        $transaction->operator_transaction_id = $callback->airtel_money_id;
+
+        $transaction->save();
+
         return response()->json('success');
     }
+
+
+//    public function response()
+//    {
+//        $res = [
+//    {
+//        "data": {
+//            "transaction": {
+//                "id": "payment6737596f95a46",
+//                "status": "Success."
+//            }
+//        },
+//        "status": {
+//            "response_code": "DP00800001006",
+//            "code": "200",
+//            "success": true,
+//            "result_code": "ESB000010",
+//            "message": "Success."
+//        }
+//    },
+//    200,
+//    {
+//        "content-type": [
+//            "application/json"
+//        ],
+//        "transfer-encoding": [
+//            "chunked"
+//        ],
+//        "x-kong-upstream": [
+//            "dev-portal-ha-tz"
+//        ],
+//        "x-response-trace-id": [
+//            "0b1abda469b94a44bafb0dba5ad40b64",
+//            "7691f8ccab2f4324a95b6eb246acbc62"
+//        ],
+//        "x-client-id": [
+//            "mfs-router",
+//            "mfs-caterpiller"
+//        ],
+//        "x-content-type-options": [
+//            "nosniff"
+//        ],
+//        "x-xss-protection": [
+//            "1; mode=block"
+//        ],
+//        "cache-control": [
+//            "no-cache, no-store, max-age=0, must-revalidate"
+//        ],
+//        "pragma": [
+//            "no-cache"
+//        ],
+//        "expires": [
+//            "0"
+//        ],
+//        "x-frame-options": [
+//            "SAMEORIGIN"
+//        ],
+//        "content-security-policy": [
+//            "object-src 'none'; script-src 'self'; script-src-elem 'self'; base-uri 'self'"
+//        ],
+//        "date": [
+//            "Fri, 15 Nov 2024 14:24:02 GMT"
+//        ],
+//        "strict-transport-security": [
+//            "max-age=31536000; includeSubDomains; preload;"
+//        ]
+//    }
+//]
+//    }
 }

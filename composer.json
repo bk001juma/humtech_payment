@@ -44,6 +44,7 @@
     "socialiteproviders/linkedin": "^4.2",
     "socialiteproviders/twitch": "^5.3",
     "socialiteproviders/youtube": "^4.1",
+    "spatie/async": "^1.6",
     "twbs/bootstrap-icons": "^1.11"
   },
   "require-dev": {

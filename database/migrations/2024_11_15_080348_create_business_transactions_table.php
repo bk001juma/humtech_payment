@@ -19,6 +19,9 @@ return new class extends Migration
             $table->foreignId('initiator_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('unique_id')->unique();
+            $table->string('operator_transaction_id')->nullable();
+            $table->string('operator_conversation_id')->nullable();
+            $table->string('customer_id')->unique();
             $table->enum('type',['credit','debit'])->default('debit');
             $table->string('sub_type')->nullable();
             $table->string('status')->default('pending');

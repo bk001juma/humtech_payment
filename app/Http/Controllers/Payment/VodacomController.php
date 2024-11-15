@@ -10,19 +10,29 @@ use Illuminate\Support\Facades\Http;
 
 class VodacomController extends Controller
 {
-    public function sendToCustomer()
+    public function sendToCustomer($phone,$amount,$unique_id)
     {
         ini_set('max_execution_time', 300);
         set_time_limit(300);
+//
+//        $res = '{
+//    "output_ResponseCode": "INS-0",
+//    "output_ResponseDesc": "Request processed successfully",
+//    "output_TransactionID": "BKF5FG785AT",
+//    "output_ConversationID": "bd7f81457da04506926ff7cad9fc3e92",
+//    "output_ThirdPartyConversationID": "payment_673748d63933c"
+//}';
+
+//        return json_encode($res);
 
         $data = [
-            "input_Amount" => "500.00",
+            "input_Amount" => $amount,
             "input_Country" => "TZN",
             "input_Currency" => "TZS",
-            "input_CustomerMSISDN" => "255765204506",
+            "input_CustomerMSISDN" => $phone,
             "input_ServiceProviderCode" => "311936",
-            "input_ThirdPartyConversationID" => "asv02e5958774f7ba228d83dd0d6897B",
-            "input_TransactionReference" => "T1234B",
+            "input_ThirdPartyConversationID" => $unique_id,
+            "input_TransactionReference" => "Sherehe Digital",
             "input_PurchasedItemsDesc" => "Shoes"
         ];
 
@@ -76,10 +86,10 @@ class VodacomController extends Controller
                 goto a;
             }
 
-            return response()->json([$response->json(),$response->status(),$response->headers()]);
+//            return response()->json([$response->json(),$response->status(),$response->headers()]);
         }
 
-        return true;
+        return $response;
     }
 
 

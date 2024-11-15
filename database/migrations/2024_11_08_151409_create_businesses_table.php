@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('businesses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->string('tariff_percentage')->default(0);
+            $table->integer('tariff_percentage')->default(0);
             $table->string('name');
             $table->string('phone');
             $table->string('email');

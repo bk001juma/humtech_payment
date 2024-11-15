@@ -189,7 +189,7 @@
                                                                 </td>
                                                                 <td>{{number_format($product->balance)}} TZS</td>
                                                                 <td><span class="badge rounded-pill @if($product->status == 'active')badge-light-success @else badge-light-danger @endif  text-capitalize">{{$product->status}}</span></td>
-                                                                <td>0</td>
+                                                                <td>{{number_format(count($product->transactions))}}</td>
                                                                 <td>
                                                                     <ul class="action">
                                                                         <li class="edit"> <a href="{{route('merchant.manage',$product->id)}}"><i class="icon-pencil-alt"></i></a></li>
