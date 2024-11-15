@@ -123,7 +123,7 @@ class PaymentController extends Controller
                     $pool->stop();
                 })->catch(function ($exception) use ($transaction) {
                     // When an exception is thrown from within a process, it's caught and passed here.
-                    $transaction->message = $exception->message();
+                    $transaction->message = $exception->getMessage();
                     $transaction->save();
 
                 })->timeout(function () use ($transaction) {
