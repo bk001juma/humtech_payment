@@ -16,6 +16,11 @@ class PaymentController extends Controller
 {
     public function makePayment(Request $request)
     {
+
+         $jj  =  env('APP_NAME');
+
+         return $jj;
+
         ini_set('max_execution_time', 300);
         set_time_limit(300);
 
@@ -105,7 +110,6 @@ class PaymentController extends Controller
 
             }elseif($operator_id == 2){
 
-                return env('APP_NAME');
 
 
                 $pool->add(function () use ($transaction, $amount, $phone) {
