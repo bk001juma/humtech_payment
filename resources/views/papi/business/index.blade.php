@@ -46,11 +46,11 @@
                                     <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Phone</th>
+                                        <th>Contacts</th>
                                         <th>Status</th>
                                         <th>Balance</th>
                                         <th>Business Type</th>
-                                        <th>Transactions</th>
+                                        <th>Products</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -58,12 +58,18 @@
 
                                     @foreach($businesses as $business)
                                         <tr>
-                                            <td> <img class="img-fluid table-avtar" src="/assets/images/user/2.png" alt="{{$business->name}}">{{$business->name}}</td>
-                                            <td>{{$business->phone}}</td>
-                                            <td><span class="badge rounded-pill badge-light-success">{{$business->status}}</span></td>
-                                            <td>{{$business->balance}}</td>
-                                            <td>{{$business->type}}</td>
-                                            <td>0</td>
+                                            <td>
+                                                <h4>
+                                                    <img class="img-fluid table-avtar" style="height: 100px" src="/{{$business->logo}}" alt="{{$business->name}}">
+                                                    {{$business->name}}</h4>
+                                            </td>
+                                            <td>
+                                                {{$business->phone}}<hr>{{$business->email}}
+                                            </td>
+                                            <td><span class="badge rounded-pill badge-light-success text-capitalize">{{$business->status}}</span></td>
+                                            <td>{{number_format($business->balance)}} TZS</td>
+                                            <td>{{$business->category}}</td>
+                                            <td>{{count($business->products)}}</td>
                                             <td>
                                                 <ul class="action">
                                                     <li class="edit"> <a href="{{route('merchant.manage',$business->id)}}"><i class="icon-pencil-alt"></i></a></li>
@@ -77,11 +83,11 @@
                                     <tfoot>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Phone</th>
+                                        <th>Contacts</th>
                                         <th>Email</th>
                                         <th>TIN</th>
                                         <th>Business Type</th>
-                                        <th>Transactions</th>
+                                        <th>Products</th>
                                         <th>Action</th>
                                     </tr>
                                     </tfoot>
@@ -97,12 +103,12 @@
     </div>
 
     <div class="modal fade" id="exampleModalgetbootstrap" tabindex="-1" role="dialog" aria-labelledby="exampleModalgetbootstrap" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog " role="document">
             <div class="modal-content">
                 <div class="modal-toggle-wrapper social-profile text-start dark-sign-up">
                     <h3 class="modal-header justify-content-center border-0">Create Business</h3>
                     <div class="modal-body">
-                        <form class="row g-3 needs-validation" method="POST" action="{{route('merchant.store')}}">
+                        <form class="row g-3 needs-validation" method="POST" action="{{route('merchant.store')}}" enctype="multipart/form-data">
                             @csrf
                             <div class="col-md-6">
                                 <label class="form-label" >Business Name</label>
@@ -128,10 +134,17 @@
 {{--                                <label class="form-label" for="validationCustom02">Business Type</label>--}}
 {{--                                <input class="form-control" id="validationCustom02" type="text" placeholder="Enter your surname" required="required" name="type">--}}
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="exampleFormControlInput1">Email address</label>
                                     <input class="form-control" type="email" placeholder="humtech@gmail.com" required="required" name="email">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" >Logo</label>
+                                <div class="input-group">
+                                    <button class="btn btn-outline-success" id="inputGroupFileAddon03" type="button"><i class="fa-solid fa-file"></i></button>
+                                    <input class="form-control" id="inputGroupFile03" type="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload" name="image" accept="image/*">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -171,5 +184,5 @@
     <!-- page_datatable-->
     <script src="/assets/js/datatable/datatables/datatable.custom.js"></script>
     <!-- theme_customizer-->
-    <script src="/assets/js/theme-customizer/customizer.js"></script>
+{{--    <script src="/assets/js/theme-customizer/customizer.js"></script>--}}
 @endsection

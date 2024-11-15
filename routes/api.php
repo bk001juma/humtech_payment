@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\Payment\AirtelController;
 use App\Http\Controllers\Payment\VodacomController;
 use Illuminate\Http\Request;
@@ -41,3 +42,8 @@ Route::prefix('airtel')->group(function () {
     Route::post('callback', [AirtelController::class, 'callBack']);
 
 });
+
+Route::prefix('payment')->group(function () {
+    Route::post('/initiate', [PaymentController::class, 'makePayment']);
+});
+

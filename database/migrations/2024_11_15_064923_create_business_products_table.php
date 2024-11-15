@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('business_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
-            $table->string('api_key')->nullable();
             $table->string('logo')->nullable();
-            $table->longText('token')->nullable();
             $table->double('balance')->default(0);
-            $table->string('status')->default('pending');
+            $table->double('actual_balance')->default(0);
+            $table->string('api_key')->nullable();
+            $table->longText('token')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

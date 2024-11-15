@@ -12,15 +12,13 @@ class BusinessProduct extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id',
+        'business_id',
         'name',
-        'phone',
-        'email',
-        'tin',
-        'category',
-        'email',
-        'email',
-        'email',
+        'logo',
+        'token',
+        'balance',
+        'actual_balance',
+        'status',
     ];
 
     public function business()

@@ -10,7 +10,7 @@ class SMSTrait
     {
         $phone_no = $this->formatPhone($phone);
         //        return '1';
-        $api_key='1f90c262b690626e';
+        $api_key = '1f90c262b690626e';
         $secret_key = 'NTkwMDE4YTMyMzc5NDRmMjEwNjczNjMyNjkzY2Q5NTI2NjY3YmYwZjY2MDAzODRkZmI2ZWZmYWY1YTQyNDZhNA==';
         // The data to send to the API
         $postData = array(
@@ -32,6 +32,7 @@ class SMSTrait
         ini_set('display_errors', 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
         curl_setopt_array($ch, array(
             CURLOPT_HEADER => 0,
             CURLOPT_FORBID_REUSE => true,

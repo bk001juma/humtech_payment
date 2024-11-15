@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Merchant\Business;
+use App\Traits\ImageTrait;
 use Illuminate\Http\Request;
 
 class BusinessController extends Controller
@@ -16,6 +17,11 @@ class BusinessController extends Controller
 
     public function store(Request $request)
     {
+        if (isset($request['image'])){
+            $imageTrait = new ImageTrait();
+            $request['logo'] = $imageTrait->uploadIMage($request['image'],'300,300',$request['name'],'business/logo');
+        }
+
         Business::create($request->all());
 
         return redirect()->back();

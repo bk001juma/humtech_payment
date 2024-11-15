@@ -40,7 +40,7 @@
                                         <div class="row mb-2">
                                             <div class="profile-title">
                                                 <div class="d-flex gap-3">
-                                                    <img class="img-70 rounded-circle" alt="" src="/assets/images/user/7.jpg"/>
+                                                    <img class="img-70 rounded-circle" alt="" src="/{{$business->logo}}"/>
                                                     <div class="flex-grow-1">
                                                         <h3 class="mb-1">{{$business->name}}</h3>
                                                         <p>{{$business->category}}</p>
@@ -134,6 +134,9 @@
                             <!-- silde-bar colleps block end here-->
                         </div>
                     </div>
+
+
+
                     <div class="card">
                         <div class="row product-page-main">
                             <div class="col-sm-12">
@@ -158,7 +161,7 @@
 
                                         <div class="card">
                                             <div class="card-header pb-0 card-no-border">
-                                                <h2>{{$business->name}} Products</h2>
+                                                <h2>{{$business->name}} - Products</h2>
                                                 <div class="pull-right">
                                                     <button class="btn btn-primary px-xl-2 px-xxl-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalgetbootstrap" data-whatever="@getbootstrap"><i class="iconly-Plus"></i> Add Product</button>
                                                 </div>
@@ -169,10 +172,8 @@
                                                         <thead>
                                                         <tr>
                                                             <th>Name</th>
-                                                            <th>Phone</th>
-                                                            <th>Status</th>
                                                             <th>Balance</th>
-                                                            <th>Business Type</th>
+                                                            <th>Status</th>
                                                             <th>Transactions</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -181,11 +182,13 @@
 
                                                         @foreach($business->products as $product)
                                                             <tr>
-                                                                <td> <img class="img-fluid table-avtar" src="/assets/images/user/2.png" alt="{{$product->name}}">{{$product->name}}</td>
-                                                                <td>{{$product->phone}}</td>
-                                                                <td><span class="badge rounded-pill badge-light-success">{{$product->status}}</span></td>
-                                                                <td>{{$product->balance}}</td>
-                                                                <td>{{$product->type}}</td>
+                                                                <td>
+                                                                    <h4>
+                                                                        <img class="img-fluid table-avtar" style="height: 100px" src="/{{$product->logo}}" alt="{{$product->name}}">{{$product->name}}
+                                                                    </h4>
+                                                                </td>
+                                                                <td>{{number_format($product->balance)}} TZS</td>
+                                                                <td><span class="badge rounded-pill @if($product->status == 'active')badge-light-success @else badge-light-danger @endif  text-capitalize">{{$product->status}}</span></td>
                                                                 <td>0</td>
                                                                 <td>
                                                                     <ul class="action">
@@ -200,10 +203,8 @@
                                                         <tfoot>
                                                         <tr>
                                                             <th>Name</th>
-                                                            <th>Phone</th>
-                                                            <th>Email</th>
-                                                            <th>TIN</th>
-                                                            <th>Business Type</th>
+                                                            <th>Balance</th>
+                                                            <th>Status</th>
                                                             <th>Transactions</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -234,6 +235,43 @@
             </div>
         </div>
     </div>
+
+
+{{--    Modals   --}}
+
+    <div class="modal fade" id="exampleModalgetbootstrap" tabindex="-1" role="dialog" aria-labelledby="exampleModalgetbootstrap" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-toggle-wrapper social-profile text-start dark-sign-up">
+                    <h3 class="modal-header justify-content-center border-0">Create Business Product</h3>
+                    <div class="modal-body">
+                        <form class="row g-3 needs-validation" method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
+                            @csrf
+                            <input hidden="hidden" name="business_id" value="{{$business->id}}">
+                            <div class="col-md-12">
+                                <label class="form-label" >Product Name</label>
+                                <input class="form-control" type="text" placeholder="Sherehe SDigital" required="required" name="name">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label" >Logo</label>
+                                <div class="input-group">
+                                    <button class="btn btn-outline-success" id="inputGroupFileAddon03" type="button"><i class="fa-solid fa-file"></i></button>
+                                    <input class="form-control" id="inputGroupFile03" type="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload" name="image" accept="image/*">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="align-content-center">
+                                    <button class="btn btn-primary pull-right" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 
@@ -251,5 +289,5 @@
     <!-- ecommerce-->
     <script src="/assets/js/ecommerce.js"></script>
     <!-- theme_customizer-->
-    <script src="/assets/js/theme-customizer/customizer.js"></script>
+{{--    <script src="/assets/js/theme-customizer/customizer.js"></script>--}}
 @endsection

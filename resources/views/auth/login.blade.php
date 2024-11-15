@@ -45,7 +45,10 @@
         <div class="col-xl-5 p-0">
           <div class="login-card login-dark login-bg">
             <div>
-              <div><a class="logo text-center" href="/"><img class="img-fluid for-light m-auto" src="../assets/images/logo/logo1.png" alt="looginpage"><img class="for-dark" src="../assets/images/logo/logo-dark.png" alt="logo"></a></div>
+              <div><a class="logo text-center" href="/">
+                      <img style="height: 100px" class="img-fluid for-light m-auto" src="logo.png" alt="looginpage">
+                      <img style="height: 100px" class="for-dark" src="logo.png" alt="logo"></a>
+              </div>
               <div class="login-main">
                 <form class="theme-form" method="POST" action="{{ route('login') }}">
                     @csrf
@@ -54,7 +57,7 @@
 {{--                    {{$errors}}--}}
                   <div class="form-group">
                     <label class="col-form-label">Email Address</label>
-                    <input class="form-control" type="email" required="" placeholder="juma@gmail.com" name="email" value="{{ old('email') }}" required autofocus>
+                    <input class="form-control" type="email" required="required" placeholder="juma@gmail.com" name="email" value="{{ old('email') }}"  autofocus>
                       @if ($errors->has('email'))
                           <strong style="color: red">{{ $errors->first('email') }}</strong>
                       @endif
