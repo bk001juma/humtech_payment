@@ -1,5 +1,8 @@
 <header class="page-header row">
-    <div class="logo-wrapper d-flex align-items-center col-auto"><a href="/"><img class="light-logo img-fluid" src="/assets/images/logo/logo1.png" alt="logo"/><img class="dark-logo img-fluid" src="/assets/images/logo/logo-dark.png" alt="logo"/></a><a class="close-btn toggle-sidebar" href="javascript:void(0)">
+    <div class="logo-wrapper d-flex align-items-center col-auto bg-light">
+        <a href="/">
+            <img class="light-logo img-fluid " style="height: 70px" src="/logo.png" alt="logo"/>
+            <img class="dark-logo img-fluid" style="height: 70px" src="/logo.png" alt="logo"/></a><a class="close-btn toggle-sidebar" href="javascript:void(0)">
             <svg class="svg-color">
                 <use href="/assets/svg/iconly-sprite.svg#Category"></use>
             </svg></a></div>
@@ -96,8 +99,8 @@
                     <div class="user-wrap">
                         <div class="user-img"><img src="/assets/images/profile.png" alt="user"/></div>
                         <div class="user-content">
-                            <h6>{{$user->first_name}} {{$user->last_name}}</h6>
-                            <p class="mb-0">{{$user->roles->pluck('name')[0]}}<i class="fa-solid fa-chevron-down"></i></p>
+                            <h6>{{Auth::user()->first_name}} {{Auth::user()->last_name}}</h6>
+                            <p class="mb-0">{{Auth::user()->roles->pluck('name')[0]}}<i class="fa-solid fa-chevron-down"></i></p>
                         </div>
                     </div>
                     <div class="custom-menu overflow-hidden">

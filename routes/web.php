@@ -156,3 +156,5 @@ Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 't
 });
 
 Route::redirect('/php', '/phpinfo', 301);
+
+require_once __DIR__.'/papi/web.php';

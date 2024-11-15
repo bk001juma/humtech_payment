@@ -53,7 +53,7 @@ class VodacomController extends Controller
         switch ($action) {
             case 'session': $target = 'getSession/' ; break;
             case 'c2b': $target = 'c2bPayment/singleStage/' ; break;
-            default: $target = 'getSession/'; break;
+            default: break;
         }
 
         if ($action == 'session'){

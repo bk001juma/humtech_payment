@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Business extends Model
+class BusinessProduct extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -18,14 +18,13 @@ class Business extends Model
         'email',
         'tin',
         'category',
-        'logo',
-        'token',
-        'balance',
-        'status',
+        'email',
+        'email',
+        'email',
     ];
 
-    public function products()
+    public function business()
     {
-        return $this->hasMany(BusinessProduct::class);
+        return $this->belongsTo(Business::class);
     }
 }

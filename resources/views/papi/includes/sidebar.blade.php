@@ -11,38 +11,42 @@
                     <svg class="stroke-icon">
                         <use href="/assets/svg/iconly-sprite.svg#Paper"></use>
                     </svg>
-                    <h6 class="f-w-600">Dashboard </h6></a></li>
+                    <h6 class="f-w-600">Dashboard </h6></a>
+            </li>
+
             <li class="sidebar-main-title">
                 <div>
                     <h5 class="lan-1 f-w-700 sidebar-title">Merchant</h5>
                 </div>
             </li>
+
             <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
-                <a class="sidebar-link" href="javascript:void(0)">
+                <a class="sidebar-link {{Route::is('merchant.manage') ? 'active' : null}}" href="javascript:void(0)">
                     <svg class="stroke-icon">
                         <use href="/assets/svg/iconly-sprite.svg#Home-dashboard"></use>
                     </svg>
                     <h6>Merchants</h6><span class="badge">3</span><i class="iconly-Arrow-Right-2 icli"></i>
                 </a>
-                <ul class="sidebar-submenu">
-{{--                    <li> <a href="/">Default</a></li>--}}
-                    <li><a href="/">All Merchants </a></li>
-                    <li> <a href="/">My Merchants</a></li>
+                <ul class="sidebar-submenu" style="display: {{Route::is('merchant.manage') ? 'block' : 'none'}}">
+                    <li><a class="{{Route::is('merchant.manage') ? 'active' : null}}"  href="{{route('merchants')}}">All Merchants </a></li>
+                    <li> <a href="/">Products</a></li>
                 </ul>
             </li>
 
-            <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i><a class="sidebar-link" href="javascript:void(0)">
+
+            <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                <a class="sidebar-link" href="javascript:void(0)">
                     <svg class="stroke-icon">
-                        <use href="/assets/svg/iconly-sprite.svg#Document"></use>
+                        <use href="/assets/svg/iconly-sprite.svg#Home-dashboard"></use>
                     </svg>
-                    <h6 class="lan-3">Reports</h6><i class="iconly-Arrow-Right-2 icli"> </i></a>
+                    <h6>Transactions</h6><span class="badge">3</span><i class="iconly-Arrow-Right-2 icli"></i>
+                </a>
                 <ul class="sidebar-submenu">
-                    <li> <a href="box-layout.html">Box Layout</a></li>
-                    <li><a href="layout-rtl.html">RTL</a></li>
-                    <li> <a href="layout-dark.html">Dark</a></li>
+                    <li> <a href="/">All Transactions</a></li>
+                    <li> <a href="/">Collections</a></li>
+                    <li> <a href="/">Dismemberment</a></li>
                 </ul>
             </li>
-
         </ul>
     </div>
     <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
