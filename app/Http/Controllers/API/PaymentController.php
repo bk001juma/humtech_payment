@@ -17,9 +17,9 @@ class PaymentController extends Controller
     public function makePayment(Request $request)
     {
 
-         $jj  =  "env('APP_NAME')";
+//         $jj  =  env('APP_NAME');
 
-         return $jj;
+//         return $jj;
 
         ini_set('max_execution_time', 300);
         set_time_limit(300);
