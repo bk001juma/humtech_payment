@@ -45,5 +45,6 @@ Route::prefix('airtel')->group(function () {
 
 Route::prefix('payment')->group(function () {
     Route::post('/initiate', [PaymentController::class, 'makePayment']);
+    Route::get('/check/status/{id}', [PaymentController::class, 'checkStatus']);
 });
 

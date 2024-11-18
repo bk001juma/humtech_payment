@@ -146,11 +146,22 @@ class PaymentController extends Controller
 
             $product->save();
 
-            return response()->json(['message'=>'Transaction processed'],200);
+            return response()->json(['message'=>'Transaction processed','transaction_id'=>$transaction->unique_id],202);
 
         }else{
             return response(['message'=>'invalid key'],status: 401);
         }
 
+    }
+
+    public function checkStatus($id)
+    {
+        $transaction = BusinessTransaction::where('customer_id',$id)->first();
+
+        if($transaction->status == "paid"){
+            return response()->json(['message'=>'paid'],status: 202);
+        }else{
+            return response()->json(['message'=>'pending'],status: 205);
+        }
     }
 }
