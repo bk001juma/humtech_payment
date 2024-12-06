@@ -88,7 +88,11 @@
                                 </div>
                                 <hr/>
 
-                                <div class="m-t-15 btn-showcase"><a class="btn btn-primary" href="cart.html" title=""> <i class="fa-solid fa-basket-shopping me-1"></i>Add To Cart</a><a class="btn btn-success" href="checkout.html" title=""> <i class="fa-solid fa-cart-shopping me-1"></i>Buy Now</a><a class="btn btn-secondary" href="list-wish.html"> <i class="fa-solid fa-heart me-1"></i>Add To WishList</a></div>
+                                <div class="m-t-15 btn-showcase">
+                                    <a class="btn btn-primary" href="" title=""> <i class="fa-solid fa-check me-1"></i>Activate</a>
+                                    <a class="btn btn-success" href="" title=""> <i class="fa-solid fa-cancel me-1"></i>Suspend</a>
+                                    <a class="btn btn-secondary" href=""> <i class="fa-solid fa-cancel me-1"></i>Block Merchant</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -114,7 +118,7 @@
                                         <li>
                                             <div class="d-flex"><i data-feather="truck"></i>
                                                 <div class="flex-grow-1">
-                                                    <h5>Free Shipping                                    </h5>
+                                                    <h5>Free Shipping</h5>
                                                     <p>Free Shipping World Wide</p>
                                                 </div>
                                             </div>
@@ -123,8 +127,8 @@
                                         <li>
                                             <div class="d-flex"><i data-feather="credit-card"></i>
                                                 <div class="flex-grow-1">
-                                                    <h5>Online Payment                                  </h5>
-                                                    <p>Contrary To Popular Belief.                                   </p>
+                                                    <h5>Online Payment</h5>
+                                                    <p>Contrary To Popular Belief.</p>
                                                 </div>
                                             </div>
                                         </li>

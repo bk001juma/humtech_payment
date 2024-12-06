@@ -17,10 +17,6 @@ class PaymentController extends Controller
     public function makePayment(Request $request)
     {
 
-//         $jj  =  env('APP_NAME');
-
-//         return $jj;
-
         ini_set('max_execution_time', 300);
         set_time_limit(300);
 
@@ -62,7 +58,7 @@ class PaymentController extends Controller
                 return response()->json(['message'=>'Invalid operator'],400);
             }
 
-            $operator = Operator::find($operator_id);
+//            $operator = Operator::find($operator_id);
 
             $transaction = new BusinessTransaction;
             $transaction->phone_number = $phone;

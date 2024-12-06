@@ -16,9 +16,9 @@ class AirtelController extends Controller
         $operator = Operator::where('id',2)->first();
 
         $data = [
-            "client_id"=> env('AIRTEL_CLIENT_ID'),
-            "client_secret"=> env('AIRTEL_CLIENT_SECRET'),
-            "grant_type"=> "client_credentials"
+            "client_id"     => env('AIRTEL_CLIENT_ID'),
+            "client_secret" => env('AIRTEL_CLIENT_SECRET'),
+            "grant_type"    => "client_credentials"
         ];
 
         $response = Http::withHeaders([
@@ -83,9 +83,7 @@ class AirtelController extends Controller
             ]
         ];
 
-
         $response = Http::withHeaders($headers)->post('https://openapi.airtel.africa/merchant/v1/payments/',$data);
-
 
         if (isset($response['error_description']) || isset($response['error'])) {
             $this->getToken();
