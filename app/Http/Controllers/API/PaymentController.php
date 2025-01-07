@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Payment\AirtelController;
 use App\Http\Controllers\Payment\VodacomController;
-use App\Jobs\ProcessPayment;
+use App\Jobs\ProcessPaymentJob;
 use App\Models\Merchant\BusinessProduct;
 use App\Models\Merchant\BusinessTransaction;
 use App\Models\Payment\Operator;
@@ -61,12 +61,6 @@ class PaymentController extends Controller
 
 //            return $operator = Operator::find($operator_id);
 
-            for ($i = 0; $i < 4; $i++) {
-                ProcessPayment::dispatch($phone);
-            }
-
-            return response()->json(['message'=>'Transaction processed'],202);
-
             $transaction = new BusinessTransaction;
             $transaction->phone_number = $phone;
             $transaction->business_id = $product->business->id;
@@ -85,31 +79,34 @@ class PaymentController extends Controller
 
             if ($operator_id == 1) {
 
-                $pool->add(function () use ($transaction, $amount, $phone) {
-                    $vod = new VodacomController;
-                    return $vod->sendToCustomer($phone, $amount, $transaction->unique_id);
+                ProcessPaymentJob::dispatch($phone,$amount, $transaction->unique_id);
 
-                })->then(function ($output) use ($transaction, $pool) {
 
-                    $transaction->message = $output['output_ResponseDesc'];
-                    $transaction->operator_transaction_id = $output['output_TransactionID'];
-                    $transaction->operator_conversation_id = $output['output_ConversationID'];
-                    $transaction->status = "paid";
-                    $transaction->save();
-
-                    $pool->stop();
-                })->catch(function ($exception) use ($transaction) {
-                    // When an exception is thrown from within a process, it's caught and passed here.
-                    $transaction->message = $exception->getMessage();
-                    $transaction->status = "failed";
-                    $transaction->save();
-
-                })->timeout(function () use ($transaction) {
-                    // A process took too long to finish.
-                    $transaction->message = "Timed Out";
-                    $transaction->status = "failed";
-                    $transaction->save();
-                });
+//                $pool->add(function () use ($transaction, $amount, $phone) {
+//                    $vod = new VodacomController;
+//                    return $vod->sendToCustomer($phone, $amount, $transaction->unique_id);
+//
+//                })->then(function ($output) use ($transaction, $pool) {
+//
+//                    $transaction->message = $output['output_ResponseDesc'];
+//                    $transaction->operator_transaction_id = $output['output_TransactionID'];
+//                    $transaction->operator_conversation_id = $output['output_ConversationID'];
+//                    $transaction->status = "paid";
+//                    $transaction->save();
+//
+//                    $pool->stop();
+//                })->catch(function ($exception) use ($transaction) {
+//                    // When an exception is thrown from within a process, it's caught and passed here.
+//                    $transaction->message = $exception->getMessage();
+//                    $transaction->status = "failed";
+//                    $transaction->save();
+//
+//                })->timeout(function () use ($transaction) {
+//                    // A process took too long to finish.
+//                    $transaction->message = "Timed Out";
+//                    $transaction->status = "failed";
+//                    $transaction->save();
+//                });
 
             }elseif($operator_id == 2){
 
