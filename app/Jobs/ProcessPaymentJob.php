@@ -33,9 +33,6 @@ class ProcessPaymentJob implements ShouldQueue
      */
     public function handle(): void
     {
-//        $this->smsTrait = new SMSTrait();
-//        $this->smsTrait->sendBEEMSMS($this->phone, uniqid(), '123456');
-//
         $vod = new VodacomController;
         $vod->sendToCustomer($this->phone, $this->amount, $this->unique_id);
 
