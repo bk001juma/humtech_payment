@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Payment\AirtelController;
 use App\Http\Controllers\Payment\VodacomController;
+use App\Jobs\ProcessPayment;
 use App\Models\Merchant\BusinessProduct;
 use App\Models\Merchant\BusinessTransaction;
 use App\Models\Payment\Operator;
@@ -58,7 +59,13 @@ class PaymentController extends Controller
                 return response()->json(['message'=>'Invalid operator'],400);
             }
 
-//            $operator = Operator::find($operator_id);
+//            return $operator = Operator::find($operator_id);
+
+            for ($i = 0; $i < 4; $i++) {
+                ProcessPayment::dispatch($phone);
+            }
+
+            return response()->json(['message'=>'Transaction processed'],202);
 
             $transaction = new BusinessTransaction;
             $transaction->phone_number = $phone;
