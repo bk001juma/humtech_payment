@@ -70,9 +70,9 @@ class VodacomController extends Controller
         if ($action == 'session'){
             $response = Http::withHeaders([
                 'Origin' => '*',
-                'Authorization' => 'Bearer ' . $token,
+                'Authorization' => 'Bearer '.$token,
                 'Accept' => 'application/json',
-            ])->timeout(180)->get('https://openapi.m-pesa.com/openapi/ipg/v2/vodacomTZN/' . $target);
+            ])->get('https://openapi.m-pesa.com/openapi/ipg/v2/vodacomTZN/'.$target);
 
             $operator->active_session_key = $response['output_SessionID'];
             $operator->save();
@@ -81,7 +81,7 @@ class VodacomController extends Controller
                 'Origin' => '*',
                 'Authorization' => 'Bearer ' .$token,
                 'Accept' => 'application/json',
-            ])->timeout(180)->post('https://openapi.m-pesa.com/openapi/ipg/v2/vodacomTZN/'.$target,$data);
+            ])->post('https://openapi.m-pesa.com/openapi/ipg/v2/vodacomTZN/'.$target,$data);
 
             if ($response->status() != 201) {
                 $this->getSession();

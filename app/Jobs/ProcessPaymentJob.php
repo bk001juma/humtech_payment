@@ -50,7 +50,8 @@ class ProcessPaymentJob implements ShouldQueue
         $unique_id = $this->unique_id;
 
 
-        $pool->add(function () use ($transaction, $amount, $phone,$unique_id) {
+        $pool->add(function () use ($transaction, $amount, $phone, $unique_id) {
+
             $vod = new VodacomController;
             return $vod->sendToCustomer($phone, $amount, $unique_id);
 
