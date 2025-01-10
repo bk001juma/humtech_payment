@@ -32,7 +32,7 @@
         <div class="container-fluid">
             <div>
                 <div class="row product-page-main p-0">
-                    <div class="col-xxl-5 box-col-6 order-xxl-0 ">
+                    <div class="col-xxl-6 box-col-6 order-xxl-0 ">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -54,38 +54,38 @@
                                         <div class="product-page-details">
                                             <h3>Balance.</h3>
                                         </div>
-                                        <div class="product-price">20,000 TZS
+                                        <div class="product-price">{{number_format($business->balance)}} TZS
 {{--                                            <del>$350.00 </del>--}}
                                         </div>
 
                                     </div>
 
                                 </div>
-                                <hr/>
-                                <p>Rock Paper Scissors Various Dots Half Sleeves Girl’s Regular Fit T-Shirt I 100% Cotton T Shirt with Half Sleeve Round Neck I Regular Wear Solid Kids Tees and Black Sleeve.</p>
-                                <hr/>
-                                <div>
-                                    <table class="product-page-width">
-                                        <tbody>
-                                        <tr>
-                                            <td> <b>Brand &nbsp;&nbsp;&nbsp;:</b></td>
-                                            <td>Pixelstrap</td>
-                                        </tr>
-                                        <tr>
-                                            <td> <b>Availability &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                                            <td class="font-success">In stock</td>
-                                        </tr>
-                                        <tr>
-                                            <td> <b>Seller &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                                            <td>ABC</td>
-                                        </tr>
-                                        <tr>
-                                            <td> <b>Fabric &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
-                                            <td>Cotton</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+{{--                                <hr/>--}}
+{{--                                <p>Rock Paper Scissors Various Dots Half Sleeves Girl’s Regular Fit T-Shirt I 100% Cotton T Shirt with Half Sleeve Round Neck I Regular Wear Solid Kids Tees and Black Sleeve.</p>--}}
+{{--                                <hr/>--}}
+{{--                                <div>--}}
+{{--                                    <table class="product-page-width">--}}
+{{--                                        <tbody>--}}
+{{--                                        <tr>--}}
+{{--                                            <td> <b>Brand &nbsp;&nbsp;&nbsp;:</b></td>--}}
+{{--                                            <td>Pixelstrap</td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                            <td> <b>Availability &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>--}}
+{{--                                            <td class="font-success">In stock</td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                            <td> <b>Seller &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>--}}
+{{--                                            <td>ABC</td>--}}
+{{--                                        </tr>--}}
+{{--                                        <tr>--}}
+{{--                                            <td> <b>Fabric &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>--}}
+{{--                                            <td>Cotton</td>--}}
+{{--                                        </tr>--}}
+{{--                                        </tbody>--}}
+{{--                                    </table>--}}
+{{--                                </div>--}}
                                 <hr/>
 
                                 <div class="m-t-15 btn-showcase">
@@ -111,31 +111,21 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-xxl-3 col-md-6 box-col-6">
                         <div class="card">
                             <div class="card-body">
-                                <div class="collection-filter-block">
-                                    <ul class="pro-services">
-                                        <li>
-                                            <div class="d-flex"><i data-feather="truck"></i>
-                                                <div class="flex-grow-1">
-                                                    <h5>Free Shipping</h5>
-                                                    <p>Free Shipping World Wide</p>
-                                                </div>
-                                            </div>
-                                        </li>
+                                <!-- side-bar colleps block stat-->
+                                <div class="filter-block">
+                                    <h4>Brand</h4>
+                                    <ul>
+                                        <li>Clothing</li>
+                                        <li>Bags</li>
+                                        <li>Footwear</li>
 
-                                        <li>
-                                            <div class="d-flex"><i data-feather="credit-card"></i>
-                                                <div class="flex-grow-1">
-                                                    <h5>Online Payment</h5>
-                                                    <p>Contrary To Popular Belief.</p>
-                                                </div>
-                                            </div>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
-                            <!-- silde-bar colleps block end here-->
                         </div>
                     </div>
 
@@ -146,9 +136,6 @@
                             <div class="col-sm-12">
                                 <ul class="nav nav-tabs border-tab nav-primary mb-0" id="top-tab" role="tablist">
                                     <li class="nav-item"><a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="product-page.html#top-home" role="tab" aria-controls="top-home" aria-selected="false">Products</a>
-                                        <div class="material-border"></div>
-                                    </li>
-                                    <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-bs-toggle="tab" href="product-page.html#top-profile" role="tab" aria-controls="top-profile" aria-selected="false">Users</a>
                                         <div class="material-border"></div>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="product-page.html#top-contact" role="tab" aria-controls="top-contact" aria-selected="true">Transactions</a>
@@ -220,11 +207,6 @@
 
                                     </div>
 
-                                    <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
-                                        <p class="mb-0 mt-3">
-                                            <iframe class="me-3" width="200" height="100" src="https://www.youtube.com/embed/CJnfAXlBRTE"></iframe>
-                                        </p>
-                                    </div>
                                     <div class="tab-pane fade" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab">
                                         <p class="mb-0 mt-3">Rock Paper Scissors Various Dots Half Sleeves Girl’s Regular Fit T-Shirt I 100% Cotton<br/>T Shirt with Half Sleeve Round Neck I Regular Wear Solid Kids Tees and Black Sleeve.</p>
                                     </div>

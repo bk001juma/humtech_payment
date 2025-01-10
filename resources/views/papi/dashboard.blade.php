@@ -6,14 +6,13 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-sm-6 col-12">
-                        <h2>Education Dashboard</h2>
-                        <p class="mb-0 text-title-gray">"Welcome back to your educational adventure!"</p>
+                        <h2>{{ config('app.name', 'POS') }} Dashboard</h2>
+                        <p class="mb-0 text-title-gray">"Welcome back to {{ config('app.name', 'POS') }}!"</p>
                     </div>
                     <div class="col-sm-6 col-12">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html"><i class="iconly-Home icli svg-color"></i></a></li>
-                            <li class="breadcrumb-item">Dashboard</li>
-                            <li class="breadcrumb-item active">Education</li>
+                            <li class="breadcrumb-item"><a href="/home"><i class="iconly-Home icli svg-color"></i></a></li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
                 </div>
@@ -23,14 +22,11 @@
         <div class="container-fluid dashboard-3">
             <div class="row">
 
-                <div class="col-xxl-4 col-xl-4 col-md-6">
+                <div class="col-sm-6 col-xl-3 box-col-6">
                     <div class="card graphic-design overflow-hidden">
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
                                 <div class="d-flex align-items-center gap-2">
-{{--                                    <div class="flex-shrink-0">--}}
-{{--                                        <div class="icon"><img class="img-fluid" src="/assets/images/dashboard-3/user/20.png" alt="chair"/></div>--}}
-{{--                                    </div>--}}
                                     <div class="flex-grow-1">
                                         <h5>Total Collections</h5>
                                         <p class="mb-0">Last 30 Days</p>
@@ -39,7 +35,7 @@
 
                             </div>
                         </div>
-                        <div class="card-body p-0">
+                        <div class="card-body pb-10">
                             <ul>
                                 <li><i class="iconly-Document icli me-1"></i>
                                     <h5>10 Transactions</h5>
@@ -48,20 +44,15 @@
                                     <h5>12,000,000 TZS</h5>
                                 </li>
                             </ul>
-                            <div class="crypto-dashborad-chart">
-                                <div class="bitcoin-chart" id="bitcoin-chart"></div>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-4 col-xl-4 col-md-6">
+
+                <div class="col-sm-6 col-xl-3 box-col-6">
                     <div class="card graphic-design overflow-hidden">
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
                                 <div class="d-flex align-items-center gap-2">
-{{--                                    <div class="flex-shrink-0">--}}
-{{--                                        <div class="icon"><img class="img-fluid" src="/assets/images/dashboard-3/user/20.png" alt="chair"/></div>--}}
-{{--                                    </div>--}}
                                     <div class="flex-grow-1">
                                         <h5>Total Disbursements</h5>
                                         <p class="mb-0">Last 30 Days</p>
@@ -70,58 +61,65 @@
 
                             </div>
                         </div>
-                        <div class="card-body p-0">
+                        <div class="card-body pb-10">
                             <ul>
                                 <li><i class="iconly-Document icli me-1"></i>
                                     <h5>10 Transactions</h5>
                                 </li>
                                 <li><i class="iconly-Wallet icli me-1"></i>
-                                    <h5>3,000,000 TZS</h5>
+                                    <h5>12,000,000 TZS</h5>
                                 </li>
                             </ul>
-                            <div class="crypto-dashborad-chart">
-                                <div class="ripple-chart" id="ripple-chart"></div>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-4 col-xl-4 col-md-12">
+                <div class="col-sm-6 col-xl-3 box-col-6">
                     <div class="card graphic-design overflow-hidden">
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
                                 <div class="d-flex align-items-center gap-2">
-                                    <div class="flex-shrink-0">
-                                        <div class="icon"><img class="img-fluid" src="/assets/images/dashboard-3/user/22.png" alt="chair"/></div>
-                                    </div>
                                     <div class="flex-grow-1">
-                                        <h5>Transactions</h5>
+                                        <h5>Total Transactions</h5>
                                         <p class="mb-0">Last 30 Days</p>
                                     </div>
                                 </div>
-                                <div class="dropdown icon-dropdown">
-                                    <button class="btn" id="userdropdown3" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis"></i></button>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown3"><a class="dropdown-item" href="dashboard-03.html#">Weekly</a><a class="dropdown-item" href="dashboard-03.html#">Monthly</a><a class="dropdown-item" href="dashboard-03.html#">Yearly</a></div>
-                                </div>
+
                             </div>
                         </div>
-                        <div class="card-body p-0">
+                        <div class="card-body pb-10">
                             <ul>
                                 <li><i class="iconly-Document icli me-1"></i>
-                                    <h5>18 Lessons</h5>
+                                    <h5>10 Transactions</h5>
                                 </li>
-                                <li><i class="iconly-Time-Square icli me-1"></i>
-                                    <h5>9 Hours</h5>
-                                </li>
-                                <li><i class="iconly-User3 icli me-1"></i>
-                                    <h5>10 Students</h5>
-                                </li>
-                                <li><i class="iconly-Star icli me-1"></i>
-                                    <h5>9.5</h5>
+                                <li><i class="iconly-Wallet icli me-1"></i>
+                                    <h5>12,000,000 TZS</h5>
                                 </li>
                             </ul>
-                            <div class="crypto-dashborad-chart">
-                                <div class="ethereum-chart" id="ethereum-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 box-col-6">
+                    <div class="card graphic-design overflow-hidden">
+                        <div class="card-header card-no-border pb-0">
+                            <div class="header-top">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="flex-grow-1">
+                                        <h5>Total Failed</h5>
+                                        <p class="mb-0">Last 30 Days</p>
+                                    </div>
+                                </div>
+
                             </div>
+                        </div>
+                        <div class="card-body pb-10">
+                            <ul>
+                                <li><i class="iconly-Document icli me-1"></i>
+                                    <h5>10 Transactions</h5>
+                                </li>
+                                <li><i class="iconly-Wallet icli me-1"></i>
+                                    <h5>12,000,000 TZS</h5>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

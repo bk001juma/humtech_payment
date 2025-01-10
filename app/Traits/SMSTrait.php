@@ -6,12 +6,12 @@ use GuzzleHttp\Client;
 
 class SMSTrait
 {
-    public function sendBEEMSMS($phone,$sms,$id = 12,$sender_name = 'INTIME RENT')
+    public function sendBEEMSMS($phone,$sms,$id = 12,$sender_name = 'SHEREHE')
     {
         $phone_no = $this->formatPhone($phone);
         //        return '1';
         $api_key = '1f90c262b690626e';
-        $secret_key = 'NTkwMDE4YTMyMzc5NDRmMjEwNjczNjMyNjkzY2Q5NTI2NjY3YmYwZjY2MDAzODRkZmI2ZWZmYWY1YTQyNDZhNA==';
+        $secret_key = 'ZjRhM2ZmNmZlODRiN2NhNmQ3NGE0M2Q0Y2QzNGM5YjlhYjhhZmIxMzE5ZjE5MzU0ZGZkMjI4ZGI5ODNjNjJjYQ==';
         // The data to send to the API
         $postData = array(
             'source_addr' => $sender_name,
@@ -20,7 +20,7 @@ class SMSTrait
             'message' => $sms,
             'recipients' => [
                 ['recipient_id' => $id,'dest_addr'=>trim($phone_no,'+')],
-                ['recipient_id' => 102,'dest_addr'=>'255683772862']
+//                ['recipient_id' => 102,'dest_addr'=>'255683772862']
             ]
         );
         //.... Api url

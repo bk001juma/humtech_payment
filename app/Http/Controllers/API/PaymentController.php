@@ -79,38 +79,9 @@ class PaymentController extends Controller
 
             if ($operator_id == 1) {
 
-                ProcessPaymentJob::dispatch($phone,$amount, $transaction->unique_id);
-
-
-//                $pool->add(function () use ($transaction, $amount, $phone) {
-//                    $vod = new VodacomController;
-//                    return $vod->sendToCustomer($phone, $amount, $transaction->unique_id);
-//
-//                })->then(function ($output) use ($transaction, $pool) {
-//
-//                    $transaction->message = $output['output_ResponseDesc'];
-//                    $transaction->operator_transaction_id = $output['output_TransactionID'];
-//                    $transaction->operator_conversation_id = $output['output_ConversationID'];
-//                    $transaction->status = "paid";
-//                    $transaction->save();
-//
-//                    $pool->stop();
-//                })->catch(function ($exception) use ($transaction) {
-//                    // When an exception is thrown from within a process, it's caught and passed here.
-//                    $transaction->message = $exception->getMessage();
-//                    $transaction->status = "failed";
-//                    $transaction->save();
-//
-//                })->timeout(function () use ($transaction) {
-//                    // A process took too long to finish.
-//                    $transaction->message = "Timed Out";
-//                    $transaction->status = "failed";
-//                    $transaction->save();
-//                });
+                ProcessPaymentJob::dispatch($phone,$amount, $transaction->unique_id, $transaction, $product);
 
             }elseif($operator_id == 2){
-
-
 
                 $pool->add(function () use ($transaction, $amount, $phone) {
                     $air = new AirtelController();

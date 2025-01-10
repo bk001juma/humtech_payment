@@ -11,7 +11,7 @@ class BusinessController extends Controller
 {
     public function index(){
         $businesses = Business::get();
-        return view('papi.business.index',compact('businesses'));
+        return view('papi.business.businesses',compact('businesses'));
     }
 
 

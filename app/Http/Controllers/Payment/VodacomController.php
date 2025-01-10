@@ -14,6 +14,7 @@ class VodacomController extends Controller
     {
         ini_set('max_execution_time', 300);
         set_time_limit(300);
+
 //
 //        $res = '{
 //    "output_ResponseCode": "INS-0",
