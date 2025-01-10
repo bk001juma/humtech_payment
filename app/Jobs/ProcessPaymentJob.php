@@ -16,6 +16,8 @@ class ProcessPaymentJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $timeout = 120;
+
     protected string $phone;
     protected string $amount;
     protected string $unique_id;
@@ -39,7 +41,7 @@ class ProcessPaymentJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $pool = Pool::create()->timeout(300);
+        $pool = Pool::create()->timeout(100);
 
         $transaction = $this->transaction;
         $product = $this->product;
