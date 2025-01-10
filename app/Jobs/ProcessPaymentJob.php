@@ -39,7 +39,7 @@ class ProcessPaymentJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $pool = Pool::create()->timeout(30);
+        $pool = Pool::create()->timeout(300);
 
         $transaction = $this->transaction;
         $product = $this->product;
