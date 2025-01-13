@@ -41,7 +41,7 @@ class ProcessPaymentJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $pool = Pool::create()->timeout(100);
+        $pool = Pool::create()->timeout(50);
 
         $transaction = $this->transaction;
         $product = $this->product;
@@ -53,7 +53,7 @@ class ProcessPaymentJob implements ShouldQueue
         $pool->add(function () use ($transaction, $amount, $phone, $unique_id) {
 
             $vod = new VodacomController;
-            return $vod->sendToCustomer($phone, $amount, uniqid());
+            return $vod->sendToCustomer($phone, $amount, $unique_id);
 
         })->then(function ($output) use ($transaction, $pool) {
 
