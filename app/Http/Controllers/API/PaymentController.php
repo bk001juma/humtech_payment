@@ -178,7 +178,7 @@ class PaymentController extends Controller
             return response()->json(['message'=>'invalid transaction id'],status: 400);
 
         if($transaction->status == "paid"){
-            return response()->json(['message'=>'paid'],status: 202);
+            return response()->json(['message'=>'paid','operator_transaction_id'=>$transaction->operator_transaction_id],status: 202);
         }else{
             return response()->json(['message'=>'pending'],status: 205);
         }
