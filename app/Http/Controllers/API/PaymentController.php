@@ -34,7 +34,7 @@ class PaymentController extends Controller
             $operator_id = 0;
 
             if (!str_starts_with($phone, '255')){
-                return response()->json(['message'=>'invalid phone number'])->status(400);
+                return response()->json(['message'=>'invalid phone number'],400);
             }else{
                 $new_no = preg_replace('/^255/', '', $phone);
                 switch (substr($new_no, 0, 2)) {
