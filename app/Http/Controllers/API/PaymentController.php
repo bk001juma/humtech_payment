@@ -79,10 +79,10 @@ class PaymentController extends Controller
 
             if ($operator_id == 1) {
 
-                $vod = new VodacomController;
-                return $vod->sendToCustomer($phone, $amount, $transaction->unique_id);
+//                $vod = new VodacomController;
+//                $vod->sendToCustomer($phone, $amount, $transaction->unique_id);
 
-//                ProcessPaymentJob::dispatch($phone,$amount, $transaction->unique_id, $transaction, $product);
+                ProcessPaymentJob::dispatch($phone,$amount, $transaction->unique_id, $transaction, $product);
 
             }elseif($operator_id == 2){
 
