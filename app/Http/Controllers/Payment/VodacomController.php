@@ -15,16 +15,6 @@ class VodacomController extends Controller
         ini_set('max_execution_time', 300);
         set_time_limit(300);
 
-//
-//        $res = '{
-//    "output_ResponseCode": "INS-0",
-//    "output_ResponseDesc": "Request processed successfully",
-//    "output_TransactionID": "BKF5FG785AT",
-//    "output_ConversationID": "bd7f81457da04506926ff7cad9fc3e92",
-//    "output_ThirdPartyConversationID": "payment_673748d63933c"
-//}';
-
-//        return json_encode($res);
 
         $data = [
             "input_Amount" => $amount,
