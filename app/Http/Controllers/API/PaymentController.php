@@ -27,6 +27,10 @@ class PaymentController extends Controller
 
         $product = BusinessProduct::where('api_key',$key)->first();
 
+        if (!isset($product->id)) {
+            return response()->json(['message'=>'invalid key'],status: 401);
+        }
+
         if (isset($product->id)) {
             $phone = $request['phone'];
             $trans_id = $request['transaction_id'];
@@ -155,8 +159,18 @@ class PaymentController extends Controller
 
     }
 
-    public function checkStatus($id)
+    public function checkStatus(Request $request, $id)
     {
+        $req = $request->headers->all();
+
+        $key = base64_decode(str_replace('Basic ','',$req['authorization'][0]));
+
+        $product = BusinessProduct::where('api_key',$key)->first();
+
+        if (!isset($product->id)) {
+            return response()->json(['message'=>'invalid key'],status: 401);
+        }
+
         $transaction = BusinessTransaction::where('unique_id',$id)->first();
 
         if(!isset($transaction->id))
