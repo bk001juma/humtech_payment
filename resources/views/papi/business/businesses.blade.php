@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-sm-6 col-12">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html"><i class="iconly-Home icli svg-color"></i></a></li>
+                            <li class="breadcrumb-item"><a ><i class="iconly-Home icli svg-color"></i></a></li>
                             <li class="breadcrumb-item">Data Tables</li>
                             <li class="breadcrumb-item active">Basic DataTables</li>
                         </ol>
@@ -46,11 +46,12 @@
                                     <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Contacts</th>
-                                        <th>Status</th>
+                                        <th>Phone</th>
+                                        <th>Merchant ID</th>
                                         <th>Balance</th>
                                         <th>Business Type</th>
                                         <th>Products</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -60,20 +61,19 @@
                                         <tr>
                                             <td>
                                                 <h4>
-                                                    <img class="img-fluid table-avtar" style="height: 100px" src="/{{$business->logo}}" alt="{{$business->name}}">
+{{--                                                    <img class="img-fluid table-avtar" style="height: 100px" src="/{{$business->logo}}" alt="{{$business->name}}">--}}
                                                     {{$business->name}}</h4>
                                             </td>
-                                            <td>
-                                                {{$business->phone}}<hr>{{$business->email}}
-                                            </td>
-                                            <td><span class="badge rounded-pill badge-light-success text-capitalize">{{$business->status}}</span></td>
+                                            <td>{{$business->phone}}</td>
+                                            <td>{{$business->id}}</td>
                                             <td>{{number_format($business->balance)}} TZS</td>
                                             <td>{{$business->category}}</td>
                                             <td>{{count($business->products)}}</td>
+                                            <td><span class="badge rounded-pill badge-light-success text-capitalize">{{$business->status}}</span></td>
                                             <td>
                                                 <ul class="action">
-                                                    <li class="edit"> <a href="{{route('merchant.manage',$business->id)}}"><i class="icon-pencil-alt"></i></a></li>
-                                                    <li class="delete"><a href="{{route('merchant.manage',$business->id)}}"><i class="icon-trash"></i></a></li>
+                                                    <li class="edit"> <a class="btn btn-primary" href="{{route('merchant.manage',$business->id)}}"> View</a></li>
+{{--                                                    <li class="delete"><a href="{{route('merchant.manage',$business->id)}}"><i class="icon-trash"></i></a></li>--}}
                                                 </ul>
                                             </td>
                                         </tr>
@@ -82,12 +82,13 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Contacts</th>
-                                        <th>Email</th>
-                                        <th>TIN</th>
+                                    <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Merchant ID</th>
+                                        <th>Balance</th>
                                         <th>Business Type</th>
                                         <th>Products</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </tfoot>

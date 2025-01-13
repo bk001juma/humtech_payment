@@ -46,7 +46,7 @@
                 <ul class="sidebar-submenu">
                     <li> <a href="/">All Transactions</a></li>
                     <li> <a href="/">Collections</a></li>
-                    <li> <a href="/">Dismemberment</a></li>
+                    <li> <a href="/">Disbursements</a></li>
                 </ul>
             </li>
         </ul>

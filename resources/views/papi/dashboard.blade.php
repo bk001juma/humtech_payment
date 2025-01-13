@@ -24,7 +24,7 @@
 
                 <div class="col-sm-6 col-xl-3 box-col-6">
                     <div class="card graphic-design overflow-hidden">
-                        <div class="card-header card-no-border pb-0">
+                        <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
                             <div class="header-top">
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="flex-grow-1">
@@ -48,9 +48,9 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 col-xl-3 box-col-6">
-                    <div class="card graphic-design overflow-hidden">
-                        <div class="card-header card-no-border pb-0">
+                <div class="col-sm-6 col-xl-3 box-col-6" >
+                    <div class="card graphic-design overflow-hidden" >
+                        <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
                             <div class="header-top">
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="flex-grow-1">
@@ -58,7 +58,6 @@
                                         <p class="mb-0">Last 30 Days</p>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="card-body pb-10">
@@ -75,7 +74,7 @@
                 </div>
                 <div class="col-sm-6 col-xl-3 box-col-6">
                     <div class="card graphic-design overflow-hidden">
-                        <div class="card-header card-no-border pb-0">
+                        <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
                             <div class="header-top">
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="flex-grow-1">
@@ -100,7 +99,7 @@
                 </div>
                 <div class="col-sm-6 col-xl-3 box-col-6">
                     <div class="card graphic-design overflow-hidden">
-                        <div class="card-header card-no-border pb-0">
+                        <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
                             <div class="header-top">
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="flex-grow-1">
@@ -124,88 +123,18 @@
                     </div>
                 </div>
 
-                <div class="col-xxl-3 col-xl-4 col-sm-6 order-sm-1 order-xl-0 box-col-5">
-                    <div class="card upcoming-card">
-                        <div class="card-header card-no-border pb-0">
-                            <div class="header-top">
-                                <h3>Upcoming Classes</h3>
-                                <div class="dropdown icon-dropdown">
-                                    <button class="btn" id="userdropdown4" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis"></i></button>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown4"><a class="dropdown-item" href="dashboard-03.html#">Weekly</a><a class="dropdown-item" href="dashboard-03.html#">Monthly</a><a class="dropdown-item" href="dashboard-03.html#">Yearly</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body upcoming-class pt-0">
-                            <div class="activity-day">
-                                <h6>15 march</h6>
-                            </div>
-                            <ul>
-                                <li class="d-flex align-items-center gap-2">
-                                    <div class="flex-shrink-0">
-                                        <h5>09:00</h5>
-                                    </div>
-                                    <div class="flex-grow-1 border-2 b-l-primary">
-                                        <h6>GDM 2nd semester</h6>
-                                        <p>One-line Drawing Method</p>
-                                    </div><i class="fa-solid fa-circle circle-dot-primary pull-right"></i>
-                                </li>
-                                <li class="d-flex align-items-center gap-2">
-                                    <div class="flex-shrink-0">
-                                        <h5>10:00</h5>
-                                    </div>
-                                    <div class="flex-grow-1 border-2 b-l-secondary">
-                                        <h6>GDM 2nd semester</h6>
-                                        <p>Continuous Line Drawing</p>
-                                    </div><i class="fa-solid fa-circle circle-dot-secondary pull-right"></i>
-                                </li>
-                            </ul>
-                            <div class="activity-day">
-                                <h6>17 march</h6>
-                            </div>
-                            <ul>
-                                <li class="d-flex align-items-center gap-2">
-                                    <div class="flex-shrink-0">
-                                        <h5>12:00</h5>
-                                    </div>
-                                    <div class="flex-grow-1 border-2 b-l-primary">
-                                        <h6>GDM 2nd semester</h6>
-                                        <p>One-line Drawing Method</p>
-                                    </div><i class="fa-solid fa-circle circle-dot-primary pull-right"></i>
-                                </li>
-                                <li class="d-flex align-items-center gap-2">
-                                    <div class="flex-shrink-0">
-                                        <h5>08:00</h5>
-                                    </div>
-                                    <div class="flex-grow-1 border-2 b-l-secondary">
-                                        <h6>GDM 2nd semester</h6>
-                                        <p>Continuous Line Drawing</p>
-                                    </div><i class="fa-solid fa-circle circle-dot-secondary pull-right"></i>
-                                </li>
-                                <li class="d-flex align-items-center gap-2">
-                                    <div class="flex-shrink-0">
-                                        <h5>11:00</h5>
-                                    </div>
-                                    <div class="flex-grow-1 border-2 b-l-primary">
-                                        <h6>GDM 2nd semester</h6>
-                                        <p>Continuous Line Drawing</p>
-                                    </div><i class="fa-solid fa-circle circle-dot-primary pull-right"></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-xl-6 order-xxl-0 order-xl-4 col-lg-12 box-col-7">
                     <div class="card performance-card">
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
-                                <h3>School Performance</h3>
+                                <h3>Collections</h3>
                                 <div class="d-flex">
                                     <ul class="performance-header">
                                         <li class="me-3"><span class="circle bg-primary me-1"> </span>
-                                            <p class="mb-0">Students</p>
+                                            <p class="mb-0">Success</p>
                                         </li>
                                         <li class="me-3"><span class="circle bg-secondary me-1"></span>
-                                            <p class="mb-0">Teachers</p>
+                                            <p class="mb-0">Failed</p>
                                         </li>
                                     </ul>
                                     <ul class="simple-wrapper nav nav-pills" id="myTab" role="tablist">
@@ -221,208 +150,90 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-3 col-xl-4 col-sm-6 box-col-5 box-order-1">
-                    <div class="card">
-                        <div class="card-header card-no-border pb-0">
-                            <div class="header-top">
-                                <h3>Notice Board</h3>
-                                <div class="dropdown icon-dropdown">
-                                    <button class="btn" id="userdropdown5" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis"></i></button>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown5"><a class="dropdown-item" href="dashboard-03.html#">Weekly</a><a class="dropdown-item" href="dashboard-03.html#">Monthly</a><a class="dropdown-item" href="dashboard-03.html#">Yearly</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body notice-board">
-                            <ul>
-                                <li class="d-flex gap-2">
-                                    <div class="flex-shrink-0"><img class="img-fluid" src="/assets/images/dashboard-1/news-update/1.png" alt=""/></div>
-                                    <div class="flex-grow-1">
-                                        <h6>Virtual STEM Clubs for 4-8 with Destina...</h6>
-                                        <p class="text-truncate">Wed, Feb 24,2022; 12:00 pm-1:00pm</p>
-                                    </div>
-                                </li>
-                                <li class="d-flex gap-2">
-                                    <div class="flex-shrink-0"><img class="img-fluid" src="/assets/images/dashboard-1/news-update/2.png" alt=""/></div>
-                                    <div class="flex-grow-1">
-                                        <h6>Art Now Series Presents Catherine...</h6>
-                                        <p class="text-truncate">Wed, Feb 24,2022; 12:00 pm-1:00pm</p>
-                                    </div>
-                                </li>
-                                <li class="d-flex gap-2">
-                                    <div class="flex-shrink-0"><img class="img-fluid" src="/assets/images/dashboard-1/news-update/3.png" alt=""/></div>
-                                    <div class="flex-grow-1">
-                                        <h6>Artistic Challenges For Your Creatie...</h6>
-                                        <p class="text-truncate">Wed, Feb 24,2022; 12:00 pm-1:00pm</p>
-                                    </div>
-                                </li>
-                                <li class="d-flex gap-2">
-                                    <div class="flex-shrink-0"><img class="img-fluid" src="/assets/images/dashboard-1/news-update/4.png" alt=""/></div>
-                                    <div class="flex-grow-1">
-                                        <h6>Weekly Photo Challenge & Critique...</h6>
-                                        <p class="text-truncate">Wed, Feb 24,2022; 12:00 pm-1:00pm</p>
-                                    </div>
-                                </li>
-                                <li class="d-flex gap-2">
-                                    <div class="flex-shrink-0"><img class="img-fluid" src="/assets/images/dashboard-1/news-update/5.png" alt=""/></div>
-                                    <div class="flex-grow-1">
-                                        <h6>Art Now Series Presents Catherine...</h6>
-                                        <p class="text-truncate">Wed, Feb 24,2022; 12:00 pm-1:00pm</p>
-                                    </div>
-                                </li>
-                                <li class="d-flex gap-2">
-                                    <div class="flex-shrink-0"><img class="img-fluid" src="/assets/images/dashboard-1/news-update/6.png" alt=""/></div>
-                                    <div class="flex-grow-1">
-                                        <h6>Virtual STEM Clubs for 4-8 with Destina...</h6>
-                                        <p class="text-truncate">Wed, Feb 24,2022; 12:00 pm-1:00pm</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+
+
                 <div class="col-xxl-6 col-xl-7 order-xxl-0 order-xl-1 col-sm-6 box-col-12">
                     <div class="card">
                         <div class="card-header card-no-border pb-0">
-                            <h3>Student Details</h3>
+                            <h3>Transactions</h3>
                         </div>
                         <div class="card-body pt-0 details-table">
                             <div class="table-responsive theme-scrollbar">
                                 <table class="table display table-bordernone mt-0" id="student-detail" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th>Customer</th>
-                                        <th>Poduct</th>
-                                        <th>QTY</th>
-                                        <th>Attendance</th>
-                                        <th class="text-center">rating</th>
+                                        <th>Name</th>
+                                        <th>Amount</th>
+                                        <th>Trans ID</th>
+                                        <th>Channel</th>
+                                        <th>Time</th>
+                                        <th class="text-center">Status</th>
                                     </tr>
                                     </thead>
+
                                     <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div class="flex-shrink-0 comman-round"><img src="/assets/images/dashboard-3/user/7.png" alt=""/></div>
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h6>Gary Goodwin</h6></a>
-                                                    <p>2019</p>
+                                    @for ($i = 0; $i < 5; $i++)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div class="flex-grow-1"><a href="product-page.html">
+                                                            <h6>@php
+                                                                    $names = ['Gary Goodwin', 'Ralph Venter', 'Edwin Deo', 'Aaron Hors', 'Fenter Jessy', 'Alice Hogan'];
+                                                                    $randomNames = array_rand(array_flip($names), 2);
+                                                                @endphp
+                                                                {{ $randomNames[1] }}</h6></a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h6 class="f-w-600">Dedoh5@error.com</h6>
-                                        </td>
-                                        <td class="f-w-600">QTY:12</td>
-                                        <td class="f-w-600 text-center">51</td>
-                                        <td class="text-end">
-                                            <div class="btn bg-light-success border-light-success text-success">45/50</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div class="flex-shrink-0 comman-round"><img src="/assets/images/dashboard-3/user/8.png" alt=""/></div>
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h6>Ralph Venter</h6></a>
-                                                    <p>2019</p>
+                                            </td>
+                                            <td>
+                                                <h6 class="f-w-600">25,000</h6>
+                                            </td>
+                                            <td class="f-w-600">{{ 'CA' . str_pad(rand(0, 99999999), 8, '0', STR_PAD_LEFT) }}</td>
+                                            <td class="f-w-600 text-center">M-Pesa</td>
+                                            <td class="f-w-600 text-center">{{ \Illuminate\Support\Carbon::create(2025, rand(1, 12), rand(1, 28), rand(0, 23), rand(0, 59), rand(0, 59)) }}</td>
+                                            <td class="text-end">
+                                                <div class="btn bg-light-success border-light-success text-success">
+                                                    Success
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h6 class="f-w-600">Norog95@fada.com</h6>
-                                        </td>
-                                        <td class="f-w-600">QTY:14</td>
-                                        <td class="f-w-600 text-center">95</td>
-                                        <td class="text-end">
-                                            <div class="btn bg-light-success border-light-success text-success">30/100</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div class="flex-shrink-0 comman-round"><img src="/assets/images/dashboard-3/user/9.png" alt=""/></div>
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h6>Edwin Deo</h6></a>
-                                                    <p>2019</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h6 class="f-w-600">Mopot43@fada.com</h6>
-                                        </td>
-                                        <td class="f-w-600">QTY:16</td>
-                                        <td class="f-w-600 text-center">94</td>
-                                        <td class="text-end">
-                                            <div class="btn bg-light-warning border-light-warning text-warning">45/60</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div class="flex-shrink-0 comman-round"><img src="/assets/images/dashboard-3/user/10.png" alt=""/></div>
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h6>Aaron Hors</h6></a>
-                                                    <p>2019</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h6 class="f-w-600">Fafiya34@fada.com</h6>
-                                        </td>
-                                        <td class="f-w-600">QTY:18</td>
-                                        <td class="f-w-600 text-center">62</td>
-                                        <td class="text-end">
-                                            <div class="btn bg-light-danger border-light-danger text-danger">26/50</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div class="flex-shrink-0 comman-round"><img src="/assets/images/dashboard-3/user/11.png" alt=""/></div>
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h6>Fenter Jessy</h6></a>
-                                                    <p>2019</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h6 class="f-w-600">Rewox6@erroe.com</h6>
-                                        </td>
-                                        <td class="f-w-600">QTY:20</td>
-                                        <td class="f-w-600 text-center">91</td>
-                                        <td class="text-end">
-                                            <div class="btn bg-light-success border-light-success text-success">80/100</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-3">
-                                                <div class="flex-shrink-0 comman-round"><img src="/assets/images/dashboard-3/user/12.png" alt=""/></div>
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h6>Alice Hogan</h6></a>
-                                                    <p>2019</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h6 class="f-w-600">Alice345@fada.com</h6>
-                                        </td>
-                                        <td class="f-w-600">QTY:22</td>
-                                        <td class="f-w-600 text-center">93</td>
-                                        <td class="text-end">
-                                            <div class="btn bg-light-success border-light-success text-success">45/50</div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    @endfor
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-xl-6 col-lg-12 box-col-6 xl-50">
+                    <div class="card">
+                        <div class="card-header card-no-border pb-0">
+                            <div class="header-top">
+                                <h3>Merchant (Collections)</h3>
+                                <div class="card-header-right-icon">
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown">Today</button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="chart-widget.html#">Today</a><a class="dropdown-item" href="chart-widget.html#">Tomorrow</a><a class="dropdown-item" href="chart-widget.html#">Yesterday</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container progress-chart">
+                                <div id="progress1"></div>
+                                <div id="progress2"></div>
+                                <div id="progress3"></div>
+                                <div id="progress4"></div>
+                                <div id="progress5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-xxl-3 col-xl-6 order-xxl-0 order-xl-4 col-lg-6 col-md-7 box-col-6">
                     <div class="card">
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
-                                <h3>New Courses</h3>
+                                <h3>Disbursements</h3>
                                 <div class="dropdown icon-dropdown">
                                     <button class="btn" id="userdropdown7" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis"></i></button>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown7"><a class="dropdown-item" href="dashboard-03.html#">Weekly</a><a class="dropdown-item" href="dashboard-03.html#">Monthly</a><a class="dropdown-item" href="dashboard-03.html#">Yearly</a></div>
@@ -432,132 +243,103 @@
                         <div class="card-body course-table pt-0">
                             <div class="table-responsive">
                                 <table class="table table-bordernone">
+                                    <thead>
+                                    <tr>
+                                        <td>Merchant</td>
+                                        <td>Amount</td>
+                                        <td>Date</td>
+                                    </tr>
+                                    </thead>
                                     <tbody>
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-shrink-0 comman-round">
-                                                    <div class="icon"><img class="img-fluid" src="/assets/images/dashboard-3/user/13.png" alt="chair"/></div>
-                                                </div>
                                                 <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>Gary Goodwin</h5></a>
-                                                    <p>Elementary</p>
+                                                        <h5>KMJ</h5></a>
+                                                    <p>M-Pesa</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <h5>30 class</h5>
-                                            <p>60 hours</p>
+                                            <h5>60,000</h5>
+                                            <p class="text-success">Success</p>
                                         </td>
-                                        <td>5 days left</td>
+                                        <td>2025-01-10<br>11:34:66</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-shrink-0 comman-round">
-                                                    <div class="icon"><img class="img-fluid" src="/assets/images/dashboard-3/user/14.png" alt="chair"/></div>
-                                                </div>
                                                 <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>Ralph Venter</h5></a>
-                                                    <p>Advanced</p>
+                                                        <h5>Sherehe Digital</h5></a>
+                                                    <p>M-Pesa</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <h5>34 class</h5>
-                                            <p>45 hours</p>
+                                            <h5>90,000</h5>
+                                            <p class="text-success">Success</p>
                                         </td>
-                                        <td>2 days left</td>
+                                        <td>2025-01-10<br>11:34:66</td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-shrink-0 comman-round">
-                                                    <div class="icon"><img class="img-fluid" src="/assets/images/dashboard-3/user/15.png" alt="chair"/></div>
-                                                </div>
                                                 <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>Edwin Deo</h5></a>
-                                                    <p>Advanced</p>
+                                                        <h5>Shririkisho</h5></a>
+                                                    <p>Mixx</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <h5>87 class</h5>
-                                            <p>23 hours</p>
+                                            <h5>640,000</h5>
+                                            <p class="text-success">Success</p>
                                         </td>
-                                        <td>4 days left</td>
+                                        <td>2025-01-14<br>11:34:66</td>
                                     </tr>
-                                    <tr>
+                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-shrink-0 comman-round">
-                                                    <div class="icon"><img class="img-fluid" src="/assets/images/dashboard-3/user/16.png" alt="chair"/></div>
-                                                </div>
                                                 <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>Aaron Hors</h5></a>
-                                                    <p>Elementary</p>
+                                                        <h5>Garab</h5></a>
+                                                    <p>Mixx</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <h5>12 class</h5>
-                                            <p>56 hours</p>
+                                            <h5>640,000</h5>
+                                            <p class="text-success">Success</p>
                                         </td>
-                                        <td>9 days left</td>
+                                        <td>2025-01-14<br>11:34:66</td>
                                     </tr>
-                                    <tr>
+                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-shrink-0 comman-round">
-                                                    <div class="icon"><img class="img-fluid" src="/assets/images/dashboard-3/user/17.png" alt="chair"/></div>
-                                                </div>
                                                 <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>Fenter Jessy</h5></a>
-                                                    <p>Art.3748979</p>
+                                                        <h5>Humtech</h5></a>
+                                                    <p>Mixx</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <h5>65 class</h5>
-                                            <p>60 hours</p>
+                                            <h5>640,000</h5>
+                                            <p class="text-success">Success</p>
                                         </td>
-                                        <td>1 days left</td>
+                                        <td>2025-01-14<br>11:34:66</td>
                                     </tr>
-                                    <tr>
+                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-shrink-0 comman-round">
-                                                    <div class="icon"><img class="img-fluid" src="/assets/images/dashboard-3/user/18.png" alt="chair"/></div>
-                                                </div>
                                                 <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>Alice Hogan</h5></a>
-                                                    <p>Art.2738979</p>
+                                                        <h5>Kazimoto</h5></a>
+                                                    <p>Mixx</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <h5>43 class</h5>
-                                            <p>78 hours</p>
+                                            <h5>640,000</h5>
+                                            <p class="text-success">Success</p>
                                         </td>
-                                        <td>6 days left</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-shrink-0 comman-round">
-                                                    <div class="icon"><img class="img-fluid" src="/assets/images/dashboard-3/user/19.png" alt="chair"/></div>
-                                                </div>
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>Aaron Hors</h5></a>
-                                                    <p>Art.7438378</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>20 class</h5>
-                                            <p>40 hours</p>
-                                        </td>
-                                        <td>5 days left</td>
+                                        <td>2025-01-14<br>11:34:66</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -569,7 +351,7 @@
                     <div class="card pie-card">
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
-                                <h3>Time Spent on Learning</h3>
+                                <h3>Operators</h3>
                                 <div class="dropdown icon-dropdown">
                                     <button class="btn" id="userdropdown8" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis"></i></button>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown8"><a class="dropdown-item" href="dashboard-03.html#">Weekly</a><a class="dropdown-item" href="dashboard-03.html#">Monthly</a><a class="dropdown-item" href="dashboard-03.html#">Yearly</a></div>
@@ -577,12 +359,83 @@
                             </div>
                         </div>
                         <div class="card-body revenue-category">
-                            <div class="pie-chart" id="pie-chart"></div>
+                            <div class="pie-chart" id="pie-chart-2"></div>
+
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+                                    var options = {
+                                        series: [44, 33, 23, 15, 10], // Replace these with your data values
+                                        chart: {
+                                            type: 'pie',
+                                            height: 350
+                                        },
+                                        labels: ['M-Pesa', 'Mixx', 'Airtme Money', 'Halotel', 'Bank'], // Replace with your data labels
+                                        legend: {
+                                            position: 'bottom'
+                                        },
+                                        responsive: [{
+                                            breakpoint: 480,
+                                            options: {
+                                                chart: {
+                                                    width: 200
+                                                },
+                                                legend: {
+                                                    position: 'bottom'
+                                                }
+                                            }
+                                        }]
+                                    };
+
+                                    var chart = new ApexCharts(document.querySelector("#pie-chart-2"), options);
+                                    chart.render();
+                                });
+                            </script>
                             <div class="donut-legend" id="legend"></div>
                         </div>
                     </div>
                 </div>
+
+                <!-- status widget Start-->
+              <div class="col-xl-5 col-lg-12 box-col-12">
+                <div class="card">
+                  <div class="card-header card-no-border pb-0">
+                    <h3>Collections (Live)</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart-container column-container">
+                      <div id="columnchart"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-7 col-lg-12 box-col-6">
+                <div class="card">
+                  <div class="card-header card-no-border pb-0">
+                    <h3>Collections (Live)</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="chart-container">
+                      <div id="linechart"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- status widget Ends-->
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('page_js')
+    <!-- theme_customizer-->
+{{--    <script src="/assets/js/theme-customizer/customizer.js"></script>--}}
+    <!-- prism-->
+    <script src="/assets/js/prism/prism.min.js"></script>
+    <!-- clipboard-->
+    <script src="/assets/js/clipboard/clipboard.min.js"></script>
+    <!-- customcard-->
+    <script src="/assets/js/custom-card/custom-card.js"></script>
+    <!-- chart_widget-->
+    <script src="/assets/js/chart-widget.js"></script>
 @endsection

@@ -1225,13 +1225,13 @@
     },
     grid: {
       strokeDashArray: 3,
-      position: 'back', 
+      position: 'back',
       row: {
           opacity: 0.5
-      },  
+      },
       column: {
           opacity: 0.5
-      },  
+      },
     },
     responsive: [
       {
@@ -1508,9 +1508,9 @@
     },
     series: [
       {
-        name: "Running",
+        name: "Success",
         data: generateMinuteWiseTimeSeries(
-          new Date("12/12/2016 00:20:00").getTime(),
+          new Date("12/12/2025 00:20:00").getTime(),
           12,
           {
             min: 30,
@@ -1519,9 +1519,9 @@
         ),
       },
       {
-        name: "Waiting",
+        name: "Failed",
         data: generateMinuteWiseTimeSeries(
-          new Date("12/12/2016 00:20:00").getTime(),
+          new Date("12/12/2025 00:20:00").getTime(),
           12,
           {
             min: 30,
@@ -1698,7 +1698,7 @@
       floating: true,
       offsetX: -10,
       offsetY: 5,
-      text: "Packed",
+      text: "KMJ",
       style: {
         fontSize: "18px",
         fontFamily: "Roboto, sans-serif",
@@ -1718,7 +1718,7 @@
       enabled: false,
     },
     xaxis: {
-      categories: ["Packed"],
+      categories: ["KMJ"],
     },
     yaxis: {
       max: 100,
@@ -1770,7 +1770,7 @@
     },
     series: [
       {
-        name: "Dispatched",
+        name: "Sherehe Digital",
         data: [40],
       },
     ],
@@ -1778,7 +1778,7 @@
       floating: true,
       offsetX: -10,
       offsetY: 5,
-      text: "Dispatched",
+      text: "Sherehe Digital",
       style: {
         fontSize: "18px",
         fontFamily: "Roboto, sans-serif",
@@ -1855,7 +1855,7 @@
     },
     series: [
       {
-        name: "Reach Station",
+        name: "Shirikisho",
         data: [50],
       },
     ],
@@ -1870,7 +1870,7 @@
       floating: true,
       offsetX: -10,
       offsetY: 5,
-      text: "Reach Station",
+      text: "Shirikisho",
       style: {
         fontSize: "18px",
         fontFamily: "Roboto, sans-serif",
@@ -1890,7 +1890,7 @@
       enabled: false,
     },
     xaxis: {
-      categories: ["Reach Station"],
+      categories: ["Shirikisho"],
     },
     yaxis: {
       max: 100,
@@ -1939,7 +1939,7 @@
     },
     series: [
       {
-        name: "Out for delivery",
+        name: "Garab",
         data: [60],
       },
     ],
@@ -1954,7 +1954,7 @@
       floating: true,
       offsetX: -10,
       offsetY: 5,
-      text: "Out for delivery",
+      text: "Garab",
       style: {
         fontSize: "18px",
         fontFamily: "Roboto, sans-serif",
@@ -1974,7 +1974,7 @@
       enabled: false,
     },
     xaxis: {
-      categories: ["Out for delivery"],
+      categories: ["Garab"],
     },
     yaxis: {
       max: 100,
@@ -2023,7 +2023,7 @@
     },
     series: [
       {
-        name: "Delivered",
+        name: "Kazimoto",
         data: [74],
       },
     ],
@@ -2038,7 +2038,7 @@
       floating: true,
       offsetX: -10,
       offsetY: 5,
-      text: "Delivered",
+      text: "Kazimoto",
       style: {
         fontSize: "18px",
         fontFamily: "Roboto, sans-serif",
@@ -2058,7 +2058,7 @@
       enabled: false,
     },
     xaxis: {
-      categories: ["Delivered"],
+      categories: ["Kazimoto"],
     },
     yaxis: {
       max: 100,

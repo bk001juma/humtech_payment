@@ -94,7 +94,7 @@
     <!-- page_datatable-->
     <script src="/assets/js/datatable/datatables/datatable.custom.js"></script>
     <!-- theme_customizer-->
-    <script src="/assets/js/theme-customizer/customizer.js"></script>
+{{--    <script src="/assets/js/theme-customizer/customizer.js"></script>--}}
     <!-- dashboard_3-->
     <script src="/assets/js/dashboard/dashboard_3.js"></script>
     <!-- echart_pie-->
@@ -106,6 +106,8 @@
     <script src="/assets/js/chart/morris-chart/raphael.js"></script>
     <script src="/assets/js/chart/morris-chart/morris.js"> </script>
     <script src="/assets/js/chart/morris-chart/prettify.min.js"></script>
+
+    @yield('page_js')
     <!-- custom script -->
     <script src="/assets/js/script.js"></script>
   </body>

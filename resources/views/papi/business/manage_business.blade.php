@@ -61,6 +61,7 @@
                                     </div>
 
                                 </div>
+
 {{--                                <hr/>--}}
 {{--                                <p>Rock Paper Scissors Various Dots Half Sleeves Girl’s Regular Fit T-Shirt I 100% Cotton T Shirt with Half Sleeve Round Neck I Regular Wear Solid Kids Tees and Black Sleeve.</p>--}}
 {{--                                <hr/>--}}
@@ -101,12 +102,11 @@
                             <div class="card-body">
                                 <!-- side-bar colleps block stat-->
                                 <div class="filter-block">
-                                    <h4>Brand</h4>
+                                    <h4>Company Details</h4>
                                     <ul>
-                                        <li>Clothing</li>
-                                        <li>Bags</li>
-                                        <li>Footwear</li>
-
+                                        <li>Name: {{$business->name}}</li>
+                                        <li>TIN: {{$business->tin}}</li>
+                                        <li>Email: {{$business->email}}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -117,12 +117,11 @@
                             <div class="card-body">
                                 <!-- side-bar colleps block stat-->
                                 <div class="filter-block">
-                                    <h4>Brand</h4>
+                                    <h4>Physical Address</h4>
                                     <ul>
-                                        <li>Clothing</li>
-                                        <li>Bags</li>
-                                        <li>Footwear</li>
-
+                                        <li>Name: {{$business->name}}</li>
+                                        <li>TIN: {{$business->tin}}</li>
+                                        <li>Email: {{$business->email}}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -175,7 +174,8 @@
                                                             <tr>
                                                                 <td>
                                                                     <h4>
-                                                                        <img class="img-fluid table-avtar" style="height: 100px" src="/{{$product->logo}}" alt="{{$product->name}}">{{$product->name}}
+{{--                                                                        <img class="img-fluid table-avtar" style="height: 100px" src="/{{$product->logo}}" alt="{{$product->name}}">--}}
+                                                                        {{$product->name}}
                                                                     </h4>
                                                                 </td>
                                                                 <td>{{number_format($product->balance)}} TZS</td>
@@ -267,13 +267,10 @@
     <script src="/assets/js/js-datatables/datatables/datatable.custom.js"></script>
     <!-- page_datatable-->
     <script src="/assets/js/datatable/datatables/datatable.custom.js"></script>
-
     <!-- owlcarousel-->
     <script src="/assets/js/owlcarousel/owl.carousel.js"></script>
     <!-- page_owlcarousel-->
     <script src="/assets/js/owlcarousel/owl-custom.js"> </script>
     <!-- ecommerce-->
     <script src="/assets/js/ecommerce.js"></script>
-    <!-- theme_customizer-->
-{{--    <script src="/assets/js/theme-customizer/customizer.js"></script>--}}
 @endsection
