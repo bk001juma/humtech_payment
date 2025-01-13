@@ -34,7 +34,7 @@ class PaymentController extends Controller
             $operator_id = 0;
 
             if (!str_starts_with($phone, '255')){
-                return response()->json(['message'=>'invalid phone number']);
+                return response()->json(['message'=>'invalid phone number'])->status(400);
             }else{
                 $new_no = preg_replace('/^255/', '', $phone);
                 switch (substr($new_no, 0, 2)) {
@@ -52,7 +52,7 @@ class PaymentController extends Controller
 
             $old_transaction = BusinessTransaction::where('customer_id',$trans_id)->first();
             if (isset($old_transaction->id)) {
-                return response()->json(['message'=>'Transaction id already exists'],401);
+                return response()->json(['message'=>'Transaction id already exists'],400);
             }
 
             if ($operator_id == 0){
