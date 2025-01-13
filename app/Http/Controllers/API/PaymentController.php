@@ -45,6 +45,7 @@ class PaymentController extends Controller
                     case '76':
                     case '75':
                     case '74': $operator_id = 1; break;
+                    case '68':
                     case '79':
                     case '78': $operator_id = 2; break;
                     case '67':
