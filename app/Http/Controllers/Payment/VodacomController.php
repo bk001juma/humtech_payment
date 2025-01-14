@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Http;
 
 class VodacomController extends Controller
 {
-    public function sendToCustomer($phone,$amount,$unique_id)
+    public function sendToCustomer($phone,$amount,$unique_id,$service = 'PAPI')
     {
         ini_set('max_execution_time', 300);
         set_time_limit(300);
@@ -23,7 +23,7 @@ class VodacomController extends Controller
             "input_CustomerMSISDN" => $phone,
             "input_ServiceProviderCode" => "311936",
             "input_ThirdPartyConversationID" => $unique_id,
-            "input_TransactionReference" => "Sherehe Digital",
+            "input_TransactionReference" => $service,
             "input_PurchasedItemsDesc" => "Shoes"
         ];
 

@@ -84,32 +84,32 @@ class PaymentController extends Controller
 
             if ($operator_id == 1) {
 
-                $pool->add(function () use ($transaction, $amount, $phone) {
+                $pool->add(function () use ($transaction, $amount, $phone, $product) {
 
-            $vod = new VodacomController;
-            return $vod->sendToCustomer($phone, $amount, $transaction->unique_id);
+                    $vod = new VodacomController;
+                    return $vod->sendToCustomer($phone, $amount, $transaction->unique_id,$product->name);
 
-        })->then(function ($output) use ($transaction, $pool) {
+                })->then(function ($output) use ($transaction, $pool) {
 
-            $transaction->message = $output['output_ResponseDesc'];
-            $transaction->operator_transaction_id = $output['output_TransactionID'];
-            $transaction->operator_conversation_id = $output['output_ConversationID'];
-            $transaction->status = "paid";
-            $transaction->save();
+                    $transaction->message = $output['output_ResponseDesc'];
+                    $transaction->operator_transaction_id = $output['output_TransactionID'];
+                    $transaction->operator_conversation_id = $output['output_ConversationID'];
+                    $transaction->status = "paid";
+                    $transaction->save();
 
-            $pool->stop();
-        })->catch(function ($exception) use ($transaction) {
-            // When an exception is thrown from within a process, it's caught and passed here.
-            $transaction->message = $exception->getMessage();
-            $transaction->status = "voda_failed";
-            $transaction->save();
+                    $pool->stop();
+                })->catch(function ($exception) use ($transaction) {
+                    // When an exception is thrown from within a process, it's caught and passed here.
+                    $transaction->message = $exception->getMessage();
+                    $transaction->status = "voda_failed";
+                    $transaction->save();
 
-        })->timeout(function () use ($transaction) {
-            // A process took too long to finish.
-            $transaction->message = "Timed Out";
-            $transaction->status = "failed";
-            $transaction->save();
-        });
+                })->timeout(function () use ($transaction) {
+                    // A process took too long to finish.
+                    $transaction->message = "Timed Out";
+                    $transaction->status = "failed";
+                    $transaction->save();
+                });
 
 
         $pool->wait();
@@ -184,3 +184,4 @@ class PaymentController extends Controller
         }
     }
 }
+
