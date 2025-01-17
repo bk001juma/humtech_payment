@@ -7,6 +7,7 @@ use App\Models\Merchant\Business;
 use App\Models\Profile;
 use App\Models\User;
 use App\Traits\ImageTrait;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -66,6 +67,48 @@ class BusinessController extends Controller
         $business = Business::find($id);
 
         return view('papi.business.manage_business',compact('business'));
+    }
+
+    public function transactions($id)
+    {
+        $user = Auth::user();
+        $business = Business::find($id);
+        if (!$user->hasRole(['merchant','admin'])){
+            return redirect()->back();
+        }
+        return view('papi.business.transactions',compact('business'));
+    }
+
+    public function disbursements($id)
+    {
+        $user = Auth::user();
+        $business = Business::find($id);
+        if (!$user->hasRole(['merchant','admin'])){
+            return redirect()->back();
+        }
+        return view('papi.business.disbursements',compact('business'));
+    }
+
+    public function allDisbursements()
+    {
+        $user = Auth::user();
+        if ($user->hasRole(['admin'])){
+            $business = Business::first();
+            return view('papi.business.all_disbursements',compact('business'));
+        }
+        return redirect()->back();
+    }
+
+    public function allTransactions()
+    {
+        $user = Auth::user();
+        if ($user->hasRole(['admin'])){
+            $business = Business::first();
+            return view('papi.business.all_transactions',compact('business'));
+        }
+
+        return redirect()->back();
+
     }
 
 }

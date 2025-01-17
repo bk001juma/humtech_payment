@@ -9,46 +9,75 @@
             </li>
             <li class="sidebar-list"> <i class="fa-solid fa-thumbtack"></i>
                 <a class="sidebar-link" href="/home">
-                    <svg class="stroke-icon">
-                        <use href="/assets/svg/iconly-sprite.svg#Paper"></use>
-                    </svg>
+                    <i class="icon icon-home"></i>
                     <h6 class="f-w-600">Dashboard </h6>
                 </a>
             </li>
 
-            <li class="sidebar-main-title">
-                <div>
-                    <h5 class="lan-1 f-w-700 sidebar-title">Merchant</h5>
-                </div>
-            </li>
-
-            <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
-                <a class="sidebar-link {{Route::is('merchant.manage') ? 'active' : null}}" href="javascript:void(0)">
-                    <svg class="stroke-icon">
-                        <use href="/assets/svg/iconly-sprite.svg#Home-dashboard"></use>
-                    </svg>
-                    <h6>Merchants</h6><span class="badge">3</span><i class="iconly-Arrow-Right-2 icli"></i>
-                </a>
-                <ul class="sidebar-submenu" style="display: {{Route::is('merchant.manage') ? 'block' : 'none'}}">
-                    <li><a class="{{Route::is('merchant.manage') ? 'active' : null}}"  href="{{route('merchants')}}">All Merchants </a></li>
-                    <li> <a href="/">Products</a></li>
-                </ul>
-            </li>
 
 
-            <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
-                <a class="sidebar-link" href="javascript:void(0)">
-                    <svg class="stroke-icon">
-                        <use href="/assets/svg/iconly-sprite.svg#Home-dashboard"></use>
-                    </svg>
-                    <h6>Transactions</h6><span class="badge">3</span><i class="iconly-Arrow-Right-2 icli"></i>
-                </a>
-                <ul class="sidebar-submenu">
-                    <li> <a href="/">All Transactions</a></li>
-                    <li> <a href="/">Collections</a></li>
-                    <li> <a href="/">Disbursements</a></li>
-                </ul>
-            </li>
+            @if(Auth::user()->hasRole('admin'))
+                <li class="sidebar-main-title">
+                    <div>
+                        <h5 class="f-w-700 sidebar-title">Merchants</h5>
+                    </div>
+                </li>
+
+                <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                    <a class="sidebar-link" href="{{route('merchants')}}">
+                        <i class="icon iconly-Buy"></i>
+                        <h6>Merchants</h6>
+                    </a>
+                </li>
+
+
+                <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                    <a class="sidebar-link" href="{{route('admin.transactions')}}">
+                        <i class="icon icon-wallet"></i>
+                        <h6>Transactions</h6>
+                    </a>
+                </li>
+
+
+                <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                    <a class="sidebar-link" href="{{route('admin.disbursements')}}">
+                        <i class="icon iconly-Logout"></i>
+                        <h6>Disbursements</h6>
+                    </a>
+                </li>
+
+            @endif
+
+
+            @if(Auth::user()->hasRole('merchant'))
+                <li class="sidebar-main-title">
+                    <div>
+                        <h5 class="f-w-700 sidebar-title pt-3">Business</h5>
+                    </div>
+                </li>
+
+
+                <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                    <a class="sidebar-link" href="{{route('business.transactions',Auth::user()->businesses()->first()->id)}}">
+                        <i class="icon icon-wallet"></i>
+                        <h6>Transactions</h6>
+                    </a>
+                </li>
+                <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                    <a class="sidebar-link" href="{{route('business.disbursements',Auth::user()->businesses()->first()->id)}}">
+                        <i class="icon iconly-Logout"></i>
+                        <h6>Disbursements</h6>
+                    </a>
+                </li>
+
+                <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
+                    <a class="sidebar-link" href="{{route('merchant.manage',Auth::user()->businesses()->first()->id)}}">
+                        <i class="icon icon-settings"></i>
+                        <h6>Settings</h6>
+                    </a>
+                </li>
+            @endif
+
         </ul>
     </div>
     <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

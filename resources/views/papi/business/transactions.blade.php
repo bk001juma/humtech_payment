@@ -7,7 +7,7 @@
 @endsection
 
 @section('template_title')
-    Manage {{$business->name}}
+    Tansactions {{$business->name}}
 @endsection
 
 @section('content')
@@ -16,13 +16,12 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-sm-6 col-12">
-                        <h2>Manage: {{$business->name}}</h2>
+                        <h2>Transactions: {{$business->name}}</h2>
                     </div>
                     <div class="col-sm-6 col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/home"><i class="iconly-Home icli svg-color"></i></a></li>
-                            <li class="breadcrumb-item"><a href="{{route('merchants')}}">Merchants</a> </li>
-                            <li class="breadcrumb-item active">Manage {{$business->name}}</li>
+                            <li class="breadcrumb-item active">Transactions {{$business->name}}</li>
                         </ol>
                     </div>
                 </div>
@@ -32,105 +31,108 @@
         <div class="container-fluid">
             <div>
                 <div class="row product-page-main p-0">
-                    <div class="col-xxl-6 box-col-6 order-xxl-0 ">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="row mb-2">
-                                            <div class="profile-title">
-                                                <div class="d-flex gap-3">
-                                                    <img class="img-70 rounded-circle" alt="" src="/{{$business->logo}}"/>
-                                                    <div class="flex-grow-1">
-                                                        <h3 class="mb-1">{{$business->name}}</h3>
-                                                        <p>{{$business->category}}</p>
-                                                    </div>
-                                                </div>
+                    <div class="row container-fluid dashboard-3">
+                        <div class="col-sm-6 col-xl-3 box-col-6">
+                            <div class="card graphic-design overflow-hidden">
+                                <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
+                                    <div class="header-top">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="flex-grow-1">
+                                                <h5>Total Collections</h5>
+                                                <p class="mb-0">Last 30 Days</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-10">
+                                    <ul>
+                                        <li><i class="iconly-Document icli me-1"></i>
+                                            <h5>10 Transactions</h5>
+                                        </li>
+                                        <li><i class="iconly-Wallet icli me-1"></i>
+                                            <h5>12,000,000 TZS</h5>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-xl-3 box-col-6" >
+                            <div class="card graphic-design overflow-hidden" >
+                                <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
+                                    <div class="header-top">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="flex-grow-1">
+                                                <h5>Total Disbursements</h5>
+                                                <p class="mb-0">Last 30 Days</p>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6">
-                                        <div class="product-page-details">
-                                            <h3>Balance.</h3>
-                                        </div>
-                                        <div class="product-price">{{number_format($business->balance)}} TZS
-{{--                                            <del>$350.00 </del>--}}
-                                        </div>
-
-                                    </div>
-
                                 </div>
-
-{{--                                <hr/>--}}
-{{--                                <p>Rock Paper Scissors Various Dots Half Sleeves Girl’s Regular Fit T-Shirt I 100% Cotton T Shirt with Half Sleeve Round Neck I Regular Wear Solid Kids Tees and Black Sleeve.</p>--}}
-{{--                                <hr/>--}}
-{{--                                <div>--}}
-{{--                                    <table class="product-page-width">--}}
-{{--                                        <tbody>--}}
-{{--                                        <tr>--}}
-{{--                                            <td> <b>Brand &nbsp;&nbsp;&nbsp;:</b></td>--}}
-{{--                                            <td>Pixelstrap</td>--}}
-{{--                                        </tr>--}}
-{{--                                        <tr>--}}
-{{--                                            <td> <b>Availability &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>--}}
-{{--                                            <td class="font-success">In stock</td>--}}
-{{--                                        </tr>--}}
-{{--                                        <tr>--}}
-{{--                                            <td> <b>Seller &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>--}}
-{{--                                            <td>ABC</td>--}}
-{{--                                        </tr>--}}
-{{--                                        <tr>--}}
-{{--                                            <td> <b>Fabric &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>--}}
-{{--                                            <td>Cotton</td>--}}
-{{--                                        </tr>--}}
-{{--                                        </tbody>--}}
-{{--                                    </table>--}}
-{{--                                </div>--}}
-                                <hr/>
-
-                                @if(Auth::user()->hasRole('admin'))
-                                    <div class="m-t-15 btn-showcase">
-                                        <a class="btn btn-primary" href="" title=""> <i class="fa-solid fa-check me-1"></i>Activate</a>
-                                        <a class="btn btn-success" href="" title=""> <i class="fa-solid fa-cancel me-1"></i>Suspend</a>
-                                        <a class="btn btn-secondary" href=""> <i class="fa-solid fa-cancel me-1"></i>Block Merchant</a>
-                                    </div>
-                                @endif
-
+                                <div class="card-body pb-10">
+                                    <ul>
+                                        <li><i class="iconly-Document icli me-1"></i>
+                                            <h5>10 Transactions</h5>
+                                        </li>
+                                        <li><i class="iconly-Wallet icli me-1"></i>
+                                            <h5>12,000,000 TZS</h5>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xxl-3 col-md-6 box-col-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <!-- side-bar colleps block stat-->
-                                <div class="filter-block">
-                                    <h4>Company Details</h4>
+                        <div class="col-sm-6 col-xl-3 box-col-6">
+                            <div class="card graphic-design overflow-hidden">
+                                <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
+                                    <div class="header-top">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="flex-grow-1">
+                                                <h5>Total Transactions</h5>
+                                                <p class="mb-0">Last 30 Days</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-10">
                                     <ul>
-                                        <li>Name: {{$business->name}}</li>
-                                        <li>TIN: {{$business->tin}}</li>
-                                        <li>Email: {{$business->email}}</li>
+                                        <li><i class="iconly-Document icli me-1"></i>
+                                            <h5>10 Transactions</h5>
+                                        </li>
+                                        <li><i class="iconly-Wallet icli me-1"></i>
+                                            <h5>12,000,000 TZS</h5>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3 box-col-6">
+                            <div class="card graphic-design overflow-hidden">
+                                <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
+                                    <div class="header-top">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="flex-grow-1">
+                                                <h5>Total Failed</h5>
+                                                <p class="mb-0">Last 30 Days</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="card-body pb-10">
+                                    <ul>
+                                        <li><i class="iconly-Document icli me-1"></i>
+                                            <h5>10 Transactions</h5>
+                                        </li>
+                                        <li><i class="iconly-Wallet icli me-1"></i>
+                                            <h5>12,000,000 TZS</h5>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xxl-3 col-md-6 box-col-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <!-- side-bar colleps block stat-->
-                                <div class="filter-block">
-                                    <h4>Physical Address</h4>
-                                    <ul>
-                                        <li>Name: {{$business->name}}</li>
-                                        <li>TIN: {{$business->tin}}</li>
-                                        <li>Email: {{$business->email}}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
 
 
                     <div class="card">
@@ -139,17 +141,17 @@
                                 <ul class="nav nav-tabs border-tab nav-primary mb-0" id="top-tab" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="product-page.html#top-home" role="tab" aria-controls="top-home" aria-selected="false">
-                                            Products
+                                            All
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="product-page.html#top-contact" role="tab" aria-controls="top-contact" aria-selected="true">
-                                            Activities
+                                            Successful
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" id="brand-top-tab" data-bs-toggle="tab" href="product-page.html#top-brand" role="tab" aria-controls="top-brand" aria-selected="true">
-                                            Callback
+                                            Failed
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
@@ -161,12 +163,7 @@
                                   <div class="tab-pane fade active show" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
 
                                         <div class="card">
-                                            <div class="card-header pb-0 card-no-border">
-                                                <h2>{{$business->name}} - Products</h2>
-                                                <div class="pull-right">
-                                                    <button class="btn btn-primary px-xl-2 px-xxl-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalgetbootstrap" data-whatever="@getbootstrap"><i class="iconly-Plus"></i> Add Product</button>
-                                                </div>
-                                            </div>
+
                                             <div class="card-body">
                                                 <div class="table-responsive user-datatable">
                                                     <table class="display" id="basic-12">
