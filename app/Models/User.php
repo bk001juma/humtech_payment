@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Car\Car;
 use App\Models\Car\CarSupplied;
+use App\Models\Merchant\Business;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -163,13 +164,9 @@ class User extends Authenticatable
         return $this->profiles()->detach($profile);
     }
 
-    public function cars()
+    public function businesses()
     {
-        return $this->hasMany(Car::class)->where('status','active');
+        return $this->hasMany(Business::class);
     }
 
-    public function supplies()
-    {
-        return $this->hasMany(CarSupplied::class);
-    }
 }

@@ -15,7 +15,6 @@ use Spatie\Async\Pool;
 class ProcessPaymentJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     public $timeout = 120;
 
     protected string $phone;

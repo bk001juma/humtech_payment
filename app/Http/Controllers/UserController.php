@@ -25,6 +25,14 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return view('papi.dashboard',compact('user'));
+        if($user->hasRole('admin')){
+            return view('papi.dashboard',compact('user'));
+        }elseif ($user->hasRole('merchant')) {
+            return view('papi.business.manage_business',compact('user'));
+        }else{
+            Auth::logout();
+            return redirect('/login');
+        }
+
     }
 }
