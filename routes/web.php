@@ -24,7 +24,9 @@ use Illuminate\Support\Facades\Route;
 
 // Homepage Route
 Route::group(['middleware' => ['web', 'checkblocked']], function () {
-    Route::get('/', 'App\Http\Controllers\WelcomeController@welcome')->name('welcome');
+    Route::get('/', function (){
+        return redirect('home');
+    })->name('welcome');
     Route::get('/terms', 'App\Http\Controllers\TermsController@terms')->name('terms');
 
     Route::get('/about', [WelcomeController::class,'about'])->name('about');

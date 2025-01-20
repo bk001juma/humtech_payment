@@ -7,7 +7,7 @@
 @endsection
 
 @section('template_title')
-    Transactions
+    Collections
 @endsection
 
 @section('content')
@@ -16,12 +16,13 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-sm-6 col-12">
-                        <h2>Transactions</h2>
+                        <h2>Collections</h2>
                     </div>
                     <div class="col-sm-6 col-12">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/home"><i class="iconly-Home icli svg-color"></i></a></li>
-                            <li class="breadcrumb-item active">Transactions</li>
+                            <li class="breadcrumb-item"><a href="/home"><i class="iconly-Home icli svg-color"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active">Collections</li>
                         </ol>
                     </div>
                 </div>
@@ -34,12 +35,13 @@
                     <div class="row container-fluid dashboard-3">
                         <div class="col-sm-6 col-xl-3 box-col-6">
                             <div class="card graphic-design overflow-hidden">
-                                <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
+                                <div class="card-header card-no-border pb-0"
+                                     style="background-color: rgba(48, 142, 135, 0.2)">
                                     <div class="header-top">
                                         <div class="d-flex align-items-center gap-2">
                                             <div class="flex-grow-1">
                                                 <h5>Total Collections</h5>
-                                                <p class="mb-0">Last 30 Days</p>
+                                                <p class="mb-0"></p>
                                             </div>
                                         </div>
 
@@ -48,24 +50,27 @@
                                 <div class="card-body pb-10">
                                     <ul>
                                         <li><i class="iconly-Document icli me-1"></i>
-                                            <h5>{{count($transactions)}} Transactions</h5>
+                                            <h5>{{count($transactions->where('type','credit')->where('status','success'))}}
+                                                Collections</h5>
                                         </li>
                                         <li><i class="iconly-Wallet icli me-1"></i>
-                                            <h5>{{number_format($transactions->where('status','success')->sum('amount'))}} TZS</h5>
+                                            <h5>{{number_format($transactions->where('type','credit')->where('status','success')->sum('amount'))}}
+                                                TZS</h5>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-6 col-xl-3 box-col-6" >
-                            <div class="card graphic-design overflow-hidden" >
-                                <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
+                        <div class="col-sm-6 col-xl-3 box-col-6">
+                            <div class="card graphic-design overflow-hidden">
+                                <div class="card-header card-no-border pb-0"
+                                     style="background-color: rgba(48, 142, 135, 0.2)">
                                     <div class="header-top">
                                         <div class="d-flex align-items-center gap-2">
                                             <div class="flex-grow-1">
                                                 <h5>Total Disbursements</h5>
-                                                <p class="mb-0">Last 30 Days</p>
+                                                <p class="mb-0"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -73,10 +78,12 @@
                                 <div class="card-body pb-10">
                                     <ul>
                                         <li><i class="iconly-Document icli me-1"></i>
-                                            <h5>0 Transactions</h5>
+                                            <h5>{{count($transactions->where('type','debit')->where('status','success'))}}
+                                                Collections</h5>
                                         </li>
                                         <li><i class="iconly-Wallet icli me-1"></i>
-                                            <h5>0 TZS</h5>
+                                            <h5>{{number_format($transactions->where('type','debit')->where('status','success')->sum('amount'))}}
+                                                TZS</h5>
                                         </li>
                                     </ul>
                                 </div>
@@ -84,12 +91,13 @@
                         </div>
                         <div class="col-sm-6 col-xl-3 box-col-6">
                             <div class="card graphic-design overflow-hidden">
-                                <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
+                                <div class="card-header card-no-border pb-0"
+                                     style="background-color: rgba(48, 142, 135, 0.2)">
                                     <div class="header-top">
                                         <div class="d-flex align-items-center gap-2">
                                             <div class="flex-grow-1">
                                                 <h5>Total Requests</h5>
-                                                <p class="mb-0">Last 30 Days</p>
+                                                <p class="mb-0"></p>
                                             </div>
                                         </div>
 
@@ -98,10 +106,12 @@
                                 <div class="card-body pb-10">
                                     <ul>
                                         <li><i class="iconly-Document icli me-1"></i>
-                                            <h5>0 Transactions</h5>
+                                            <h5>{{count($transactions->where('type','debit')->where('status','pending'))}}
+                                                Collections</h5>
                                         </li>
                                         <li><i class="iconly-Wallet icli me-1"></i>
-                                            <h5>0 TZS</h5>
+                                            <h5>{{number_format($transactions->where('type','debit')->where('status','pending')->sum('amount'))}}
+                                                TZS</h5>
                                         </li>
                                     </ul>
                                 </div>
@@ -109,12 +119,13 @@
                         </div>
                         <div class="col-sm-6 col-xl-3 box-col-6">
                             <div class="card graphic-design overflow-hidden">
-                                <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
+                                <div class="card-header card-no-border pb-0"
+                                     style="background-color: rgba(48, 142, 135, 0.2)">
                                     <div class="header-top">
                                         <div class="d-flex align-items-center gap-2">
                                             <div class="flex-grow-1">
                                                 <h5>Total Transfer</h5>
-                                                <p class="mb-0">Last 30 Days</p>
+                                                <p class="mb-0"></p>
                                             </div>
                                         </div>
 
@@ -123,10 +134,12 @@
                                 <div class="card-body pb-10">
                                     <ul>
                                         <li><i class="iconly-Document icli me-1"></i>
-                                            <h5>0 Transactions</h5>
+                                            <h5>{{count($transactions->where('type','debit')->where('status','success'))}}
+                                                Collections</h5>
                                         </li>
                                         <li><i class="iconly-Wallet icli me-1"></i>
-                                            <h5>0 TZS</h5>
+                                            <h5>{{number_format($transactions->where('type','debit')->where('status','success')->sum('amount'))}}
+                                                TZS</h5>
                                         </li>
                                     </ul>
                                 </div>
@@ -140,141 +153,50 @@
                             <div class="col-sm-12">
                                 <ul class="nav nav-tabs border-tab nav-primary mb-0" id="top-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="#top-home" role="tab" aria-controls="top-home" aria-selected="false">
+                                        <a class="nav-link active" id="top-home-tab" data-bs-toggle="tab"
+                                           href="#top-home" role="tab" aria-controls="top-home" aria-selected="false">
                                             All
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" id="brand-top-tab" data-bs-toggle="tab" href="#top-brand" role="tab" aria-controls="top-brand" aria-selected="true">
-                                            Transfer
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab"
+                                           href="#top-contact" role="tab" aria-controls="top-contact"
+                                           aria-selected="true">
+                                            Push
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="true">
-                                            Requests
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="brand-top-tab" data-bs-toggle="tab" href="#top-C2B"
+                                           role="tab" aria-controls="top-C2B" aria-selected="true">
+                                            C2B
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
-
-                                    <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#bulk_pay" role="tab" aria-controls="bulk_pay" aria-selected="true">
-                                            Bulk Payments
-                                        </a>
-                                        <div class="material-border"></div>
-                                    </li>
-
                                 </ul>
 
                                 <div class="tab-content" id="top-tabContent">
 
-                                  <div class="tab-pane fade active show" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
+                                    <div class="tab-pane fade active show" id="top-home" role="tabpanel"
+                                         aria-labelledby="top-home-tab">
 
-                                        <div class="card">
-
-                                            <div class="card-body">
-                                                <div class="table-responsive user-datatable">
-                                                    <table class="display" id="basic-12">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>Merchant</th>
-                                                            <th>Service</th>
-                                                            <th>MSNID</th>
-                                                            <th>Channel</th>
-                                                            <th>Amount (TSH)</th>
-                                                            <th>Status</th>
-                                                            <th>Time</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-
-                                                        @foreach($transactions as $transaction)
-                                                            <tr>
-                                                                <td>
-                                                                    <h4>
-                                                                        {{$transaction->business->name}}
-                                                                    </h4>
-
-                                                                </td>
-                                                                <td>{{$transaction->business_product->name}}</td>
-                                                                <td class="text-center">
-                                                                    {{$transaction->phone_number}} </td>
-                                                                <td>
-                                                                    {{$transaction->operator->name}}
-                                                                </td>
-                                                                <td class="text-center">{{number_format($transaction->amount)}}</td>
-                                                                <td class="text-center"><span class="badge rounded-pill @if($transaction->status == 'success')badge-light-success @else badge-light-danger @endif  text-capitalize">{{$transaction->status}}</span></td>
-                                                                <td class="text-center">
-                                                                    {{date('d-m-Y H:i:s',strtotime($transaction->transaction_date))}}
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
-
-                                                        </tbody>
-                                                        <tfoot>
-                                                        <tr>
-                                                            <th>Merchant</th>
-                                                            <th>Service</th>
-                                                            <th>MSNID</th>
-                                                            <th>Channel</th>
-                                                            <th>Amount (TSH)</th>
-                                                            <th>Status</th>
-                                                            <th>Time</th>
-                                                        </tr>
-                                                        </tfoot>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @include('papi.business.collections_tables.all')
 
                                     </div>
-                                     <div class="tab-pane fade" id="top-brand" role="tabpanel" aria-labelledby="brand-top-tab">
-                                        <p class="mb-0 mt-3"><b>Product Dimensions :</b>18 x 18 x 4 cm<br/><b>Date First Available :</b>31 March 2024<br/><b>Manufacturer :</b>Tee Stores<br/><b>Item part number :</b>TS-WT721-XS-WHITE</p>
+                                    <div class="tab-pane fade" id="top-C2B" role="tabpanel"
+                                         aria-labelledby="C2B-top-tab">
+
+                                        @include('papi.business.collections_tables.c2b')
+
                                     </div>
 
-{{--                                    Requests--}}
-                                    <div class="tab-pane fade" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab">
+                                    <div class="tab-pane fade" id="top-contact" role="tabpanel"
+                                         aria-labelledby="contact-top-tab">
 
-                                        <div class="card">
-                                            <div class="card-header pb-0 card-no-border">
-                                                <h2> - Transactions</h2>
-                                                <div class="pull-right">
-                                                    <button class="btn btn-primary px-xl-2 px-xxl-3" type="button" data-bs-toggle="modal" data-bs-target="#request_des_modal" data-whatever="@getbootstrap">
-                                                        <i class="iconly-Plus"></i> Create Request</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="card-body">
-                                                <h4>
-                                                    Disbursement Request:
-                                                </h4>
-                                            <p>
-                                                Transfer a specific amount of money from Collection Account to Bank Account in a single transaction.
-                                            </p>
-                                        </div>
+                                        @include('papi.business.collections_tables.push')
                                     </div>
 
-{{--                                    Bulk Payments--}}
-                                    <div class="tab-pane fade" id="bulk_pay" role="tabpanel" aria-labelledby="contact-top-tab">
-
-                                        <div class="card">
-                                            <div class="card-header pb-0 card-no-border">
-                                                <h2> - Bulk Payments</h2>
-                                                <div class="pull-right">
-                                                    <button class="btn btn-primary px-xl-2 px-xxl-3" type="button" data-bs-toggle="modal" data-bs-target="#bulk_pay_request" data-whatever="@getbootstrap">
-                                                        <i class="iconly-Plus"></i> Create Bulk Payment</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="card-body">
-                                                <h4>
-                                                    Bulk Payment:
-                                                </h4>
-                                            <p>
-                                                 Making multiple payments to various recipients simultaneously through a single transaction
-                                            </p>
-                                        </div>
-                                    </div>
 
                                 </div>
                             </div>
@@ -286,26 +208,32 @@
     </div>
 
 
-{{--    Modals   --}}
+    {{--    Modals   --}}
 
-    <div class="modal fade" id="exampleModalgetbootstrap" tabindex="-1" role="dialog" aria-labelledby="exampleModalgetbootstrap" aria-hidden="true">
+    <div class="modal fade" id="exampleModalgetbootstrap" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalgetbootstrap" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-toggle-wrapper social-profile text-start dark-sign-up">
                     <h3 class="modal-header justify-content-center border-0">Create Business Product</h3>
                     <div class="modal-body">
-                        <form class="row g-3 needs-validation" method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
+                        <form class="row g-3 needs-validation" method="POST" action="{{route('product.store')}}"
+                              enctype="multipart/form-data">
                             @csrf
                             <input hidden="hidden" name="business_id" value="">
                             <div class="col-md-12">
-                                <label class="form-label" >Product Name</label>
-                                <input class="form-control" type="text" placeholder="Sherehe SDigital" required="required" name="name">
+                                <label class="form-label">Product Name</label>
+                                <input class="form-control" type="text" placeholder="Sherehe SDigital"
+                                       required="required" name="name">
                             </div>
                             <div class="col-md-12">
-                                <label class="form-label" >Logo</label>
+                                <label class="form-label">Logo</label>
                                 <div class="input-group">
-                                    <button class="btn btn-outline-success" id="inputGroupFileAddon03" type="button"><i class="fa-solid fa-file"></i></button>
-                                    <input class="form-control" id="inputGroupFile03" type="file" aria-describedby="inputGroupFileAddon03" aria-label="Upload" name="image" accept="image/*">
+                                    <button class="btn btn-outline-success" id="inputGroupFileAddon03" type="button"><i
+                                            class="fa-solid fa-file"></i></button>
+                                    <input class="form-control" id="inputGroupFile03" type="file"
+                                           aria-describedby="inputGroupFileAddon03" aria-label="Upload" name="image"
+                                           accept="image/*">
                                 </div>
                             </div>
 
@@ -322,13 +250,15 @@
     </div>
 
 
-    <div class="modal fade" id="request_des_modal" tabindex="-1" role="dialog" aria-labelledby="request_des_modal" aria-hidden="true">
+    <div class="modal fade" id="request_des_modal" tabindex="-1" role="dialog" aria-labelledby="request_des_modal"
+         aria-hidden="true">
         <div class="modal-dialog " role="document">
             <div class="modal-content">
                 <div class="modal-toggle-wrapper social-profile text-start dark-sign-up">
                     <h3 class="modal-header justify-content-center border-0">Create Disbursements Request</h3>
                     <div class="modal-body">
-                        <form class="row g-3 needs-validation" method="POST" action="{{route('merchant.store')}}" enctype="multipart/form-data">
+                        <form class="row g-3 needs-validation" method="POST" action="{{route('merchant.store')}}"
+                              enctype="multipart/form-data">
                             @csrf
 
                             <div class="col-md-6">
@@ -353,14 +283,16 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="exampleFormControlInput1">Account Number</label>
-                                    <input class="form-control" type="text" required="required" name="account" placeholder="0J4534343">
+                                    <input class="form-control" type="text" required="required" name="account"
+                                           placeholder="0J4534343">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="exampleFormControlInput1">Amount</label>
-                                    <input class="form-control" type="number" required="required" name="amount" placeholder="50000">
+                                    <input class="form-control" type="number" required="required" name="amount"
+                                           placeholder="50000">
                                 </div>
                             </div>
 
@@ -376,13 +308,15 @@
         </div>
     </div>
 
-    <div class="modal fade" id="bulk_pay_request" tabindex="-1" role="dialog" aria-labelledby="bulk_pay_request" aria-hidden="true">
+    <div class="modal fade" id="bulk_pay_request" tabindex="-1" role="dialog" aria-labelledby="bulk_pay_request"
+         aria-hidden="true">
         <div class="modal-dialog " role="document">
             <div class="modal-content">
                 <div class="modal-toggle-wrapper social-profile text-start dark-sign-up">
                     <h3 class="modal-header justify-content-center border-0">Create Disbursements Request</h3>
                     <div class="modal-body">
-                        <form class="row g-3 needs-validation" method="POST" action="{{route('merchant.store')}}" enctype="multipart/form-data">
+                        <form class="row g-3 needs-validation" method="POST" action="{{route('merchant.store')}}"
+                              enctype="multipart/form-data">
                             @csrf
 
                             <div class="col-md-6">
@@ -404,18 +338,20 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="exampleFormControlInput1">Phone Number</label>
-                                    <input class="form-control" type="text" required="required" name="account" placeholder="07335234532">
+                                    <input class="form-control" type="text" required="required" name="account"
+                                           placeholder="07335234532">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="exampleFormControlInput1">Amount</label>
-                                    <input class="form-control" type="number" required="required" name="amount" placeholder="50000">
+                                    <input class="form-control" type="number" required="required" name="amount"
+                                           placeholder="50000">
                                 </div>
                             </div>
 
-                             <div class="col-md-6">
+                            <div class="col-md-6">
                                 <div class="align-content-center">
                                     <button class="btn btn-primary pull-left" type="submit">Upload File</button>
                                 </div>
@@ -445,7 +381,7 @@
     <!-- owlcarousel-->
     <script src="/assets/js/owlcarousel/owl.carousel.js"></script>
     <!-- page_owlcarousel-->
-    <script src="/assets/js/owlcarousel/owl-custom.js"> </script>
+    <script src="/assets/js/owlcarousel/owl-custom.js"></script>
     <!-- ecommerce-->
     <script src="/assets/js/ecommerce.js"></script>
 @endsection

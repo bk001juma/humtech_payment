@@ -1,4 +1,4 @@
-@extends('layouts.intime')
+@extends('layouts.papi')
 
 @section('template_title')
 	@yield('title')

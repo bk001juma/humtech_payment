@@ -41,7 +41,7 @@
     <!-- login page start-->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xl-7 login_bs_validation"><img class="bg-img-cover bg-center" src="../assets/images/login/1.jpg" alt="looginpage"></div>
+        <div class="col-xl-7 login_bs_validation"><img class="bg-img-cover bg-center" src="/login.jpg" alt="looginpage"></div>
         <div class="col-xl-5 p-0">
           <div class="login-card login-dark login-bg">
             <div>
@@ -61,6 +61,7 @@
                       @if ($errors->has('email'))
                           <strong style="color: red">{{ $errors->first('email') }}</strong>
                       @endif
+{{--                      {{$errors}}--}}
                   </div>
                   <div class="form-group">
                     <label class="col-form-label">Password</label>

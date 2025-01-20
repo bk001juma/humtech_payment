@@ -18,11 +18,7 @@
 
                 @foreach($transactions->where('type','credit') as $transaction)
                     <tr>
-                        <td>
-                            <h4>
-                                {{$transaction->business->name}}
-                            </h4>
-                        </td>
+                        <td>{{$transaction->business->name}}</td>
                         <td>{{$transaction->business_product->name}}</td>
                         <td class="text-center">{{$transaction->phone_number}} </td>
                         <td>{{$transaction->operator->name}}</td>

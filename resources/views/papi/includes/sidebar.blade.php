@@ -34,7 +34,7 @@
                 <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
                     <a class="sidebar-link" href="{{route('admin.transactions')}}">
                         <i class="icon icon-wallet"></i>
-                        <h6>Transactions</h6>
+                        <h6>Collections</h6>
                     </a>
                 </li>
 
@@ -60,7 +60,7 @@
                 <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
                     <a class="sidebar-link" href="{{route('business.transactions',Auth::user()->businesses()->first()->id)}}">
                         <i class="icon icon-wallet"></i>
-                        <h6>Transactions</h6>
+                        <h6>Collections</h6>
                     </a>
                 </li>
                 <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>

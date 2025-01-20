@@ -37,12 +37,14 @@
                         <div class="card-header pb-0 card-no-border">
                             Registered Businesses
                             <div class="pull-right">
-                                <button class="btn btn-primary px-xl-2 px-xxl-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalgetbootstrap" data-whatever="@getbootstrap"><i class="iconly-Plus"></i> Add Business</button>
+                                <button class="btn btn-primary px-xl-2 px-xxl-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalgetbootstrap" data-whatever="@getbootstrap"><i class="iconly-Plus"></i>
+                                    Add Merchant
+                                </button>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive user-datatable">
-                                <table class="display" id="basic-12">
+                                <table class="display" id="basic-3">
                                     <thead>
                                     <tr>
                                         <th>Name</th>
@@ -60,9 +62,7 @@
                                     @foreach($businesses as $business)
                                         <tr>
                                             <td>
-                                                <h4>
-{{--                                                    <img class="img-fluid table-avtar" style="height: 100px" src="/{{$business->logo}}" alt="{{$business->name}}">--}}
-                                                    {{$business->name}}</h4>
+                                                {{$business->name}}
                                             </td>
                                             <td>{{$business->phone}}</td>
                                             <td>{{$business->id}}</td>
@@ -73,25 +73,13 @@
                                             <td>
                                                 <ul class="action">
                                                     <li class="edit"> <a class="btn btn-primary" href="{{route('merchant.manage',$business->id)}}"> View</a></li>
-{{--                                                    <li class="delete"><a href="{{route('merchant.manage',$business->id)}}"><i class="icon-trash"></i></a></li>--}}
                                                 </ul>
                                             </td>
                                         </tr>
                                     @endforeach
 
                                     </tbody>
-                                    <tfoot>
-                                    <tr>
-                                    <th>Name</th>
-                                        <th>Phone</th>
-                                        <th>Merchant ID</th>
-                                        <th>Balance</th>
-                                        <th>Business Type</th>
-                                        <th>Products</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </tfoot>
+
                                 </table>
                             </div>
                         </div>

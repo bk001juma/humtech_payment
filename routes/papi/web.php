@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Payment\BusinessController;
 use App\Http\Controllers\Payment\BusinessProductController;
+use App\Http\Controllers\Payment\DisbursementController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', 'twostep', 'checkblocked']], function () {
@@ -20,7 +21,12 @@ Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', '
 
 //        Merchant Transactions
         Route::get('/{id}/transactions',[BusinessController::class, 'transactions'])->name('business.transactions');
+
+//        Disbursements
         Route::get('/{id}/disbursements',[BusinessController::class, 'disbursements'])->name('business.disbursements');
+        Route::post('/disbursements/store',[DisbursementController::class, 'store'])->name('disbursements.store');
+        Route::get('/disbursements/{id}/approve',[DisbursementController::class, 'approve'])->name('disbursement.approve');
+        Route::get('/disbursements/{id}/reject',[DisbursementController::class, 'reject'])->name('disbursement.reject');
 
 
 

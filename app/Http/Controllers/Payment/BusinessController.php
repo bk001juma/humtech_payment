@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Merchant\Business;
+use App\Models\Merchant\BusinessDisbursement;
 use App\Models\Merchant\BusinessTransaction;
 use App\Models\Profile;
 use App\Models\User;
@@ -87,15 +88,15 @@ class BusinessController extends Controller
         if (!$user->hasRole(['merchant','admin'])){
             return redirect()->back();
         }
-        return view('papi.business.disbursements',compact('business'));
+        return view('papi.merchant.disbursements',compact('business'));
     }
 
     public function allDisbursements()
     {
         $user = Auth::user();
         if ($user->hasRole(['admin'])){
-            $business = Business::first();
-            return view('papi.business.all_disbursements',compact('business'));
+            $disbursements = BusinessDisbursement::get();
+            return view('papi.business.all_disbursements',compact('disbursements'));
         }
         return redirect()->back();
     }

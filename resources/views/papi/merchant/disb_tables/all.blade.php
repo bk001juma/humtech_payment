@@ -17,25 +17,21 @@
                 </thead>
                 <tbody>
 
-                @foreach($business->products as $product)
+                @foreach($business->disbursements as $disbursement)
                     <tr>
+                        <td>{{$business->name}}</td>
+                        <td>{{$disbursement->channel}}</td>
+                        <td>{{$disbursement->company}}</td>
+                        <td>{{$disbursement->account_number}}</td>
+                        <td>{{number_format($disbursement->amount)}} TZS</td>
                         <td>
-                            <h4>
-                                {{$product->name}}
-                            </h4>
+                            <span class="badge rounded-pill @if($disbursement->status == 'success')badge-light-success @else badge-light-warning @endif  text-capitalize">pending</span>
                         </td>
-                        <td>{{number_format($product->balance)}} TZS</td>
-                        <td>{{number_format($product->balance)}} TZS</td>
-                        <td>{{number_format($product->balance)}} TZS</td>
-                        <td>{{number_format($product->balance)}} TZS</td>
-                        <td>
-                            <span class="badge rounded-pill @if($product->status == 'active')badge-light-success @else badge-light-warning @endif  text-capitalize">pending</span>
-                        </td>
-                        <td>{{number_format(count($product->transactions))}}</td>
-
+                        <td>{{date('d-m-Y H:i:s',strtotime($disbursement->request_date))}}</td>
                         <td class="text-center">
-                            <button class="btn btn-xs btn-primary py-0"><i class="icon icon-eye"></i> </button>
-
+                            @if($disbursement->status == 'success')
+                                <button class="btn btn-xs btn-primary py-0"><i class="icon icon-eye"></i> </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

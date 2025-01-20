@@ -1,4 +1,4 @@
-@foreach($disbursements->where('status','success') as $disbursement)
+@foreach($business->disbursements->where('status','success') as $disbursement)
     <div id="receipt_{{$disbursement->id}}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="receipt_{{$disbursement->id}}" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">

@@ -29,4 +29,11 @@ class Business extends Model
     {
         return $this->hasMany(BusinessProduct::class);
     }
+
+    public function disbursements()
+    {
+        return $this->hasMany(BusinessDisbursement::class);
+    }
+
+
 }
