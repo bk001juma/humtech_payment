@@ -39,7 +39,7 @@
                                         <div class="d-flex align-items-center gap-2">
                                             <div class="flex-grow-1">
                                                 <h5>Total Collections</h5>
-                                                <p class="mb-0">Last 30 Days</p>
+                                                <p class="mb-0"></p>
                                             </div>
                                         </div>
 
@@ -65,7 +65,7 @@
                                         <div class="d-flex align-items-center gap-2">
                                             <div class="flex-grow-1">
                                                 <h5>Total Disbursements</h5>
-                                                <p class="mb-0">Last 30 Days</p>
+                                                <p class="mb-0"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@
                                         <div class="d-flex align-items-center gap-2">
                                             <div class="flex-grow-1">
                                                 <h5>Total Requests</h5>
-                                                <p class="mb-0">Last 30 Days</p>
+                                                <p class="mb-0"></p>
                                             </div>
                                         </div>
 
@@ -114,7 +114,7 @@
                                         <div class="d-flex align-items-center gap-2">
                                             <div class="flex-grow-1">
                                                 <h5>Total Transfer</h5>
-                                                <p class="mb-0">Last 30 Days</p>
+                                                <p class="mb-0"></p>
                                             </div>
                                         </div>
 
@@ -141,7 +141,7 @@
                                 <ul class="nav nav-tabs border-tab nav-primary mb-0" id="top-tab" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="#top-home" role="tab" aria-controls="top-home" aria-selected="false">
-                                            All
+                                            Requests
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
@@ -150,11 +150,7 @@
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="true">
-                                            Requests
-                                        </a>
-                                        <div class="material-border"></div>
-                                    </li>
+
 
                                     <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#bulk_pay" role="tab" aria-controls="bulk_pay" aria-selected="true">
                                             Bulk Payments
@@ -172,14 +168,17 @@
 
                                             <div class="card-body">
                                                 <div class="table-responsive user-datatable">
-                                                    <table class="display" id="basic-12">
+                                                    <table class="display" id="basic-4">
                                                         <thead>
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <th>Balance</th>
+                                                            <th>Merchant</th>
+                                                            <th>Channel</th>
+                                                            <th>Company</th>
+                                                            <th>Account/Phone</th>
+                                                            <th>Amount (TSH)</th>
                                                             <th>Status</th>
-                                                            <th>Transactions</th>
-                                                            <th>Action</th>
+                                                            <th>Time</th>
+                                                            <th>Receipt</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -193,26 +192,23 @@
                                                                     </h4>
                                                                 </td>
                                                                 <td>{{number_format($product->balance)}} TZS</td>
-                                                                <td><span class="badge rounded-pill @if($product->status == 'active')badge-light-success @else badge-light-danger @endif  text-capitalize">{{$product->status}}</span></td>
-                                                                <td>{{number_format(count($product->transactions))}}</td>
+                                                                <td>{{number_format($product->balance)}} TZS</td>
+                                                                <td>{{number_format($product->balance)}} TZS</td>
+                                                                <td>{{number_format($product->balance)}} TZS</td>
                                                                 <td>
-                                                                    <ul class="action">
-                                                                        <li class="edit"> <a href="{{route('merchant.manage',$product->id)}}"><i class="icon-pencil-alt"></i></a></li>
-                                                                        <li class="delete"><a href="{{route('merchant.manage',$product->id)}}"><i class="icon-trash"></i></a></li>
-                                                                    </ul>
+                                                                    <span class="badge rounded-pill @if($product->status == 'active')badge-light-success @else badge-light-warning @endif  text-capitalize">pending</span>
+                                                                </td>
+                                                                <td>{{number_format(count($product->transactions))}}</td>
+                                                             
+                                                                <td class="text-center">
+                                                                    <button class="btn btn-xs btn-primary py-0"><i class="icon icon-eye"></i> </button>
+
                                                                 </td>
                                                             </tr>
                                                         @endforeach
 
                                                         </tbody>
                                                         <tfoot>
-                                                        <tr>
-                                                            <th>Name</th>
-                                                            <th>Balance</th>
-                                                            <th>Status</th>
-                                                            <th>Transactions</th>
-                                                            <th>Action</th>
-                                                        </tr>
                                                         </tfoot>
                                                     </table>
                                                 </div>

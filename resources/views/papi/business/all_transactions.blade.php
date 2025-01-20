@@ -48,10 +48,10 @@
                                 <div class="card-body pb-10">
                                     <ul>
                                         <li><i class="iconly-Document icli me-1"></i>
-                                            <h5>10 Transactions</h5>
+                                            <h5>{{count($transactions)}} Transactions</h5>
                                         </li>
                                         <li><i class="iconly-Wallet icli me-1"></i>
-                                            <h5>12,000,000 TZS</h5>
+                                            <h5>{{number_format($transactions->where('status','success')->sum('amount'))}} TZS</h5>
                                         </li>
                                     </ul>
                                 </div>
@@ -73,10 +73,10 @@
                                 <div class="card-body pb-10">
                                     <ul>
                                         <li><i class="iconly-Document icli me-1"></i>
-                                            <h5>10 Transactions</h5>
+                                            <h5>0 Transactions</h5>
                                         </li>
                                         <li><i class="iconly-Wallet icli me-1"></i>
-                                            <h5>12,000,000 TZS</h5>
+                                            <h5>0 TZS</h5>
                                         </li>
                                     </ul>
                                 </div>
@@ -98,10 +98,10 @@
                                 <div class="card-body pb-10">
                                     <ul>
                                         <li><i class="iconly-Document icli me-1"></i>
-                                            <h5>10 Transactions</h5>
+                                            <h5>0 Transactions</h5>
                                         </li>
                                         <li><i class="iconly-Wallet icli me-1"></i>
-                                            <h5>12,000,000 TZS</h5>
+                                            <h5>0 TZS</h5>
                                         </li>
                                     </ul>
                                 </div>
@@ -123,10 +123,10 @@
                                 <div class="card-body pb-10">
                                     <ul>
                                         <li><i class="iconly-Document icli me-1"></i>
-                                            <h5>10 Transactions</h5>
+                                            <h5>0 Transactions</h5>
                                         </li>
                                         <li><i class="iconly-Wallet icli me-1"></i>
-                                            <h5>12,000,000 TZS</h5>
+                                            <h5>0 TZS</h5>
                                         </li>
                                     </ul>
                                 </div>
@@ -175,31 +175,35 @@
                                                     <table class="display" id="basic-12">
                                                         <thead>
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <th>Balance</th>
+                                                            <th>Merchant</th>
+                                                            <th>Service</th>
+                                                            <th>MSNID</th>
+                                                            <th>Channel</th>
+                                                            <th>Amount (TSH)</th>
                                                             <th>Status</th>
-                                                            <th>Transactions</th>
-                                                            <th>Action</th>
+                                                            <th>Time</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
 
-                                                        @foreach($business->products as $product)
+                                                        @foreach($transactions as $transaction)
                                                             <tr>
                                                                 <td>
                                                                     <h4>
-{{--                                                                        <img class="img-fluid table-avtar" style="height: 100px" src="/{{$product->logo}}" alt="{{$product->name}}">--}}
-                                                                        {{$product->name}}
+                                                                        {{$transaction->business->name}}
                                                                     </h4>
+
                                                                 </td>
-                                                                <td>{{number_format($product->balance)}} TZS</td>
-                                                                <td><span class="badge rounded-pill @if($product->status == 'active')badge-light-success @else badge-light-danger @endif  text-capitalize">{{$product->status}}</span></td>
-                                                                <td>{{number_format(count($product->transactions))}}</td>
+                                                                <td>{{$transaction->business_product->name}}</td>
+                                                                <td class="text-center">
+                                                                    {{$transaction->phone_number}} </td>
                                                                 <td>
-                                                                    <ul class="action">
-                                                                        <li class="edit"> <a href="{{route('merchant.manage',$product->id)}}"><i class="icon-pencil-alt"></i></a></li>
-                                                                        <li class="delete"><a href="{{route('merchant.manage',$product->id)}}"><i class="icon-trash"></i></a></li>
-                                                                    </ul>
+                                                                    {{$transaction->operator->name}}
+                                                                </td>
+                                                                <td class="text-center">{{number_format($transaction->amount)}}</td>
+                                                                <td class="text-center"><span class="badge rounded-pill @if($transaction->status == 'success')badge-light-success @else badge-light-danger @endif  text-capitalize">{{$transaction->status}}</span></td>
+                                                                <td class="text-center">
+                                                                    {{date('d-m-Y H:i:s',strtotime($transaction->transaction_date))}}
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -207,11 +211,13 @@
                                                         </tbody>
                                                         <tfoot>
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <th>Balance</th>
+                                                            <th>Merchant</th>
+                                                            <th>Service</th>
+                                                            <th>MSNID</th>
+                                                            <th>Channel</th>
+                                                            <th>Amount (TSH)</th>
                                                             <th>Status</th>
-                                                            <th>Transactions</th>
-                                                            <th>Action</th>
+                                                            <th>Time</th>
                                                         </tr>
                                                         </tfoot>
                                                     </table>
@@ -229,7 +235,7 @@
 
                                         <div class="card">
                                             <div class="card-header pb-0 card-no-border">
-                                                <h2>{{$business->name}} - Transactions</h2>
+                                                <h2> - Transactions</h2>
                                                 <div class="pull-right">
                                                     <button class="btn btn-primary px-xl-2 px-xxl-3" type="button" data-bs-toggle="modal" data-bs-target="#request_des_modal" data-whatever="@getbootstrap">
                                                         <i class="iconly-Plus"></i> Create Request</button>
@@ -252,7 +258,7 @@
 
                                         <div class="card">
                                             <div class="card-header pb-0 card-no-border">
-                                                <h2>{{$business->name}} - Bulk Payments</h2>
+                                                <h2> - Bulk Payments</h2>
                                                 <div class="pull-right">
                                                     <button class="btn btn-primary px-xl-2 px-xxl-3" type="button" data-bs-toggle="modal" data-bs-target="#bulk_pay_request" data-whatever="@getbootstrap">
                                                         <i class="iconly-Plus"></i> Create Bulk Payment</button>
@@ -290,7 +296,7 @@
                     <div class="modal-body">
                         <form class="row g-3 needs-validation" method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
                             @csrf
-                            <input hidden="hidden" name="business_id" value="{{$business->id}}">
+                            <input hidden="hidden" name="business_id" value="">
                             <div class="col-md-12">
                                 <label class="form-label" >Product Name</label>
                                 <input class="form-control" type="text" placeholder="Sherehe SDigital" required="required" name="name">

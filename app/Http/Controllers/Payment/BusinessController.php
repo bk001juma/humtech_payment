@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Merchant\Business;
+use App\Models\Merchant\BusinessTransaction;
 use App\Models\Profile;
 use App\Models\User;
 use App\Traits\ImageTrait;
@@ -102,13 +103,14 @@ class BusinessController extends Controller
     public function allTransactions()
     {
         $user = Auth::user();
+
         if ($user->hasRole(['admin'])){
-            $business = Business::first();
-            return view('papi.business.all_transactions',compact('business'));
+            $businesses = Business::get();
+            $transactions = BusinessTransaction::get();
+            return view('papi.business.all_transactions',compact('businesses','transactions'));
         }
 
         return redirect()->back();
-
     }
 
 }
