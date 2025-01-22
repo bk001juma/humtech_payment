@@ -17,11 +17,11 @@
                     <p ><strong>Transaction Date:<br> </strong>{{date('d-m-Y H:i:s',strtotime($transaction->created_at))}}</p>
 
 
-                    {!! QrCode::format('png')
+                    {!! \QrCode::format('png')
                  ->size(200)->errorCorrection('H')
                  ->generate('A simple example of QR code!'); !!}
 
-                    {!! QrCode::size(200)->backgroundColor(100, 255, 0)->color(255, 100, 0)->generate('Hello, Laravel 11!') !!}
+{{--                    {!! QrCode::size(200)->backgroundColor(100, 255, 0)->color(255, 100, 0)->generate('Hello, Laravel 11!') !!}--}}
 
                     <hr class="receipt">
 
