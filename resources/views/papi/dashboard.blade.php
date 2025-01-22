@@ -106,7 +106,7 @@
                         <div class="card-body">
                             <div class="chart-container progress-chart">
                                 @foreach($merchants as $merchant)
-                                    <h4>{{$merchant->name}} {{($merchant->balance / $merchants->sum('balance')*100)}}%</h4>
+                                    <h4>{{$merchant->name}} {{number_format(($merchant->balance / $merchants->sum('balance')*100))}}%</h4>
                                     <div class="progress sm-progress-bar overflow-visible mt-4">
                                         <div class="progress-bar-animated small-progressbar bg-primary rounded-pill progress-bar-striped" role="progressbar" style="width: {{($merchant->balance / $merchants->sum('balance')*100)}}%" aria-valuenow="{{($merchant->balance - $merchants->sum('balance')/1000)}}" aria-valuemin="0" aria-valuemax="100"><span class="text-primary progress-label">{{number_format($merchant->balance/1000)}}K TZS</span><span class="animate-circle"></span></div>
                                     </div>
