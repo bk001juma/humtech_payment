@@ -36,6 +36,8 @@ class UserController extends Controller
             return Carbon::create()->month($month)->startOfMonth();
         });
 
+
+        if($user->hasRole('admin')){
 // Get the monthly sums
         $monthlySums = DB::table('business_transactions')
             ->select(DB::raw("YEAR(created_at) as year, MONTH(created_at) as month, SUM(amount)  as total_amount"))->where('type','credit')->where('status','paid')
@@ -48,21 +50,8 @@ class UserController extends Controller
             ->get();
 
 // Merge the results with all months to ensure all months are included
-        $results = $months->map(function($month) use ($monthlyFailedSums, $monthlySums) {
-            $sum = $monthlySums->firstWhere('month', $month->month);
-            $failed_sum = $monthlyFailedSums->firstWhere('month', $month->month);
-            return [
-                'month' => $month->format('F'),
-                'total_amount' => $sum ? $sum->total_amount : 0,
-                'total_failed_amount' => $sum ? $failed_sum->total_amount : 0,
-            ];
-        });
+            list($results, $success, $failed) = $this->extractedData($months, $monthlyFailedSums, $monthlySums);
 
-
-        $success = [];
-        $failed = [];
-
-        if($user->hasRole('admin')){
             $businesses = Business::all();
             foreach($businesses as $business){
                 $business->balance = $business->transactions()->where('status','paid')->sum('amount');
@@ -95,11 +84,71 @@ class UserController extends Controller
         }elseif ($user->hasRole('merchant')) {
             $business = Auth::user()->businesses()->first();
 
-            return view('papi.merchant.merchant_dash',compact('user','business'));
+            // Get the monthly sums
+        $monthlySums = DB::table('business_transactions')
+            ->select(DB::raw("YEAR(created_at) as year, MONTH(created_at) as month, SUM(amount)  as total_amount"))->where('business_id',$business->id)->where('type','credit')->where('status','paid')
+            ->groupBy('year', 'month')
+            ->get();
+
+        $monthlyFailedSums = DB::table('business_transactions')
+            ->select(DB::raw("YEAR(created_at) as year, MONTH(created_at) as month, SUM(amount)  as total_amount"))->where('business_id',$business->id)->where('type','credit')->where('status','not like','%paid%')
+            ->groupBy('year', 'month')
+            ->get();
+
+// Merge the results with all months to ensure all months are included
+            list($results, $success, $failed) = $this->extractedData($months, $monthlyFailedSums, $monthlySums);
+
+            $operators = Operator::get();
+
+            foreach ($results as $result) {
+                $success[] = $result['total_amount']/1000;
+                $failed[] = 0;
+            }
+
+            $recent_disbursements = $business->disbursements()->limit(5)->get();
+            $recent_transactions = $business->transactions()->limit(5)->get();
+
+
+            $transactions = $business->transactions;
+            $disbursements = $business->disbursments;
+
+            $operator_percent = [];
+            $operator_name = [];
+            foreach ($operators as $operator) {
+                $operator_percent[] = $transactions->where('operator_id',$operator->id)->sum('amount');
+                $operator_name[] = $operator->name;
+            }
+
+
+            return view('papi.merchant.merchant_dash',compact('recent_disbursements','operator_percent','operator_name','recent_transactions','user','business','transactions','disbursements','success','failed','operators'));
         }else{
             Auth::logout();
             return redirect('/login');
         }
 
+    }
+
+    /**
+     * @param \Illuminate\Support\Collection $months
+     * @param \Illuminate\Support\Collection $monthlyFailedSums
+     * @param \Illuminate\Support\Collection $monthlySums
+     * @return array
+     */
+    public function extractedData(\Illuminate\Support\Collection $months, \Illuminate\Support\Collection $monthlyFailedSums, \Illuminate\Support\Collection $monthlySums): array
+    {
+        $results = $months->map(function ($month) use ($monthlyFailedSums, $monthlySums) {
+            $sum = $monthlySums->firstWhere('month', $month->month);
+            $failed_sum = $monthlyFailedSums->firstWhere('month', $month->month);
+            return [
+                'month' => $month->format('F'),
+                'total_amount' => $sum ? $sum->total_amount : 0,
+                'total_failed_amount' => $sum ? $failed_sum->total_amount : 0,
+            ];
+        });
+
+
+        $success = [];
+        $failed = [];
+        return array($results, $success, $failed);
     }
 }

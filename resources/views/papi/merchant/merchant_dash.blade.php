@@ -22,106 +22,7 @@
         <div class="container-fluid dashboard-3">
             <div class="row">
 
-                <div class="col-sm-6 col-xl-3 box-col-6">
-                    <div class="card graphic-design overflow-hidden">
-                        <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
-                            <div class="header-top">
-                                <div class="d-flex align-items-center gap-2">
-                                    <div class="flex-grow-1">
-                                        <h5>Total Collections</h5>
-                                        <p class="mb-0">Last 30 Days</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-body pb-10">
-                            <ul>
-                                <li><i class="iconly-Document icli me-1"></i>
-                                    <h5>10 Transactions</h5>
-                                </li>
-                                <li><i class="iconly-Wallet icli me-1"></i>
-                                    <h5>12,000,000 TZS</h5>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-xl-3 box-col-6" >
-                    <div class="card graphic-design overflow-hidden" >
-                        <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
-                            <div class="header-top">
-                                <div class="d-flex align-items-center gap-2">
-                                    <div class="flex-grow-1">
-                                        <h5>Total Disbursements</h5>
-                                        <p class="mb-0">Last 30 Days</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body pb-10">
-                            <ul>
-                                <li><i class="iconly-Document icli me-1"></i>
-                                    <h5>10 Transactions</h5>
-                                </li>
-                                <li><i class="iconly-Wallet icli me-1"></i>
-                                    <h5>12,000,000 TZS</h5>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-3 box-col-6">
-                    <div class="card graphic-design overflow-hidden">
-                        <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
-                            <div class="header-top">
-                                <div class="d-flex align-items-center gap-2">
-                                    <div class="flex-grow-1">
-                                        <h5>Total Transactions</h5>
-                                        <p class="mb-0">Last 30 Days</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-body pb-10">
-                            <ul>
-                                <li><i class="iconly-Document icli me-1"></i>
-                                    <h5>10 Transactions</h5>
-                                </li>
-                                <li><i class="iconly-Wallet icli me-1"></i>
-                                    <h5>12,000,000 TZS</h5>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-3 box-col-6">
-                    <div class="card graphic-design overflow-hidden">
-                        <div class="card-header card-no-border pb-0" style="background-color: rgba(48, 142, 135, 0.2)">
-                            <div class="header-top">
-                                <div class="d-flex align-items-center gap-2">
-                                    <div class="flex-grow-1">
-                                        <h5>Total Failed</h5>
-                                        <p class="mb-0">Last 30 Days</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-body pb-10">
-                            <ul>
-                                <li><i class="iconly-Document icli me-1"></i>
-                                    <h5>10 Transactions</h5>
-                                </li>
-                                <li><i class="iconly-Wallet icli me-1"></i>
-                                    <h5>12,000,000 TZS</h5>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                @include('papi.merchant.includes.top_cards')
 
                 <div class="col-xl-6 order-xxl-0 order-xl-4 col-lg-12 box-col-7">
                     <div class="card performance-card">
@@ -137,16 +38,12 @@
                                             <p class="mb-0">Failed</p>
                                         </li>
                                     </ul>
-                                    <ul class="simple-wrapper nav nav-pills" id="myTab" role="tablist">
-                                        <li class="nav-item"><a class="nav-link" id="home-tab" data-bs-toggle="tab" href="dashboard-03.html#yearly" role="tab" aria-selected="true">Yearly</a></li>
-                                        <li class="nav-item"><a class="nav-link" id="profile-tabs" data-bs-toggle="tab" href="dashboard-03.html#monthly" role="tab" aria-selected="false">Monthly</a></li>
-                                        <li class="nav-item"><a class="nav-link active" id="contact-tab" data-bs-toggle="tab" href="dashboard-03.html#weekly" role="tab" aria-selected="false">Weekly</a></li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
                         <div class="card-body pb-0">
-                            <div id="groupBarChart"></div>
+                            <div id="moneyBarChart"></div>
                         </div>
                     </div>
                 </div>
@@ -164,7 +61,6 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Amount</th>
-                                        <th>Trans ID</th>
                                         <th>Channel</th>
                                         <th>Time</th>
                                         <th class="text-center">Status</th>
@@ -172,32 +68,19 @@
                                     </thead>
 
                                     <tbody>
-                                    @for ($i = 0; $i < 5; $i++)
+                                   @foreach($recent_transactions as $transaction)
                                         <tr>
+                                            <td>{{$transaction->business->name}}</td>
                                             <td>
-                                                <div class="d-flex align-items-center gap-3">
-                                                    <div class="flex-grow-1"><a href="product-page.html">
-                                                            <h6>@php
-                                                                    $names = ['Gary Goodwin', 'Ralph Venter', 'Edwin Deo', 'Aaron Hors', 'Fenter Jessy', 'Alice Hogan'];
-                                                                    $randomNames = array_rand(array_flip($names), 2);
-                                                                @endphp
-                                                                {{ $randomNames[1] }}</h6></a>
-                                                    </div>
-                                                </div>
+                                                <h6 class="f-w-600">{{number_format($transaction->amount)}}</h6>
                                             </td>
-                                            <td>
-                                                <h6 class="f-w-600">25,000</h6>
-                                            </td>
-                                            <td class="f-w-600">{{ 'CA' . str_pad(rand(0, 99999999), 8, '0', STR_PAD_LEFT) }}</td>
-                                            <td class="f-w-600 text-center">M-Pesa</td>
-                                            <td class="f-w-600 text-center">{{ \Illuminate\Support\Carbon::create(2025, rand(1, 12), rand(1, 28), rand(0, 23), rand(0, 59), rand(0, 59)) }}</td>
+{{--                                            <td class="f-w-600">{{ $transaction->operator_transaction_id }}</td>--}}
+                                            <td class="f-w-600 text-center">{{$transaction->operator->name}}</td>
+                                            <td class="f-w-600 text-center">{{date('d-m-Y H:i:s',strtotime($transaction->transaction_date))}}</td>
                                             <td class="text-end">
-                                                <div class="btn bg-light-success border-light-success text-success">
-                                                    Success
-                                                </div>
-                                            </td>
+                                                <span class="badge rounded-pill @if($transaction->status == 'paid')badge-light-success @elseif($transaction->status == 'pending')badge-light-warning @else badge-light-danger @endif  text-capitalize">{{$transaction->status == 'paid' ? 'success' : $transaction->status}}</span></td>
                                         </tr>
-                                    @endfor
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -219,11 +102,13 @@
                         </div>
                         <div class="card-body">
                             <div class="chart-container progress-chart">
-                                <div id="progress1"></div>
-                                <div id="progress2"></div>
-                                <div id="progress3"></div>
-                                <div id="progress4"></div>
-                                <div id="progress5"></div>
+                                @foreach($operators as $operator)
+                                    <h4>{{$operator->name}} {{number_format(($operator->transactions->where('status','paid')->sum('amount') / $transactions->where('status','paid')->sum('amount')*100))}}%</h4>
+                                    <div class="progress sm-progress-bar overflow-visible mt-4">
+                                        <div class="progress-bar-animated small-progressbar bg-primary rounded-pill progress-bar-striped" role="progressbar" style="width: {{($operator->transactions->where('status','paid')->sum('amount') / $transactions->where('status','paid')->sum('amount')*100)}}%" aria-valuenow="{{($operator->transactions->where('status','paid')->sum('amount') / $transactions->where('status','paid')->sum('amount')*100)}}" aria-valuemin="0" aria-valuemax="100"><span class="text-primary progress-label">{{number_format($operator->transactions->where('status','paid')->sum('amount')/1000)}}K TZS</span><span class="animate-circle"></span></div>
+                                    </div>
+                                    <hr>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -251,96 +136,23 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>NMB</h5></a>
-                                                    <p>0J48748374745</p>
+                                    @foreach($recent_disbursements as $disbursement)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <div class="flex-grow-1">
+                                                            <h5>{{$disbursement->business->name}}</h5>
+                                                        <p>{{$disbursement->company}}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>60,000</h5>
-                                            <p class="text-success">Success</p>
-                                        </td>
-                                        <td>2025-01-10<br>11:34:66</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>NMB</h5></a>
-                                                    <p>0J48748374745</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>90,000</h5>
-                                            <p class="text-success">Success</p>
-                                        </td>
-                                        <td>2025-01-10<br>11:34:66</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>CRDB</h5></a>
-                                                    <p>0J48748374745</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>640,000</h5>
-                                            <p class="text-success">Success</p>
-                                        </td>
-                                        <td>2025-01-14<br>11:34:66</td>
-                                    </tr>
-                                     <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>NMB</h5></a>
-                                                    <p>0J48748374745</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>640,000</h5>
-                                            <p class="text-success">Success</p>
-                                        </td>
-                                        <td>2025-01-14<br>11:34:66</td>
-                                    </tr>
-                                     <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>NMB</h5></a>
-                                                    <p>0J48748374745</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>640,000</h5>
-                                            <p class="text-success">Success</p>
-                                        </td>
-                                        <td>2025-01-14<br>11:34:66</td>
-                                    </tr>
-                                     <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>NMB</h5></a>
-                                                    <p>0J48748374745</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>640,000</h5>
-                                            <p class="text-success">Success</p>
-                                        </td>
-                                        <td>2025-01-14<br>11:34:66</td>
-                                    </tr>
+                                            </td>
+                                            <td>
+                                                <h5>{{number_format($disbursement->amount)}}</h5>
+                                                <span class="badge rounded-pill @if($disbursement->status == 'success')badge-light-success @elseif($disbursement->status == 'rejected') badge-light-danger @else badge-light-warning @endif  text-capitalize">{{$disbursement->status}}</span>
+                                            </td>
+                                            <td>{{date('d-m-Y H:i:s',strtotime($disbursement->request_date))}}</td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -364,12 +176,12 @@
                             <script>
                                 document.addEventListener("DOMContentLoaded", function () {
                                     var options = {
-                                        series: [44, 33, 23, 15, 10], // Replace these with your data values
+                                        series: @json($operator_percent), // Replace these with your data values
                                         chart: {
                                             type: 'pie',
                                             height: 350
                                         },
-                                        labels: ['M-Pesa', 'Mixx', 'Airtme Money', 'Halotel', 'Bank'], // Replace with your data labels
+                                        labels: @json($operator_name), // Replace with your data labels
                                         legend: {
                                             position: 'bottom'
                                         },
@@ -390,6 +202,7 @@
                                     chart.render();
                                 });
                             </script>
+
                             <div class="donut-legend" id="legend"></div>
                         </div>
                     </div>
@@ -428,6 +241,149 @@
 
 
 @section('page_js')
+    <script>
+        const groupChartOption2 = {
+            series: [
+                {
+                    name: "Good",
+                    data: @json($success),
+                },
+                {
+                    name: "Very Good",
+                    data: @json($failed),
+                },
+            ],
+            colors: [AdmiroAdminConfig.primary, AdmiroAdminConfig.secondary],
+            chart: {
+                type: "bar",
+                height: 325,
+                offsetX: 0,
+                toolbar: {
+                    show: false,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                },
+            },
+            stroke: {
+                show: true,
+                width: 2,
+                colors: ["transparent"],
+            },
+            grid: {
+                show: true,
+                borderColor: "#E5E5E5",
+                position: "back",
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: "40%",
+                },
+            },
+            tooltip: {
+                enabled: false,
+            },
+
+            yaxis: {
+                show: true,
+                labels: {
+                    show: true,
+                    style: {
+                        fontWeight: 500,
+                        colors: "#AAA3A0",
+                    },
+                    formatter: (value) => {
+                        return `${value}k`;
+                    },
+                },
+            },
+            xaxis: {
+                show: true,
+                categories: [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec",
+                ],
+                labels: {
+                    show: true,
+                    style: {
+                        fontWeight: 500,
+                        colors: "#AAA3A0",
+                    },
+                },
+                axisBorder: {
+                    show: false,
+                },
+                axisTicks: {
+                    show: false,
+                },
+            },
+            legend: {
+                show: false,
+            },
+
+            responsive: [
+                {
+                    breakpoint: 1600,
+                    options: {
+                        chart: {
+                            height: 360,
+                        },
+                        series: [
+                            {
+                                name: "Good",
+                                data: [0, 250, 350, 150, 230, 120, 330, 350, 280],
+                            },
+                            {
+                                name: "Very Good",
+                                data: [290, 180, 120, 290, 370, 250, 230, 200, 140],
+                            },
+                        ],
+                    },
+                },
+                {
+                    breakpoint: 531,
+                    options: {
+                        chart: {
+                            height: 200,
+                        },
+                        series: [
+                            {
+                                name: "Good",
+                                data: [170, 250, 350, 150, 230, 120, 330],
+                            },
+                            {
+                                name: "Very Good",
+                                data: [290, 180, 120, 290, 370, 250, 230],
+                            },
+                        ],
+                    },
+                },
+            ],
+        };
+        const groupBarChartEl2 = new ApexCharts(
+            document.querySelector("#moneyBarChart"),
+            groupChartOption2
+        );
+
+        // groupBarChartEl2.render();
+    </script>
+
     <!-- theme_customizer-->
 {{--    <script src="/assets/js/theme-customizer/customizer.js"></script>--}}
     <!-- prism-->

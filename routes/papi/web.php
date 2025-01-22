@@ -29,7 +29,6 @@ Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', '
         Route::get('/disbursements/{id}/reject',[DisbursementController::class, 'reject'])->name('disbursement.reject');
 
 
-
         Route::post('/merchant/product/store',[BusinessProductController::class, 'store'])->name('product.store');
     });
 });
