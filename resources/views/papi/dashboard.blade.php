@@ -70,7 +70,7 @@
 
                                     <tbody>
 
-                                    @foreach($transactions as $transaction)
+                                    @foreach($recent_transactions as $transaction)
                                         <tr>
                                             <td>{{$transaction->business->name}}</td>
                                             <td>
