@@ -163,7 +163,10 @@
                 <div class="col-xxl-3 col-xl-5 order-xxl-0 order-xl-2 col-lg-6 col-md-5 col-sm-6 box-col-6">
                     <div class="card pie-card">
                         <div class="card-header card-no-border pb-0">
+                            <div class="header-top">
+                                <h3>Operators</h3>
 
+                            </div>
                         </div>
                         <div class="card-body revenue-category">
                             <div class="pie-chart" id="pie-chart-2"></div>
