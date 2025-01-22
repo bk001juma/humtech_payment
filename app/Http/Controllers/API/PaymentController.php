@@ -87,7 +87,7 @@ class PaymentController extends Controller
                 $pool->add(function () use ($transaction, $amount, $phone, $product) {
 
                     $vod = new VodacomController;
-                    return $vod->sendToCustomer($phone, $amount, $transaction->unique_id,$product->name);
+                    return $vod->sendToCustomer($phone, $amount, $transaction->unique_id,$transaction->customer_id);
 
                 })->then(function ($output) use ($transaction, $pool) {
 

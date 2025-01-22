@@ -12,6 +12,7 @@ use App\Traits\ImageTrait;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class BusinessController extends Controller
 {
@@ -118,7 +119,9 @@ class BusinessController extends Controller
             $transactions = BusinessTransaction::orderBy('transaction_date','desc')->get();
             $disbursements = BusinessDisbursement::get();
 
-            return view('papi.business.all_transactions',compact('businesses','transactions','disbursements'));
+            $sqr = QrCode::size(300)->generate('Hello, Laravel 11!');
+
+            return view('papi.business.all_transactions',compact('businesses','transactions','disbursements','sqr'));
         }
 
         return redirect()->back();

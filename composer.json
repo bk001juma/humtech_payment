@@ -10,6 +10,7 @@
   "license": "MIT",
   "require": {
     "php": "^8.1",
+    "ext-curl": "*",
     "ext-intl": "*",
     "ext-openssl": "*",
     "creativeorange/gravatar": "^1.0",
@@ -39,14 +40,14 @@
     "pusher/pusher-php-server": "^7.2",
     "rap2hpoutre/laravel-log-viewer": "^2.3",
     "realrashid/sweet-alert": "^7.2",
+    "simplesoftwareio/simple-qrcode": "^4.2",
     "socialiteproviders/37signals": "^4.1",
     "socialiteproviders/instagram": "^5.0",
     "socialiteproviders/linkedin": "^4.2",
     "socialiteproviders/twitch": "^5.3",
     "socialiteproviders/youtube": "^4.1",
     "spatie/async": "^1.6",
-    "twbs/bootstrap-icons": "^1.11",
-    "ext-curl": "*"
+    "twbs/bootstrap-icons": "^1.11"
   },
   "require-dev": {
     "fakerphp/faker": "^1.9.1",

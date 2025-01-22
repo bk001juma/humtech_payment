@@ -3,17 +3,25 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title fs-5" id="mySmallModalLabel">Receipt</h3>
+                    <h3 class="modal-title fs-5" id="mySmallModalLabel">{{$transaction->business->name}}</h3>
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body dark-modal">
+                <div class="modal-body ">
                     <h2 class="text-center">Transaction Receipt</h2>
                     <hr class="receipt">
 
                     <p><strong>Merchant:<br> </strong>{{$transaction->business->name}}</p>
                     <p><strong>Channel:<br> </strong>{{$transaction->operator->name}}</p>
                     <p><strong>Receipt:<br> </strong>{{$transaction->operator_transaction_id}}</p>
-                    <p><strong>Transaction Date:<br> </strong>{{date('d-m-Y H:i:s',strtotime($transaction->created_at))}}</p>
+                    <p><strong>Service:<br> </strong>{{$transaction->business_product->name}}</p>
+                    <p ><strong>Transaction Date:<br> </strong>{{date('d-m-Y H:i:s',strtotime($transaction->created_at))}}</p>
+
+
+                    {!! QrCode::format('png')
+                 ->size(200)->errorCorrection('H')
+                 ->generate('A simple example of QR code!'); !!}
+
+                    {!! QrCode::size(200)->backgroundColor(100, 255, 0)->color(255, 100, 0)->generate('Hello, Laravel 11!') !!}
 
                     <hr class="receipt">
 

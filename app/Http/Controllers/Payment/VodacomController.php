@@ -22,7 +22,7 @@ class VodacomController extends Controller
             "input_Currency" => "TZS",
             "input_CustomerMSISDN" => $phone,
             "input_ServiceProviderCode" => "311936",
-            "input_ThirdPartyConversationID" => $unique_id,
+            "input_ThirdPartyConversationID" => $service,
             "input_TransactionReference" => $unique_id,
             "input_PurchasedItemsDesc" => "Shoes"
         ];

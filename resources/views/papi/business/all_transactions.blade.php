@@ -4,6 +4,8 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/vendors/owlcarousel.css"/>
 
     <link rel="stylesheet" type="text/css" href="/assets/css/vendors/datatables.css">
+
+
 @endsection
 
 @section('template_title')
@@ -256,6 +258,7 @@
 
 
 @section('page_js')
+
     <script src="/assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
     <!-- page_datatable-->
     <script src="/assets/js/js-datatables/datatables/datatable.custom.js"></script>
