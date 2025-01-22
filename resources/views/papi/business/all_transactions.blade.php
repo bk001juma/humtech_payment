@@ -50,11 +50,11 @@
                                 <div class="card-body pb-10">
                                     <ul>
                                         <li><i class="iconly-Document icli me-1"></i>
-                                            <h5>{{count($transactions->where('type','credit')->where('status','success'))}}
+                                            <h5>{{count($transactions->where('type','credit')->where('status','paid'))}}
                                                 Collections</h5>
                                         </li>
                                         <li><i class="iconly-Wallet icli me-1"></i>
-                                            <h5>{{number_format($transactions->where('type','credit')->where('status','success')->sum('amount'))}}
+                                            <h5>{{number_format($transactions->where('type','credit')->where('status','paid')->sum('amount'))}}
                                                 TZS</h5>
                                         </li>
                                     </ul>
@@ -78,11 +78,11 @@
                                 <div class="card-body pb-10">
                                     <ul>
                                         <li><i class="iconly-Document icli me-1"></i>
-                                            <h5>{{count($transactions->where('type','debit')->where('status','success'))}}
+                                            <h5>{{count($transactions->where('type','debit')->where('status','paid'))}}
                                                 Collections</h5>
                                         </li>
                                         <li><i class="iconly-Wallet icli me-1"></i>
-                                            <h5>{{number_format($transactions->where('type','debit')->where('status','success')->sum('amount'))}}
+                                            <h5>{{number_format($transactions->where('type','debit')->where('status','paid')->sum('amount'))}}
                                                 TZS</h5>
                                         </li>
                                     </ul>
@@ -134,11 +134,11 @@
                                 <div class="card-body pb-10">
                                     <ul>
                                         <li><i class="iconly-Document icli me-1"></i>
-                                            <h5>{{count($transactions->where('type','debit')->where('status','success'))}}
+                                            <h5>{{count($transactions->where('type','debit')->where('status','paid'))}}
                                                 Collections</h5>
                                         </li>
                                         <li><i class="iconly-Wallet icli me-1"></i>
-                                            <h5>{{number_format($transactions->where('type','debit')->where('status','success')->sum('amount'))}}
+                                            <h5>{{number_format($transactions->where('type','debit')->where('status','paid')->sum('amount'))}}
                                                 TZS</h5>
                                         </li>
                                     </ul>
@@ -153,23 +153,20 @@
                             <div class="col-sm-12">
                                 <ul class="nav nav-tabs border-tab nav-primary mb-0" id="top-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="top-home-tab" data-bs-toggle="tab"
-                                           href="#top-home" role="tab" aria-controls="top-home" aria-selected="false">
+                                        <a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="#top-home" role="tab" aria-controls="top-home" aria-selected="false">
                                             All
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab"
-                                           href="#top-contact" role="tab" aria-controls="top-contact"
+                                        <a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact"
                                            aria-selected="true">
                                             Push
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="brand-top-tab" data-bs-toggle="tab" href="#top-C2B"
-                                           role="tab" aria-controls="top-C2B" aria-selected="true">
+                                        <a class="nav-link" id="brand-top-tab" data-bs-toggle="tab" href="#top-C2B" role="tab" aria-controls="top-C2B" aria-selected="true">
                                             C2B
                                         </a>
                                         <div class="material-border"></div>
@@ -178,21 +175,18 @@
 
                                 <div class="tab-content" id="top-tabContent">
 
-                                    <div class="tab-pane fade active show" id="top-home" role="tabpanel"
-                                         aria-labelledby="top-home-tab">
+                                    <div class="tab-pane fade active show" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
 
                                         @include('papi.business.collections_tables.all')
 
                                     </div>
-                                    <div class="tab-pane fade" id="top-C2B" role="tabpanel"
-                                         aria-labelledby="C2B-top-tab">
+                                    <div class="tab-pane fade" id="top-C2B" role="tabpanel" aria-labelledby="C2B-top-tab">
 
                                         @include('papi.business.collections_tables.c2b')
 
                                     </div>
 
-                                    <div class="tab-pane fade" id="top-contact" role="tabpanel"
-                                         aria-labelledby="contact-top-tab">
+                                    <div class="tab-pane fade" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab">
 
                                         @include('papi.business.collections_tables.push')
                                     </div>
@@ -223,8 +217,7 @@
                             <input hidden="hidden" name="business_id" value="">
                             <div class="col-md-12">
                                 <label class="form-label">Product Name</label>
-                                <input class="form-control" type="text" placeholder="Sherehe SDigital"
-                                       required="required" name="name">
+                                <input class="form-control" type="text" placeholder="Sherehe SDigital" required="required" name="name">
                             </div>
                             <div class="col-md-12">
                                 <label class="form-label">Logo</label>
