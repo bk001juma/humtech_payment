@@ -2,7 +2,7 @@
 
     <div class="card-body">
         <div class="table-responsive user-datatable">
-            <table class="display" id="basic-5">
+            <table class="display" id="basic-6">
                 <thead>
                 <tr>
                     <th>Merchant</th>
@@ -31,7 +31,7 @@
                             {{date('d-m-Y H:i:s',strtotime($transaction->transaction_date))}}
                         </td>
                         <td class="text-center">
-                            @if($transaction->status == 'success')<button class="btn btn-xs btn-primary py-0"
+                            @if($transaction->status == 'paid')<button class="btn btn-xs btn-primary py-0"
                                 type="button" data-bs-toggle="modal" data-bs-target="#receipt_{{$transaction->id}}"><i class="icon icon-eye"></i> </button> @endif
                         </td>
                     </tr>
