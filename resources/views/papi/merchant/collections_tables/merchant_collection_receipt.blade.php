@@ -12,6 +12,7 @@
 
                     <p><strong>Merchant:<br> </strong>{{$transaction->business->name}}</p>
                     <p><strong>Channel:<br> </strong>{{$transaction->operator->name}}</p>
+                    <p><strong>Phone:<br> </strong>0{{substr($transaction->phone_number,3)}}</p>
                     <p><strong>Receipt:<br> </strong>{{$transaction->operator_transaction_id}}</p>
                     <p><strong>Service:<br> </strong>{{$transaction->business_product->name}}</p>
                     <p ><strong>Transaction Date:<br> </strong>{{date('d-m-Y H:i:s',strtotime($transaction->created_at))}}</p>

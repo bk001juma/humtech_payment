@@ -184,10 +184,7 @@
                                                         @foreach($business->products as $product)
                                                             <tr>
                                                                 <td>
-                                                                    <h4>
-{{--                                                                        <img class="img-fluid table-avtar" style="height: 100px" src="/{{$product->logo}}" alt="{{$product->name}}">--}}
-                                                                        {{$product->name}}
-                                                                    </h4>
+                                                                    {{$product->name}}
                                                                 </td>
                                                                 <td>{{number_format($product->balance)}} TZS</td>
                                                                 <td><span class="badge rounded-pill @if($product->status == 'active')badge-light-success @else badge-light-danger @endif  text-capitalize">{{$product->status}}</span></td>
