@@ -41,21 +41,20 @@
                                 <ul class="nav nav-tabs border-tab nav-primary mb-0" id="top-tab" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="top-home-tab" data-bs-toggle="tab"
-                                           href="product-page.html#top-home" role="tab" aria-controls="top-home"
+                                           href="#top-home" role="tab" aria-controls="top-home"
                                            aria-selected="false">
                                             All
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab"
-                                                            href="product-page.html#top-contact" role="tab"
-                                                            aria-controls="top-contact" aria-selected="true">
+                                                            href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="true">
                                             Successful
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" id="brand-top-tab" data-bs-toggle="tab"
-                                                            href="product-page.html#top-brand" role="tab"
+                                                            href="#top-brand" role="tab"
                                                             aria-controls="top-brand" aria-selected="true">
                                             Failed
                                         </a>

@@ -24,7 +24,7 @@
                         <td>{{$disbursement->channel}}</td>
                         <td>{{$disbursement->company}}</td>
                         <td>{{$disbursement->account_number}}</td>
-                        <td>{{number_format($disbursement->amount)}} TZS</td>
+                        <td>{{number_format($disbursement->amount,2)}} TZS</td>
                         <td>
                             <span class="badge rounded-pill @if($disbursement->status == 'success')badge-light-success @elseif($disbursement->status == 'rejected') badge-light-danger @else badge-light-warning @endif  text-capitalize">{{$disbursement->status}}</span>
                         </td>

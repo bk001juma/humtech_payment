@@ -18,7 +18,7 @@
 
                     <hr class="receipt">
 
-                    <h3 class="pb-20"><strong>Amount: </strong>{{number_format($disbursement->amount)}}TZS</h3>
+                    <h3 class="pb-20"><strong>Amount: </strong>{{number_format($disbursement->amount,2)}}TZS</h3>
 
                  </div>
             </div>

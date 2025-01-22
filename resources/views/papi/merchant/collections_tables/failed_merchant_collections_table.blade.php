@@ -24,7 +24,7 @@
                         <td>{{$transaction->business_product->name}}</td>
                         <td class="text-center">{{$transaction->phone_number}} </td>
                         <td>{{$transaction->operator->name}}</td>
-                        <td class="text-center"><span class="pull-right">{{number_format($transaction->amount)}}</span> </td>
+                        <td class="text-center"><span class="pull-right">{{number_format($transaction->amount,2)}}</span> </td>
                         <td class="text-center"><span class="badge rounded-pill @if($transaction->status == 'success') badge-light-success @elseif($transaction->status == 'failed') badge-light-danger @else badge-light-warning @endif  text-capitalize">{{$transaction->status}}</span></td>
                         <td class="text-center">
                             {{date('d-m-Y H:i:s',strtotime($transaction->transaction_date))}}

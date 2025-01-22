@@ -16,11 +16,13 @@
                     <p><strong>Service:<br> </strong>{{$transaction->business_product->name}}</p>
                     <p ><strong>Transaction Date:<br> </strong>{{date('d-m-Y H:i:s',strtotime($transaction->created_at))}}</p>
 
-                    <img src="/qr.png" alt="qr">
+                    <div class="text-center">
+                        <img class="text-center" src="/qr.png" alt="qr">
+                    </div>
 
                     <hr class="receipt">
 
-                    <h3 class="pb-20"><strong>Amount: </strong>{{number_format($transaction->amount)}}TZS</h3>
+                    <h3 class="pb-20"><strong>Amount: </strong> Tsh. {{number_format($transaction->amount,2)}}</h3>
 
                  </div>
             </div>
