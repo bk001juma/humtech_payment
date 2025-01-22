@@ -24,7 +24,6 @@
             </div>
         </div>
     </div>
-
 @endforeach
 
 <style> hr.receipt { border: none; border-top: 5px dotted black; height: 5px; width: 100%; margin: 20px 0; } </style>

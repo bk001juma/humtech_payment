@@ -78,7 +78,10 @@ class BusinessController extends Controller
         if (!$user->hasRole(['merchant','admin'])){
             return redirect()->back();
         }
-        return view('papi.business.transactions',compact('business'));
+
+        $transactions = $business->transactions;
+
+        return view('papi.merchant.transactions',compact('business','transactions'));
     }
 
     public function disbursements($id)

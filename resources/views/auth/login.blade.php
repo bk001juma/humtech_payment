@@ -4,9 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Admiro admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Admiro admin template, best javascript admin, dashboard template, bootstrap admin template, responsive admin template, web app">
-    <meta name="author" content="pixelstrap">
+    <meta name="description" content="Payment Portal developed by Felix 0785008133">
+    <meta name="keywords" content="Payment portal, web app">
+    <meta name="author" content="Felix Mgeni">
+
     <title>Login | {{ config('app.name', Lang::get('titles.app')) }}</title>
     <!-- Favicon icon-->
     <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">

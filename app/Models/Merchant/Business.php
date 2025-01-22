@@ -32,7 +32,12 @@ class Business extends Model
 
     public function disbursements()
     {
-        return $this->hasMany(BusinessDisbursement::class);
+        return $this->hasMany(BusinessDisbursement::class)->orderBy('created_at','desc');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(BusinessTransaction::class);
     }
 
 

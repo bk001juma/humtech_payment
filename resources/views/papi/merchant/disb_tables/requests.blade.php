@@ -2,6 +2,7 @@
 
     <div class="card-body">
         <div class="table-responsive user-datatable">
+
             <table class="display" id="basic-4">
                 <thead>
                 <tr>
@@ -25,7 +26,7 @@
                         <td>{{$disbursement->account_number}}</td>
                         <td>{{number_format($disbursement->amount)}} TZS</td>
                         <td>
-                            <span class="badge rounded-pill @if($disbursement->status == 'success')badge-light-success @else badge-light-warning @endif  text-capitalize">pending</span>
+                            <span class="badge rounded-pill @if($disbursement->status == 'success')badge-light-success @elseif($disbursement->status == 'rejected') badge-light-danger @else badge-light-warning @endif  text-capitalize">{{$disbursement->status}}</span>
                         </td>
                         <td>{{date('d-m-Y H:i:s',strtotime($disbursement->request_date))}}</td>
                         <td class="text-center">
