@@ -2,7 +2,7 @@
 
     <div class="card-body">
         <div class="table-responsive user-datatable">
-            <table class="display" id="basic-6">
+            <table class="display" id="basic-7">
                 <thead>
                 <tr>
                     <th>Merchant</th>
@@ -12,12 +12,11 @@
                     <th>Amount (TSH)</th>
                     <th>Status</th>
                     <th>Time</th>
-                    <th>Receipt</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                @foreach($business->transactions->where('type','credit')->where('status','NOT LIKE','success') as $transaction)
+                @foreach($business->transactions->where('type','credit')->where('status','NOT LIKE','paid') as $transaction)
                     <tr>
                         <td>
                             {{$transaction->business->name}}
@@ -30,10 +29,7 @@
                         <td class="text-center">
                             {{date('d-m-Y H:i:s',strtotime($transaction->transaction_date))}}
                         </td>
-                        <td class="text-center">
-                            @if($transaction->status == 'success')<button class="btn btn-xs btn-primary py-0"
-                                type="button" data-bs-toggle="modal" data-bs-target="#receipt_{{$transaction->id}}"><i class="icon icon-eye"></i> </button> @endif
-                        </td>
+
                     </tr>
                 @endforeach
 
