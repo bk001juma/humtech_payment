@@ -72,7 +72,7 @@
             <div class="card-body pb-10">
                 <ul>
                     <li><i class="iconly-Document icli me-1"></i>
-                        <h5>{{count($business->disbursements}}
+                        <h5>{{count($business->disbursements)}}
                             Transactions</h5>
                     </li>
                     <li><i class="iconly-Wallet icli me-1"></i>
