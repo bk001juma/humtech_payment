@@ -92,12 +92,7 @@
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
                                 <h3>Operator (Collections)</h3>
-                                <div class="card-header-right-icon">
-                                    <div class="dropdown">
-                                        <button class="btn dropdown-toggle" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown">Today</button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="chart-widget.html#">Today</a><a class="dropdown-item" href="chart-widget.html#">Tomorrow</a><a class="dropdown-item" href="chart-widget.html#">Yesterday</a></div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                         <div class="card-body">
@@ -119,10 +114,7 @@
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
                                 <h3>Disbursements</h3>
-                                <div class="dropdown icon-dropdown">
-                                    <button class="btn" id="userdropdown7" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis"></i></button>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown7"><a class="dropdown-item" href="dashboard-03.html#">Weekly</a><a class="dropdown-item" href="dashboard-03.html#">Monthly</a><a class="dropdown-item" href="dashboard-03.html#">Yearly</a></div>
-                                </div>
+
                             </div>
                         </div>
                         <div class="card-body course-table pt-0">
@@ -164,10 +156,7 @@
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
                                 <h3>Operators</h3>
-                                <div class="dropdown icon-dropdown">
-                                    <button class="btn" id="userdropdown8" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis"></i></button>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown8"><a class="dropdown-item" href="dashboard-03.html#">Weekly</a><a class="dropdown-item" href="dashboard-03.html#">Monthly</a><a class="dropdown-item" href="dashboard-03.html#">Yearly</a></div>
-                                </div>
+
                             </div>
                         </div>
                         <div class="card-body revenue-category">
