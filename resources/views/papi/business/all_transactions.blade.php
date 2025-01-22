@@ -362,6 +362,8 @@
         </div>
     </div>
 
+    @include('papi.merchant.collections_tables.merchant_collection_receipt')
+
 @endsection
 
 

@@ -1,4 +1,4 @@
-@foreach($business->transactions->where('type','credit') as $transaction)
+@foreach($transactions->where('type','credit') as $transaction)
     <div id="receipt_{{$transaction->id}}" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="receipt_{{$transaction->id}}" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -7,10 +7,10 @@
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body dark-modal">
-                    <h2 class="text-center">Transacion Receipt</h2>
+                    <h2 class="text-center">Transaction Receipt</h2>
                     <hr class="receipt">
 
-                    <p><strong>Merchant:<br> </strong>{{$business->name}}</p>
+                    <p><strong>Merchant:<br> </strong>{{$transaction->business->name}}</p>
                     <p><strong>Channel:<br> </strong>{{$transaction->operator->name}}</p>
                     <p><strong>Receipt:<br> </strong>{{$transaction->operator_transaction_id}}</p>
                     <p><strong>Transaction Date:<br> </strong>{{date('d-m-Y H:i:s',strtotime($transaction->created_at))}}</p>

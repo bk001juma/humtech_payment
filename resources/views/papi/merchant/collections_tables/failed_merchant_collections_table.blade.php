@@ -17,7 +17,7 @@
                 </thead>
                 <tbody>
 
-                @foreach($business->transactions->where('type','credit')->where('status','failed') as $transaction)
+                @foreach($business->transactions->where('type','credit')->where('status','NOT LIKE','success') as $transaction)
                     <tr>
                         <td>
                             {{$transaction->business->name}}

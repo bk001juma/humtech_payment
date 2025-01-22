@@ -75,11 +75,12 @@ class BusinessController extends Controller
     {
         $user = Auth::user();
         $business = Business::find($id);
+        $transactions = $business->transactions()->orderBy('created_at','desc')->get();
+
         if (!$user->hasRole(['merchant','admin'])){
             return redirect()->back();
         }
 
-        $transactions = $business->transactions;
 
         return view('papi.merchant.transactions',compact('business','transactions'));
     }
@@ -88,10 +89,12 @@ class BusinessController extends Controller
     {
         $user = Auth::user();
         $business = Business::find($id);
+        $transactions = $business->transactions()->orderBy('created_at','desc')->get();
+
         if (!$user->hasRole(['merchant','admin'])){
             return redirect()->back();
         }
-        return view('papi.merchant.disbursements',compact('business'));
+        return view('papi.merchant.disbursements',compact('business','transactions'));
     }
 
     public function allDisbursements()
@@ -110,7 +113,7 @@ class BusinessController extends Controller
 
         if ($user->hasRole(['admin'])){
             $businesses = Business::get();
-            $transactions = BusinessTransaction::get();
+            $transactions = BusinessTransaction::orderBy('created_at','desc')->get();
             return view('papi.business.all_transactions',compact('businesses','transactions'));
         }
 
