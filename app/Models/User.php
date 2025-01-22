@@ -170,6 +170,11 @@ class User extends Authenticatable
         return $this->hasMany(Business::class);
     }
 
+    public function business()
+    {
+        return $this->hasOne(Business::class);
+    }
+
     public function disbursements()
     {
         return $this->hasMany(BusinessDisbursement::class);

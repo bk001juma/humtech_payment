@@ -3,11 +3,13 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title fs-5" id="mySmallModalLabel">{{$transaction->business->name}}</h3>
+                    <h3 class="modal-title fs-5" id="mySmallModalLabel">Receipt</h3>
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body ">
-                    <h2 class="text-center">Transaction Receipt</h2>
+                    <h2 class="text-center">
+                        <img src="/{{$transaction->business->logo}}" alt="{{$transaction->business->name}} Logo" class="img-60 rounded-circle">
+                    </h2>
                     <hr class="receipt">
 
                     <p><strong>Merchant:<br> </strong>{{$transaction->business->name}}</p>

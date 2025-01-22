@@ -21,7 +21,7 @@
                     </li>
                     <li><i class="iconly-Wallet icli me-1"></i>
                         <h5>{{number_format($transactions->where('type','credit')->where('status','paid')->sum('amount'))}}
-                            TZS</h5>
+                            Tsh</h5>
                     </li>
                 </ul>
             </div>
@@ -49,7 +49,7 @@
                     </li>
                     <li><i class="iconly-Wallet icli me-1"></i>
                         <h5>{{number_format($business->disbursements->where('status','success')->sum('amount'))}}
-                            TZS</h5>
+                            Tsh</h5>
                     </li>
                 </ul>
             </div>
@@ -77,7 +77,7 @@
                     </li>
                     <li><i class="iconly-Wallet icli me-1"></i>
                         <h5>{{number_format($business->disbursements->sum('amount'))}}
-                            TZS</h5>
+                            Tsh</h5>
                     </li>
                 </ul>
             </div>
@@ -105,7 +105,7 @@
                     </li>
                     <li><i class="iconly-Wallet icli me-1"></i>
                         <h5>{{number_format($business->disbursements->where('status','success')->sum('amount'))}}
-                            TZS</h5>
+                            Tsh</h5>
                     </li>
                 </ul>
             </div>

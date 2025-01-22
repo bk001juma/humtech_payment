@@ -99,7 +99,7 @@
                     <div class="user-wrap">
                         <div class="user-img"><img src="/assets/images/profile.png" alt="user"/></div>
                         <div class="user-content">
-                            <h6>{{Auth::user()->first_name}} {{Auth::user()->last_name}}</h6>
+                            <h6>{{Auth::user()->first_name}} </h6>
                             <p class="mb-0">{{Auth::user()->roles->pluck('name')[0]}}<i class="fa-solid fa-chevron-down"></i></p>
                         </div>
                     </div>
