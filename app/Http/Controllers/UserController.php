@@ -70,7 +70,7 @@ class UserController extends Controller
             }
             foreach ($results as $result) {
                 $success[] = $result['total_amount']/1000;
-                $failed[] = $result['total_failed_amount']/1000;
+                $failed[] = 0;
             }
 
             $merchants = Business::limit(5)->get();
@@ -86,7 +86,7 @@ class UserController extends Controller
             $operator_percent = [];
             $operator_name = [];
             foreach ($operators as $operator) {
-                $operator_percent[] = number_format($operator->transactions()->where('status','paid')->sum('amount'));
+                $operator_percent[] = $operator->transactions()->where('status','paid')->sum('amount');
                 $operator_name[] = $operator->name;
             }
 
