@@ -16,11 +16,11 @@
             <div class="card-body pb-10">
                 <ul>
                     <li><i class="iconly-Document icli me-1"></i>
-                        <h5>{{count($transactions->where('type','credit')->where('status','success'))}}
+                        <h5>{{count($transactions->where('type','credit')->where('status','paid'))}}
                             Collections</h5>
                     </li>
                     <li><i class="iconly-Wallet icli me-1"></i>
-                        <h5>{{number_format($transactions->where('type','credit')->where('status','success')->sum('amount'))}}
+                        <h5>{{number_format($transactions->where('type','credit')->where('status','paid')->sum('amount'))}}
                             TZS</h5>
                     </li>
                 </ul>
