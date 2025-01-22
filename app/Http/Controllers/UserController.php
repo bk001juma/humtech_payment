@@ -76,7 +76,7 @@ class UserController extends Controller
             $merchants = Business::limit(5)->get();
 
             $transactions = BusinessTransaction::orderBy('transaction_date','desc')->get();
-            $recent_transactions = BusinessTransaction::where('status','paid')->orderBy('transaction_date','desc')->limit(5)->get();
+            $recent_transactions = BusinessTransaction::where('status','paid')->orderBy('transaction_date','desc')->limit(7)->get();
 
             $disbursements = BusinessDisbursement::get();
             $recent_disbursements = BusinessDisbursement::limit(5)->get();
