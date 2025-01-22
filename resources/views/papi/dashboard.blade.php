@@ -60,8 +60,8 @@
                                     <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Amount (TZS)</th>
-                                        <th>Trans ID</th>
+                                        <th>Amount (tsh)</th>
+{{--                                        <th>Trans ID</th>--}}
                                         <th>Channel</th>
                                         <th>Time</th>
                                         <th class="text-center">Status</th>
@@ -76,7 +76,7 @@
                                             <td>
                                                 <h6 class="f-w-600">{{number_format($transaction->amount)}}</h6>
                                             </td>
-                                            <td class="f-w-600">{{ $transaction->operator_transaction_id }}</td>
+{{--                                            <td class="f-w-600">{{ $transaction->operator_transaction_id }}</td>--}}
                                             <td class="f-w-600 text-center">{{$transaction->operator->name}}</td>
                                             <td class="f-w-600 text-center">{{date('d-m-Y H:i:s',strtotime($transaction->transaction_date))}}</td>
                                             <td class="text-end">
