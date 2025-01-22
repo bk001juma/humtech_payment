@@ -106,7 +106,7 @@ class UserController extends Controller
             }
 
             $recent_disbursements = $business->disbursements()->limit(5)->get();
-            $recent_transactions = $business->transactions()->limit(5)->get();
+            $recent_transactions = $business->transactions()->where('status','paid')->limit(5)->get();
 
 
             $transactions = $business->transactions;
