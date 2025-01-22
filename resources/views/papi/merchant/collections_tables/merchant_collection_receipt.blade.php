@@ -8,7 +8,7 @@
                 </div>
                 <div class="modal-body ">
                     <h2 class="text-center">
-                        <img src="/{{$transaction->business->logo}}" alt="{{$transaction->business->name}} Logo" class="img-60 rounded-circle">
+                        <img src="/{{$transaction->business->logo}}" alt="{{$transaction->business->name}} Logo" class="img-100 rounded-circle">
                     </h2>
                     <hr class="receipt">
 
@@ -20,7 +20,7 @@
                     <p ><strong>Transaction Date:<br> </strong>{{date('d-m-Y H:i:s',strtotime($transaction->created_at))}}</p>
 
                     <div class="text-center">
-                        <img class="text-center" src="/qr.png" alt="qr">
+                        <img class="text-center img-100" src="/qr.png" alt="qr">
                     </div>
 
                     <hr class="receipt">
