@@ -116,7 +116,7 @@ class BusinessController extends Controller
 
         if ($user->hasRole(['admin'])){
             $businesses = Business::get();
-            $transactions = BusinessTransaction::orderBy('transaction_date','desc')->get();
+            $transactions = BusinessTransaction::orderBy('transaction_date','desc')->where('status','paid')->limit(5)->get();
             $disbursements = BusinessDisbursement::get();
 
             $sqr = QrCode::size(300)->generate('Hello, Laravel 11!');
