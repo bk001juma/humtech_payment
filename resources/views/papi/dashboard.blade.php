@@ -110,6 +110,7 @@
                                     <div class="progress sm-progress-bar overflow-visible mt-4">
                                         <div class="progress-bar-animated small-progressbar bg-primary rounded-pill progress-bar-striped" role="progressbar" style="width: {{($merchant->balance / $merchants->sum('balance')*100)}}%" aria-valuenow="{{($merchant->balance - $merchants->sum('balance')/1000)}}" aria-valuemin="0" aria-valuemax="100"><span class="text-primary progress-label">{{number_format($merchant->balance/1000)}}K TZS</span><span class="animate-circle"></span></div>
                                     </div>
+                                    <hr>
                                 @endforeach
                             </div>
                         </div>
@@ -121,10 +122,7 @@
                         <div class="card-header card-no-border pb-0">
                             <div class="header-top">
                                 <h3>Disbursements</h3>
-                                <div class="dropdown icon-dropdown">
-                                    <button class="btn" id="userdropdown7" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis"></i></button>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown7"><a class="dropdown-item" href="dashboard-03.html#">Weekly</a><a class="dropdown-item" href="dashboard-03.html#">Monthly</a><a class="dropdown-item" href="dashboard-03.html#">Yearly</a></div>
-                                </div>
+
                             </div>
                         </div>
                         <div class="card-body course-table pt-0">
@@ -138,96 +136,24 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>KMJ</h5></a>
-                                                    <p>M-Pesa</p>
+
+                                    @foreach($recent_disbursements as $disbursement)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <div class="flex-grow-1">
+                                                            <h5>{{$disbursement->business->name}}</h5>
+                                                        <p>{{$disbursement->company}}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>60,000</h5>
-                                            <p class="text-success">Success</p>
-                                        </td>
-                                        <td>2025-01-10<br>11:34:66</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>Sherehe Digital</h5></a>
-                                                    <p>M-Pesa</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>90,000</h5>
-                                            <p class="text-success">Success</p>
-                                        </td>
-                                        <td>2025-01-10<br>11:34:66</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>Shririkisho</h5></a>
-                                                    <p>Mixx</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>640,000</h5>
-                                            <p class="text-success">Success</p>
-                                        </td>
-                                        <td>2025-01-14<br>11:34:66</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>Garab</h5></a>
-                                                    <p>Mixx</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>640,000</h5>
-                                            <p class="text-success">Success</p>
-                                        </td>
-                                        <td>2025-01-14<br>11:34:66</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>Humtech</h5></a>
-                                                    <p>Mixx</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>640,000</h5>
-                                            <p class="text-success">Success</p>
-                                        </td>
-                                        <td>2025-01-14<br>11:34:66</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="flex-grow-1"><a href="product-page.html">
-                                                        <h5>Kazimoto</h5></a>
-                                                    <p>Mixx</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>640,000</h5>
-                                            <p class="text-success">Success</p>
-                                        </td>
-                                        <td>2025-01-14<br>11:34:66</td>
-                                    </tr>
+                                            </td>
+                                            <td>
+                                                <h5>{{number_format($disbursement->amount)}}</h5>
+                                                <span class="badge rounded-pill @if($disbursement->status == 'success')badge-light-success @elseif($disbursement->status == 'rejected') badge-light-danger @else badge-light-warning @endif  text-capitalize">{{$disbursement->status}}</span>
+                                            </td>
+                                            <td>{{date('d-m-Y H:i:s',strtotime($disbursement->request_date))}}</td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -237,13 +163,7 @@
                 <div class="col-xxl-3 col-xl-5 order-xxl-0 order-xl-2 col-lg-6 col-md-5 col-sm-6 box-col-6">
                     <div class="card pie-card">
                         <div class="card-header card-no-border pb-0">
-                            <div class="header-top">
-                                <h3>Operators</h3>
-                                <div class="dropdown icon-dropdown">
-                                    <button class="btn" id="userdropdown8" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis"></i></button>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown8"><a class="dropdown-item" href="dashboard-03.html#">Weekly</a><a class="dropdown-item" href="dashboard-03.html#">Monthly</a><a class="dropdown-item" href="dashboard-03.html#">Yearly</a></div>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="card-body revenue-category">
                             <div class="pie-chart" id="pie-chart-2"></div>
@@ -251,12 +171,12 @@
                             <script>
                                 document.addEventListener("DOMContentLoaded", function () {
                                     var options = {
-                                        series: [44, 33, 23, 15, 10], // Replace these with your data values
+                                        series: @json($operator_percent), // Replace these with your data values
                                         chart: {
                                             type: 'pie',
                                             height: 350
                                         },
-                                        labels: ['M-Pesa', 'Mixx', 'Airtme Money', 'Halotel', 'Bank'], // Replace with your data labels
+                                        labels: @json($operator_name), // Replace with your data labels
                                         legend: {
                                             position: 'bottom'
                                         },
@@ -311,8 +231,6 @@
             </div>
         </div>
     </div>
-
-    @json($success)
 
     @include('papi.merchant.collections_tables.merchant_collection_receipt')
 

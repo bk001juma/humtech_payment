@@ -9,6 +9,7 @@ use App\Models\Car\Slide;
 use App\Models\Merchant\Business;
 use App\Models\Merchant\BusinessDisbursement;
 use App\Models\Merchant\BusinessTransaction;
+use App\Models\Payment\Operator;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Auth;
@@ -76,9 +77,21 @@ class UserController extends Controller
 
             $transactions = BusinessTransaction::orderBy('transaction_date','desc')->get();
             $recent_transactions = BusinessTransaction::where('status','paid')->orderBy('transaction_date','desc')->limit(5)->get();
-            $disbursements = BusinessDisbursement::get();
 
-            return view('papi.dashboard',compact('user','transactions','disbursements','recent_transactions','failed','success','merchants'));
+            $disbursements = BusinessDisbursement::get();
+            $recent_disbursements = BusinessDisbursement::limit(5)->get();
+
+            $operators = Operator::get();
+
+            $operator_percent = [];
+            $operator_name = [];
+            foreach ($operators as $operator) {
+                $operator_percent[] = number_format($operator->transactions()->where('status','paid')->sum('amount'));
+                $operator_name[] = $operator->name;
+            }
+
+
+            return view('papi.dashboard',compact('user','operator_name','operator_percent','transactions','disbursements','recent_transactions','failed','success','merchants','recent_disbursements'));
         }elseif ($user->hasRole('merchant')) {
             $business = Auth::user()->businesses()->first();
 
