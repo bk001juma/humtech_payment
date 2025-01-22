@@ -26,7 +26,8 @@
                         <td class="text-center">{{$transaction->phone_number}} </td>
                         <td>{{$transaction->operator->name}}</td>
                         <td class="text-center">{{number_format($transaction->amount)}}</td>
-                        <td class="text-center"><span class="badge rounded-pill @if($transaction->status == 'paid')badge-light-success @else badge-light-danger @endif  text-capitalize">{{$transaction->status}}</span></td>
+                        <td class="text-center">
+                            <span class="badge rounded-pill @if($transaction->status == 'paid')badge-light-success @elseif($transaction->status == 'pending')badge-light-warning @else badge-light-danger @endif  text-capitalize">{{$transaction->status == 'paid' ? 'success' : $transaction->status}}</span></td>
                         <td class="text-center">
                             {{date('d-m-Y H:i:s',strtotime($transaction->transaction_date))}}
                         </td>

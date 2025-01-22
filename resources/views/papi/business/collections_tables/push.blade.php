@@ -23,12 +23,14 @@
                         <td class="text-center">{{$transaction->phone_number}} </td>
                         <td>{{$transaction->operator->name}}</td>
                         <td class="text-center"><span class="pull-right">{{number_format($transaction->amount)}}</span> </td>
-                        <td class="text-center"><span class="badge rounded-pill @if($transaction->status == 'paid')badge-light-success @elseif($transaction->status == 'pending')badge-light-warning @else badge-light-danger @endif  text-capitalize">{{$transaction->status}}</span></td>
+                        <td class="text-center">
+                            <span class="badge rounded-pill @if($transaction->status == 'paid')badge-light-success @elseif($transaction->status == 'pending')badge-light-warning @else badge-light-danger @endif  text-capitalize">{{$transaction->status == 'paid' ? 'success' : $transaction->status}}</span></td>
+
                         <td class="text-center">
                             {{date('d-m-Y H:i:s',strtotime($transaction->transaction_date))}}
                         </td>
                         <td class="text-center">
-                            @if($transaction->status == 'success')<button  class="btn btn-xs btn-primary py-0"
+                            @if($transaction->status == 'paid')<button  class="btn btn-xs btn-primary py-0"
                                 type="button" data-bs-toggle="modal" data-bs-target="#receipt_{{$transaction->id}}"><i class="icon icon-eye"></i> </button> @endif
                         </td>
                     </tr>

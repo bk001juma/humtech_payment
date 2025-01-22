@@ -102,7 +102,9 @@ class BusinessController extends Controller
         $user = Auth::user();
         if ($user->hasRole(['admin'])){
             $disbursements = BusinessDisbursement::get();
-            return view('papi.business.all_disbursements',compact('disbursements'));
+            $transactions = BusinessTransaction::orderBy('created_at','desc')->get();
+
+            return view('papi.business.all_disbursements',compact('disbursements','transactions'));
         }
         return redirect()->back();
     }
@@ -113,8 +115,10 @@ class BusinessController extends Controller
 
         if ($user->hasRole(['admin'])){
             $businesses = Business::get();
-            $transactions = BusinessTransaction::orderBy('created_at','desc')->get();
-            return view('papi.business.all_transactions',compact('businesses','transactions'));
+            $transactions = BusinessTransaction::orderBy('transaction_date','desc')->get();
+            $disbursements = BusinessDisbursement::get();
+
+            return view('papi.business.all_transactions',compact('businesses','transactions','disbursements'));
         }
 
         return redirect()->back();

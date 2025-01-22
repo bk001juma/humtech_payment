@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="/assets/css/style.css"/>
     <link id="color" rel="stylesheet" href="/assets/css/color-1.css" media="screen"/>
 
+      @yield('page_css')
+
 
 {{--      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">--}}
 
@@ -96,6 +98,7 @@
     <!-- theme_customizer-->
 {{--    <script src="/assets/js/theme-customizer/customizer.js"></script>--}}
     <!-- dashboard_3-->
+    @yield('page_js')
     <script src="/assets/js/dashboard/dashboard_3.js"></script>
     <!-- echart_pie-->
     <script src="/assets/js/chart/echart/pie-chart/facePrint.js"></script>
@@ -107,7 +110,6 @@
     <script src="/assets/js/chart/morris-chart/morris.js"> </script>
     <script src="/assets/js/chart/morris-chart/prettify.min.js"></script>
 
-    @yield('page_js')
     <!-- custom script -->
     <script src="/assets/js/script.js"></script>
   </body>

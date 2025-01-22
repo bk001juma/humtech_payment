@@ -74,6 +74,7 @@ const groupChartOption = {
   tooltip: {
     enabled: false,
   },
+
   yaxis: {
     show: true,
     labels: {
@@ -120,6 +121,7 @@ const groupChartOption = {
   legend: {
     show: false,
   },
+
   responsive: [
     {
       breakpoint: 1600,
@@ -163,7 +165,12 @@ const groupBarChartEl = new ApexCharts(
   document.querySelector("#groupBarChart"),
   groupChartOption
 );
+
+
 groupBarChartEl.render();
+groupBarChartEl2.render();
+
+
 // bitcoin-chart start
 var options = {
   series: [

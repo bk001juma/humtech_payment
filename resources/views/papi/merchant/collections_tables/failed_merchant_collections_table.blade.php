@@ -29,7 +29,6 @@
                         <td class="text-center">
                             {{date('d-m-Y H:i:s',strtotime($transaction->transaction_date))}}
                         </td>
-
                     </tr>
                 @endforeach
 
