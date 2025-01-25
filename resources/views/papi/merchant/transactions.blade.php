@@ -151,7 +151,7 @@
                     <p ><strong>Transaction Date:<br> </strong> <span id="date"></span> </p>
 
                     <div class="text-center">
-                        <iframe class="img-100" src="https://papi.co.tz/business/transaction/348/qr" alt="qr" id="qr"></iframe>
+                        <iframe class="img-100" id="qr_code"></iframe>
                     </div>
 
                     <hr class="receipt">
