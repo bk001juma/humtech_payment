@@ -130,7 +130,7 @@ class BusinessController extends Controller
 
     public function getQRCode($id)
     {
-        return $id;
+//        return $id;
         $data = QrCode::size(512)
             ->format('png')
 //            ->merge('/logo.jpg')
