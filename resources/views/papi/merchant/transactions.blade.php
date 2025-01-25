@@ -184,7 +184,7 @@
 
         var amount = document.getElementById('amount');
 
-        var qr_code = document.getElementById('qr_code');
+        var qr_code = document.getElementById('imgcontainer');
         var qr_code2 = document.getElementById('qr_code2');
 
         function getReceipt(user) {
@@ -200,8 +200,7 @@
             // qr_code.src = user[6];
 
             var xmlHttp = new XMLHttpRequest();
-            xmlHttp.responseType = 'blob';
-            xmlHttp.open( "GET", user[6], false ); // false for synchronous request
+            xmlHttp.open( "GET", 'https://papi.co.tz/transactionq/348/qr', false ); // false for synchronous request
             xmlHttp.send( null )
 
             var blob = xmlHttp.response;
@@ -210,7 +209,7 @@
                 window.URL.revokeObjectURL(img.src);
             };
             img.src = window.URL.createObjectURL(blob);
-            $("#imgcontainer").html(img);
+            qr_code.innerHTML(img);
 
 
             qr_code.src = xmlHttp.response;
