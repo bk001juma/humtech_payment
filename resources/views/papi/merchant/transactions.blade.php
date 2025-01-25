@@ -150,9 +150,8 @@
                     <p><strong>Service:<br> </strong> <span id="service"></span> </p>
                     <p ><strong>Transaction Date:<br> </strong> <span id="date"></span> </p>
 
-                    <div class="text-center">
-                        <iframe class="img-100" src="/qr.png" id="qr_code"></iframe>
-                        <img id="qr_code2" src="/qr.png" alt="hi">
+                    <div class="text-center" id="imgcontainer">
+
                     </div>
 
                     <hr class="receipt">
@@ -201,8 +200,19 @@
             // qr_code.src = user[6];
 
             var xmlHttp = new XMLHttpRequest();
+            xmlHttp.responseType = 'blob';
             xmlHttp.open( "GET", user[6], false ); // false for synchronous request
-            xmlHttp.send( null );
+            xmlHttp.send( null )
+
+            var blob = xmlHttp.response;
+            var img = document.createElement("img");
+            img.onload = function(e) {
+                window.URL.revokeObjectURL(img.src);
+            };
+            img.src = window.URL.createObjectURL(blob);
+            $("#imgcontainer").html(img);
+
+
             qr_code.src = xmlHttp.response;
             qr_code2.src = xmlHttp.response;
         }
