@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Auth\BusinessLoginController;
 use App\Http\Controllers\Notification\SMSController;
+use App\Http\Controllers\Payment\BusinessController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,9 @@ Route::group(['middleware' => ['web', 'checkblocked']], function () {
     Route::get('/web_otp_verification', [BusinessLoginController::class,'verifyOTP'])->name('web.verifyOTP');
 
     Route::post('/web_otp_validation', [BusinessLoginController::class,'validateOTP'])->name('web.validateOTP');
+
+    Route::get('/transaction/{id}/qr',[BusinessController::class, 'getQRCode'])->name('admin.transaction.qr');
+
 
 
     Route::get('/', function (){
