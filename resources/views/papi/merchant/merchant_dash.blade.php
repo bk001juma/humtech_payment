@@ -98,9 +98,13 @@
                         <div class="card-body">
                             <div class="chart-container progress-chart">
                                 @foreach($operators as $operator)
-                                    <h4>{{$operator->name}} {{number_format(($operator->transactions->where('status','paid')->sum('amount') / $transactions->where('status','paid')->sum('amount')*100))}}%</h4>
+                                    <h4>{{$operator->name}} {{number_format(($transactions->where('operator_id',$operator->id)->where('status','paid')->sum('amount') / ($transactions->where('status','paid')->sum('amount') > 0 ? $transactions->where('status','paid')->sum('amount') : 1) *100))}}%</h4>
                                     <div class="progress sm-progress-bar overflow-visible mt-4">
-                                        <div class="progress-bar-animated small-progressbar bg-primary rounded-pill progress-bar-striped" role="progressbar" style="width: {{($operator->transactions->where('status','paid')->sum('amount') / $transactions->where('status','paid')->sum('amount')*100)}}%" aria-valuenow="{{($operator->transactions->where('status','paid')->sum('amount') / $transactions->where('status','paid')->sum('amount')*100)}}" aria-valuemin="0" aria-valuemax="100"><span class="text-primary progress-label">{{number_format($operator->transactions->where('status','paid')->sum('amount')/1000)}}K TZS</span><span class="animate-circle"></span></div>
+                                        <div class="progress-bar-animated small-progressbar bg-primary rounded-pill progress-bar-striped" role="progressbar"
+                                             style="width: {{($transactions->where('operator_id',$operator->id)->where('status','paid')->sum('amount') / ($transactions->where('status','paid')->sum('amount') > 0 ? $transactions->where('status','paid')->sum('amount') : 1)*100)}}%"
+                                             aria-valuenow="{{($transactions->where('operator_id',$operator->id)->where('status','paid')->sum('amount') / ($transactions->where('status','paid')->sum('amount') > 0 ? $transactions->where('status','paid')->sum('amount') : 1) *100)}}"
+                                             aria-valuemin="0" aria-valuemax="100">
+                                            <span class="text-primary progress-label">{{number_format($transactions->where('operator_id',$operator->id)->where('status','paid')->sum('amount')/1000)}}K TZS</span><span class="animate-circle"></span></div>
                                     </div>
                                     <hr>
                                 @endforeach

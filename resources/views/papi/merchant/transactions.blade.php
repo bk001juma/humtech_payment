@@ -40,22 +40,17 @@
                             <div class="col-sm-12">
                                 <ul class="nav nav-tabs border-tab nav-primary mb-0" id="top-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="top-home-tab" data-bs-toggle="tab"
-                                           href="#top-home" role="tab" aria-controls="top-home"
-                                           aria-selected="false">
+                                        <a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="#top-home" role="tab" aria-controls="top-home" aria-selected="false">
                                             All
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab"
-                                                            href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="true">
+                                    <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="true">
                                             Successful
                                         </a>
                                         <div class="material-border"></div>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" id="brand-top-tab" data-bs-toggle="tab"
-                                                            href="#top-brand" role="tab"
-                                                            aria-controls="top-brand" aria-selected="true">
+                                    <li class="nav-item"><a class="nav-link" id="brand-top-tab" data-bs-toggle="tab" href="#top-brand" role="tab" aria-controls="top-brand" aria-selected="true">
                                             Failed
                                         </a>
                                         <div class="material-border"></div>
@@ -133,10 +128,84 @@
     </div>
 
     @include('papi.merchant.collections_tables.merchant_collection_receipt')
+
+
+    <div class="modal fade bd-qr-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5" id="mySmallModalLabel">Receipt</h3>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body ">
+                    <h2 class="text-center">
+                        <img src="/{{$business->logo}}" alt="{{$business->name}} Logo" class="img-100 rounded-circle">
+                    </h2>
+                    <hr class="receipt">
+
+                    <p><strong>Merchant:<br> </strong>{{$business->name}}</p>
+                    <p><strong>Channel:<br> </strong> <span id="operator">  </span></p>
+                    <p><strong>Phone:<br> </strong> 0<span id="phone">  </span></p>
+                    <p><strong>Receipt:<br> </strong> <span id="receipt"></span> </p>
+                    <p><strong>Service:<br> </strong> <span id="service"></span> </p>
+                    <p ><strong>Transaction Date:<br> </strong> <span id="date"></span> </p>
+
+                    <div class="text-center">
+                        <img class="text-center img-100" src="/qr.png" alt="qr">
+                    </div>
+                    <div id="qr_code">
+
+                    </div>
+
+                    <hr class="receipt">
+
+                    <h3 class="pb-20"><strong>Amount: </strong> Tsh. <span id="amount">0.00 </span></h3>
+
+                 </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 
 @section('page_js')
+    <script>
+
+        // Get the modal
+        var modal = document.getElementById("mySmallModalLabel");
+
+        // Get the button that opens the modal
+
+        var btn = document.getElementById("myBtn");
+
+        var operator = document.getElementById('operator');
+        var phone = document.getElementById('phone');
+        var receipt = document.getElementById('receipt');
+        var service = document.getElementById('service');
+        var date = document.getElementById('date');
+
+        var amount = document.getElementById('amount');
+
+        var qr_code = document.getElementById('qr_code');
+
+        function getReceipt(user) {
+            operator.textContent = user[0];
+            amount.textContent = user[1];
+            phone.textContent = user[2];
+            receipt.textContent = user[3];
+            service.textContent = user[4];
+            date.textContent = user[5];
+
+            console.log(user[1]);
+
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", user[6], false ); // false for synchronous request
+            xmlHttp.send( null );
+            qr_code.innerHTML = xmlHttp.response;
+        }
+    </script>
+
     <script src="/assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
     <!-- page_datatable-->
     <script src="/assets/js/js-datatables/datatables/datatable.custom.js"></script>

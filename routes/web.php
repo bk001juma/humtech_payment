@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SlideController;
+use App\Http\Controllers\Auth\BusinessLoginController;
 use App\Http\Controllers\Notification\SMSController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
@@ -24,9 +25,17 @@ use Illuminate\Support\Facades\Route;
 
 // Homepage Route
 Route::group(['middleware' => ['web', 'checkblocked']], function () {
+
+    Route::post('/web_login', [BusinessLoginController::class,'webLogin'])->name('web.login');
+    Route::get('/web_otp_verification', [BusinessLoginController::class,'verifyOTP'])->name('web.verifyOTP');
+
+    Route::post('/web_otp_validation', [BusinessLoginController::class,'validateOTP'])->name('web.validateOTP');
+
+
     Route::get('/', function (){
         return redirect('home');
     })->name('welcome');
+
     Route::get('/terms', 'App\Http\Controllers\TermsController@terms')->name('terms');
 
     Route::get('/about', [WelcomeController::class,'about'])->name('about');

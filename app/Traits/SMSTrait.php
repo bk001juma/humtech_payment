@@ -10,8 +10,8 @@ class SMSTrait
     {
         $phone_no = $this->formatPhone($phone);
         //        return '1';
-        $api_key = '1f90c262b690626e';
-        $secret_key = 'ZjRhM2ZmNmZlODRiN2NhNmQ3NGE0M2Q0Y2QzNGM5YjlhYjhhZmIxMzE5ZjE5MzU0ZGZkMjI4ZGI5ODNjNjJjYQ==';
+        $api_key = '382ce1c925a34ffd';
+        $secret_key = 'NDY4NWQ4NjliNzM3ZGRmM2QxZjI2MWMzY2RkY2E5MDNjOTQxYTQ0Y2U0YTJmNDg5ODUyMDdhY2IzZmM2YjgxYQ==';
         // The data to send to the API
         $postData = array(
             'source_addr' => $sender_name,

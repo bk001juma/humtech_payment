@@ -128,4 +128,18 @@ class BusinessController extends Controller
         return redirect()->back();
     }
 
+    public function getQRCode()
+    {
+        $data = QrCode::size(512)
+            ->format('png')
+//            ->merge('/logo.jpg')
+            ->errorCorrection('M')
+            ->generate(
+                'https://twitter.com/HarryKir',
+            );
+
+        return response($data)
+            ->header('Content-type', 'image/png');
+    }
+
 }

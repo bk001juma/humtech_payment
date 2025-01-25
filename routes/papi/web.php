@@ -18,6 +18,8 @@ Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', '
         Route::get('/disbursements',[BusinessController::class, 'allDisbursements'])->name('admin.disbursements');
         Route::get('/transactions',[BusinessController::class, 'allTransactions'])->name('admin.transactions');
 
+        Route::get('/transaction/{id}/qr',[BusinessController::class, 'getQRCode'])->name('admin.transaction.qr');
+
 
 //        Merchant Transactions
         Route::get('/{id}/transactions',[BusinessController::class, 'transactions'])->name('business.transactions');

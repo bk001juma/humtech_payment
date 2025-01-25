@@ -2,6 +2,7 @@
 
 namespace App\Models\Merchant;
 
+use App\Models\TempOTP;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -38,6 +39,11 @@ class Business extends Model
     public function transactions()
     {
         return $this->hasMany(BusinessTransaction::class);
+    }
+
+    public function otp()
+    {
+        return $this->hasOne(TempOTP::class)->orderBy('created_at','desc');
     }
 
 

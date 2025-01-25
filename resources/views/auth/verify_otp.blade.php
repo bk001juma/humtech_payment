@@ -51,49 +51,21 @@
                       <img style="height: 100px" class="for-dark" src="logo.png" alt="logo"></a>
               </div>
               <div class="login-main">
-                <form class="theme-form" method="POST" action="{{ route('web.login') }}">
+                <form class="theme-form" method="POST" action="{{ route('web.validateOTP') }}">
                     @csrf
-                  <h2 class="text-center">Sign in to account</h2>
-                  <p class="text-center">Enter your email &amp; password to login</p>
+                  <h2 class="text-center">Verify OTP</h2>
+                  <p class="text-center">OTP was sent to 0*****{{$phone}}</p>
 {{--                    {{$errors}}--}}
                   <div class="form-group">
-                    <label class="col-form-label">Email Address</label>
-                    <input class="form-control" type="email" required="required" placeholder="juma@gmail.com" name="email" value="{{ old('email') }}"  autofocus>
-                      @if ($errors->has('email'))
-                          <strong style="color: red">{{ $errors->first('email') }}</strong>
+                    <label class="col-form-label">Enter OTP</label>
+                    <input class="form-control" type="number" required="required" placeholder="******" name="otp"  autofocus>
+                      @if ($errors->has('otp'))
+                          <strong style="color: red">{{ $errors->first('otp') }}</strong>
                       @endif
 {{--                      {{$errors}}--}}
                   </div>
-                  <div class="form-group">
-                    <label class="col-form-label">Password</label>
-                    <div class="form-input position-relative">
-                      <input class="form-control" type="password" placeholder="*********" name="password" required>
-                      <div class="show-hide"><span class="show"></span></div>
-                    </div>
-                  </div>
-                  <div class="form-group mb-0 checkbox-checked">
-                    <div class="form-check checkbox-solid-info">
-                      <input class="form-check-input" id="solid6" type="checkbox">
-                      <label class="form-check-label" for="solid6">Remember password</label>
-                    </div>
-{{--                      <a class="link" href="forget-password.html">Forgot password?</a>--}}
-                    <div class="text-end mt-3">
-                      <button class="btn btn-primary btn-block w-100" type="submit">Sign in</button>
-                    </div>
-                  </div>
-{{--                  <div class="login-social-title">--}}
-{{--                    <h6>Or Sign in with                 </h6>--}}
-{{--                  </div>--}}
-{{--                  <div class="form-group">--}}
-{{--                    <ul class="login-social">--}}
-{{--                      <li><a href="https://www.linkedin.com" target="_blank"><i class="icon-linkedin"></i></a></li>--}}
-{{--                      <li><a href="https://twitter.com" target="_blank"><i class="icon-twitter"></i></a></li>--}}
-{{--                      <li><a href="https://www.facebook.com" target="_blank"><i class="icon-facebook"></i></a></li>--}}
-{{--                      <li><a href="https://www.instagram.com" target="_blank"><i class="icon-instagram"></i></a></li>--}}
-{{--                    </ul>--}}
-{{--                  </div>--}}
-{{--                  <p class="mt-4 mb-0 text-center">Don't have account?<a class="ms-2" href="sign-up.html">Create Account</a></p>--}}
-                  <script>
+
+                    <script>
                     (function() {
                     'use strict';
                     window.addEventListener('load', function() {
