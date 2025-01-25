@@ -196,12 +196,12 @@
 
             console.log(user[1]);
 
-            qr_code.src = user[6];
+            // qr_code.src = user[6];
 
-            // var xmlHttp = new XMLHttpRequest();
-            // xmlHttp.open( "GET", user[6], false ); // false for synchronous request
-            // xmlHttp.send( null );
-            // qr_code.innerHTML = xmlHttp.response;
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", user[6], false ); // false for synchronous request
+            xmlHttp.send( null );
+            qr_code.src = xmlHttp.response;
         }
     </script>
 
