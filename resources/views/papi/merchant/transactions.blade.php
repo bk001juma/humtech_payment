@@ -150,7 +150,8 @@
                     <p><strong>Service:<br> </strong> <span id="service"></span> </p>
                     <p ><strong>Transaction Date:<br> </strong> <span id="date"></span> </p>
 
-                    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(256)->generate('https://google.com')) !!} ">
+                    <div id="qr_code"></div>
+
 
                     <hr class="receipt">
 
@@ -195,23 +196,10 @@
 
             console.log(user[1]);
 
-            // qr_code.src = user[6];
-
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", 'https://papi.co.tz/transactionq/348/qr', false ); // false for synchronous request
-            xmlHttp.send( null )
-
-            var blob = xmlHttp.response;
-            var img = document.createElement("img");
-            img.onload = function(e) {
-                window.URL.revokeObjectURL(img.src);
-            };
-            img.src = window.URL.createObjectURL(blob);
-            qr_code.innerHTML(img);
 
 
-            qr_code.src = xmlHttp.response;
-            qr_code2.src = xmlHttp.response;
+            qr_code.innerHTML(user[6]);
+
         }
     </script>
 

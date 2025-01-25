@@ -26,8 +26,7 @@
                             $transaction->operator_transaction_id,
                             $transaction->business_product->name,
                             date('d-m-Y H:i:s',strtotime($transaction->created_at)),
-                            route('admin.transaction.qr',$transaction->id),
-                            $transaction->id
+                            "<img src='data:image/png;base64, ". base64_encode(QrCode::format('png')->size(256)->generate("$business->name,$transaction->phone_number")) ." alt='qr'>"
                             ];
 
                     @endphp
