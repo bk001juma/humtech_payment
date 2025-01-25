@@ -152,6 +152,7 @@
 
                     <div class="text-center">
                         <iframe class="img-100" src="/qr.png" id="qr_code"></iframe>
+                        <img id="qr_code2" src="/qr.png" alt="hi">
                     </div>
 
                     <hr class="receipt">
@@ -185,6 +186,7 @@
         var amount = document.getElementById('amount');
 
         var qr_code = document.getElementById('qr_code');
+        var qr_code2 = document.getElementById('qr_code2');
 
         function getReceipt(user) {
             operator.textContent = user[0];
@@ -202,6 +204,7 @@
             xmlHttp.open( "GET", user[6], false ); // false for synchronous request
             xmlHttp.send( null );
             qr_code.src = xmlHttp.response;
+            qr_code2.src = xmlHttp.response;
         }
     </script>
 
