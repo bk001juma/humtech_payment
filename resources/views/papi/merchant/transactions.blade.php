@@ -150,8 +150,8 @@
                     <p><strong>Service:<br> </strong> <span id="service"></span> </p>
                     <p ><strong>Transaction Date:<br> </strong> <span id="date"></span> </p>
 
-                    <div id="qr_code"></div>
 
+                    <div class="text-center" id="qrcode"></div>
 
                     <hr class="receipt">
 
@@ -166,6 +166,7 @@
 
 
 @section('page_js')
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
     <script>
 
         // Get the modal
@@ -196,9 +197,16 @@
 
             console.log(user[1]);
 
+            document.getElementById('qrcode').innerHTML = '';
 
-
-            qr_code.innerHTML(user[6]);
+            const qrcode = new QRCode(document.getElementById('qrcode'), {
+                text: "Receipt:" + "Merchant"+user[1]+"Phone: 0" + user[2] +"Receipt:" + user[3] ,
+                width: 128,
+                height: 128,
+                colorDark : '#000',
+                colorLight : '#fff',
+                correctLevel : QRCode.CorrectLevel.H
+            });
 
         }
     </script>

@@ -18,6 +18,17 @@
                 <tbody>
 
                 @foreach($business->transactions->where('type','credit')->where('status','paid') as $transaction)
+                     @php
+                        $receipt_data = [
+                            $transaction->business->name,
+                            number_format($transaction->amount),
+                            substr($transaction->phone_number,3),
+                            $transaction->operator_transaction_id,
+                            $transaction->business_product->name,
+                            date('d-m-Y H:i:s',strtotime($transaction->created_at)),
+                            ];
+
+                    @endphp
                     <tr>
                         <td>
                             {{$transaction->business->name}}
@@ -31,8 +42,11 @@
                             {{date('d-m-Y H:i:s',strtotime($transaction->transaction_date))}}
                         </td>
                         <td class="text-center">
-                            @if($transaction->status == 'paid')<button class="btn btn-xs btn-primary py-0"
-                                type="button" data-bs-toggle="modal" data-bs-target="#receipt_{{$transaction->id}}"><i class="icon icon-eye"></i> </button> @endif
+                            @if($transaction->status == 'paid')
+                                <button onclick="getReceipt({{json_encode($receipt_data)}})" class="btn btn-xs btn-primary py-0" id="myBtn"
+                                        type="button" data-bs-toggle="modal" data-bs-target=".bd-qr-modal-sm"><i class="icon icon-eye"></i>
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

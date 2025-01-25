@@ -26,7 +26,6 @@
                             $transaction->operator_transaction_id,
                             $transaction->business_product->name,
                             date('d-m-Y H:i:s',strtotime($transaction->created_at)),
-                            "<img src='data:image/png;base64, ". base64_encode(QrCode::format('png')->size(256)->generate("$business->name,$transaction->phone_number")) ." alt='qr'>"
                             ];
 
                     @endphp
@@ -44,10 +43,12 @@
                             {{date('d-m-Y H:i:s',strtotime($transaction->transaction_date))}}
                         </td>
                         <td class="text-center">
-                            <button onclick="getReceipt({{json_encode($receipt_data)}})" class="btn btn-xs btn-primary" id="myBtn" type="button" data-bs-toggle="modal" data-bs-target=".bd-qr-modal-sm">Open</button>
 
-                            @if($transaction->status == 'paid')<button class="btn btn-xs btn-primary py-0"
-                                type="button" data-bs-toggle="modal" data-bs-target="#receipt_{{$transaction->id}}"><i class="icon icon-eye"></i> </button> @endif
+                            @if($transaction->status == 'paid')
+                                <button onclick="getReceipt({{json_encode($receipt_data)}})" class="btn btn-xs btn-primary py-0" id="myBtn"
+                                        type="button" data-bs-toggle="modal" data-bs-target=".bd-qr-modal-sm"><i class="icon icon-eye"></i>
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
