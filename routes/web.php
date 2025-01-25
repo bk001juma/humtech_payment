@@ -32,7 +32,7 @@ Route::group(['middleware' => ['web', 'checkblocked']], function () {
 
     Route::post('/web_otp_validation', [BusinessLoginController::class,'validateOTP'])->name('web.validateOTP');
 
-    Route::get('/transaction/{id}/qr',[BusinessController::class, 'getQRCode'])->name('admin.transaction.qr');
+    Route::get('/transactionq/{id}/qr',[BusinessController::class, 'getQRCode'])->name('admin.transaction.qr');
 
 
 
