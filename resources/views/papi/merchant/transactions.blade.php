@@ -151,7 +151,7 @@
                     <p ><strong>Transaction Date:<br> </strong> <span id="date"></span> </p>
 
                     <div class="text-center">
-                        <iframe class="img-100" id="qr_code"></iframe>
+                        <iframe class="img-100" src="/qr.png" id="qr_code"></iframe>
                     </div>
 
                     <hr class="receipt">
