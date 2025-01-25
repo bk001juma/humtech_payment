@@ -151,10 +151,7 @@
                     <p ><strong>Transaction Date:<br> </strong> <span id="date"></span> </p>
 
                     <div class="text-center">
-                        <img class="text-center img-100" src="/qr.png" alt="qr">
-                    </div>
-                    <div id="qr_code">
-
+                        <img class="img-100" src="/qr.png" alt="qr" id="qr">
                     </div>
 
                     <hr class="receipt">
@@ -199,10 +196,12 @@
 
             console.log(user[1]);
 
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", user[6], false ); // false for synchronous request
-            xmlHttp.send( null );
-            qr_code.innerHTML = xmlHttp.response;
+            qr_code.src = user[6];
+
+            // var xmlHttp = new XMLHttpRequest();
+            // xmlHttp.open( "GET", user[6], false ); // false for synchronous request
+            // xmlHttp.send( null );
+            // qr_code.innerHTML = xmlHttp.response;
         }
     </script>
 
