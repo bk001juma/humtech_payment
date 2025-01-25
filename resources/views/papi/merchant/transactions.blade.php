@@ -150,9 +150,7 @@
                     <p><strong>Service:<br> </strong> <span id="service"></span> </p>
                     <p ><strong>Transaction Date:<br> </strong> <span id="date"></span> </p>
 
-                    <div class="text-center" id="imgcontainer">
-
-                    </div>
+                    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(256)->generate('https://google.com')) !!} ">
 
                     <hr class="receipt">
 
