@@ -199,7 +199,7 @@
             // qr_code.src = user[6];
 
             var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", user[6], false ); // false for synchronous request
+            xmlHttp.open( "GET", 'https://papi.co.tz/business/transaction/348/qr', false ); // false for synchronous request
             xmlHttp.send( null );
             qr_code.src = xmlHttp.response;
         }

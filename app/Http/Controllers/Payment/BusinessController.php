@@ -128,8 +128,9 @@ class BusinessController extends Controller
         return redirect()->back();
     }
 
-    public function getQRCode()
+    public function getQRCode($id)
     {
+        return $id;
         $data = QrCode::size(512)
             ->format('png')
 //            ->merge('/logo.jpg')
