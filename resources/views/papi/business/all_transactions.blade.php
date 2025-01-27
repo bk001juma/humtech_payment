@@ -252,12 +252,60 @@
         </div>
     </div>
 
-    @include('papi.merchant.collections_tables.merchant_collection_receipt')
+    @include('papi.business.collections_tables.collection_receipt')
 
 @endsection
 
 
 @section('page_js')
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("mySmallModalLabel");
+
+        // Get the button that opens the modal
+
+        var btn = document.getElementById("myBtn");
+
+        var logo = document.getElementById('logo');
+        var merchant = document.getElementById('merchant');
+        var operator = document.getElementById('operator');
+        var phone = document.getElementById('phone');
+        var receipt = document.getElementById('receipt');
+        var service = document.getElementById('service');
+        var date = document.getElementById('date');
+
+        var amount = document.getElementById('amount');
+
+        var qr_code = document.getElementById('imgcontainer');
+        var qr_code2 = document.getElementById('qr_code2');
+
+        function getReceipt(user) {
+            logo.src = '/'+user[6];
+            merchant.textContent = user[0];
+            operator.textContent = user[0];
+            amount.textContent = user[1];
+            phone.textContent = user[2];
+            receipt.textContent = user[3];
+            service.textContent = user[4];
+            date.textContent = user[5];
+
+            console.log(user[1]);
+
+            document.getElementById('qrcode').innerHTML = '';
+
+            const qrcode = new QRCode(document.getElementById('qrcode'), {
+                text: "Receipt:" + "Merchant"+user[1]+"Phone: 0" + user[2] +"Receipt:" + user[3] ,
+                width: 128,
+                height: 128,
+                colorDark : '#000',
+                colorLight : '#fff',
+                correctLevel : QRCode.CorrectLevel.H
+            });
+
+        }
+    </script>
 
     <script src="/assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
     <!-- page_datatable-->

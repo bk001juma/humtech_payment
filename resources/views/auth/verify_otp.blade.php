@@ -64,6 +64,9 @@
                       @endif
 {{--                      {{$errors}}--}}
                   </div>
+                    <div class="text-end mt-3">
+                      <button class="btn btn-primary btn-block w-100" type="submit">Verify</button>
+                    </div>
 
                     <script>
                     (function() {

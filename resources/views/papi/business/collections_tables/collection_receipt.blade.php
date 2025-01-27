@@ -7,19 +7,19 @@
                 </div>
                 <div class="modal-body ">
                     <h2 class="text-center">
-                        <img src="/{{$business->logo}}" alt="{{$business->name}} Logo" class="img-100 rounded-circle">
+                        <img id="logo" src="/logo.png" alt="Logo" class="img-100 rounded-circle">
                     </h2>
                     <hr class="receipt">
 
-                    <p><strong>Merchant:<br> </strong>{{$business->name}}</p>
+                    <p><strong>Merchant:<br> </strong><span id="merchant">  </span></p>
                     <p><strong>Channel:<br> </strong> <span id="operator">  </span></p>
                     <p><strong>Phone:<br> </strong> 0<span id="phone">  </span></p>
                     <p><strong>Receipt:<br> </strong> <span id="receipt"></span> </p>
                     <p><strong>Service:<br> </strong> <span id="service"></span> </p>
-                    <p ><strong>Transaction Date:<br> </strong> <span id="date"></span> </p>
+                    <p><strong>Transaction Date:<br> </strong> <span id="date"></span> </p>
 
 
-                    <div class="text-center" id="qrcode"></div>
+                    <div class="text-center align-content-center" id="qrcode" style="align-content: center"></div>
 
                     <hr class="receipt">
 

@@ -57,7 +57,7 @@ class BusinessLoginController extends Controller
 
             if (isset($OTP->id)) {
                 if (Carbon::now() > $OTP->created_at->addMinutes(5)){
-                    return redirect()->back(304,['message'=>'Invalid OTP']);
+                    return redirect()->back(201,['message'=>'Invalid OTP']);
                 }else{
 
                     $this->guard()->loginUsingId($OTP->user->id);
@@ -67,22 +67,6 @@ class BusinessLoginController extends Controller
 
             } else {
                 return response(['state' => 'error', 'data' => 'Taarifa za uthibitisho huu hazipo au zimekwisha muda wake. Tafadhali rudi nyuma uweke numba ya simu tena.'],401);
-            }
-
-        }elseif(isset(User::where('otp',$data['otp'])->where('otp_session', Session::getId())->first()->id)){
-            $user = User::where('otp',$data['otp'])->where('otp_session', Session::getId())->first();
-
-            if($user->otp == $request['otp']){
-
-                if (Carbon::now() > $user->otp_expires_at){
-                    return redirect()->back(302,['message'=>'Invalid OTP']);
-                }
-
-                $this->guard()->loginUsingId($user->id);
-
-                return redirect('/home');
-            }else{
-                return redirect()->back(['message'=>'Invalid OTP']);
             }
 
         }else{
