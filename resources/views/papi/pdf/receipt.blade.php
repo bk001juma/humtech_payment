@@ -1,6 +1,8 @@
 @php
+$png = QrCode::format('png')->size(100)->generate(1);
+$png = base64_encode($png);
 
-    use SimpleSoftwareIO\QrCode\Facades\QrCode;$receipt_data = [
+    $receipt_data = [
         $transaction->business->name,
         number_format($transaction->amount),
         substr($transaction->phone_number,3),
@@ -9,8 +11,6 @@
         date('d-m-Y H:i:s',strtotime($transaction->created_at)),
         ];
 
-$png = QrCode::format('png')->size(100)->generate("Receipt:\nMerchant: ".$transaction->business->name."\nPhone: 0".substr($transaction->phone_number,3)."\nTrans ID: ".$transaction->operator_transaction_id."\nDate: ".date('d-m-Y H:i:s',strtotime($transaction->created_at)));
-$png = base64_encode($png);
 @endphp
 
 
