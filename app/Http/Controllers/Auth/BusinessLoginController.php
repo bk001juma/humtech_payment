@@ -55,26 +55,17 @@ class BusinessLoginController extends Controller
 
         if(isset($OTP->id)){
 
-            if (isset($OTP->id)) {
-                if (Carbon::now() > $OTP->created_at->addMinutes(5)){
-                    return redirect()->back(201,['message'=>'Invalid OTP']);
-                }else{
+            if (Carbon::now() > $OTP->created_at->addMinutes(5)){
+                return redirect()->back()->withErrors(['message'=>'OTP has expired']);
+            }else{
 
-                    $this->guard()->loginUsingId($OTP->user->id);
+                $this->guard()->loginUsingId($OTP->user->id);
 
-                    return redirect('/home');
-                }
-
-            } else {
-                return response(['state' => 'error', 'data' => 'Taarifa za uthibitisho huu hazipo au zimekwisha muda wake. Tafadhali rudi nyuma uweke numba ya simu tena.'],401);
+                return redirect('/home');
             }
 
-        }else{
-            $request->validate([
-                'otp'        => 'exists:users',
-            ]);
-
-            return redirect()->back(302)->with(['message'=>'Invalid OTP']);
+          }else{
+            return redirect()->back()->withErrors(['message'=>'Invalid OTP']);
         }
 
 

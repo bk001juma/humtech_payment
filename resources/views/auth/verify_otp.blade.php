@@ -59,14 +59,16 @@
                   <div class="form-group">
                     <label class="col-form-label">Enter OTP</label>
                     <input class="form-control" type="number" required="required" placeholder="******" name="otp"  autofocus>
-                      @if ($errors->has('otp'))
-                          <strong style="color: red">{{ $errors->first('otp') }}</strong>
+                      @if ($errors->first() != null)
+                          <strong style="color: red">{{ $errors->first() }}</strong>
                       @endif
+
 {{--                      {{$errors}}--}}
                   </div>
-                    <div class="text-end mt-3">
+                    <div class="text-end mt-3 mb-5">
                       <button class="btn btn-primary btn-block w-100" type="submit">Verify</button>
                     </div>
+                    <a href="{{ route('login') }}">Resend OTP</a>
 
                     <script>
                     (function() {
