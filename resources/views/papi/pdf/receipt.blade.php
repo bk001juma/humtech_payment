@@ -1,6 +1,6 @@
 @php
 
-    $receipt_data = [
+    use SimpleSoftwareIO\QrCode\Facades\QrCode;$receipt_data = [
         $transaction->business->name,
         number_format($transaction->amount),
         substr($transaction->phone_number,3),
