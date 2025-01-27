@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 
 class SMSTrait
 {
-    public function sendBEEMSMS($phone,$sms,$id = 12,$sender_name = 'SHEREHE')
+    public function sendBEEMSMS($phone,$sms,$id = 12,$sender_name = 'VMS')
     {
         $phone_no = $this->formatPhone($phone);
         //        return '1';
