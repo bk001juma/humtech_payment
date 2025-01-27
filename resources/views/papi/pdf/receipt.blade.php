@@ -17,7 +17,7 @@ $png = base64_encode($png);
 <div style="border-bottom: 1px dashed #000; text-align: center; justify-content: center; padding: 10px;">
     <h3 class="modal-title fs-5" id="mySmallModalLabel" style="font-weight: bold;">Receipt</h3>
 </div>
-<div class="modal-body" style="font-family: 'Courier New', Courier, monospace; font-size: 14px; padding: 10px;">
+<div style="font-family: 'Courier New', Courier, monospace; font-size: 14px; padding: 10px; text-align: center; justify-content: center;">
     <h2 class="text-center mb-3">
         {{$transaction->business->name}}
     </h2>
