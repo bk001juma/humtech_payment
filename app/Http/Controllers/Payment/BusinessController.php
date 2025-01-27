@@ -10,6 +10,7 @@ use App\Models\Profile;
 use App\Models\User;
 use App\Traits\ImageTrait;
 use Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -128,19 +129,15 @@ class BusinessController extends Controller
         return redirect()->back();
     }
 
-    public function getQRCode($id)
+    public function downloadReceipt($id)
     {
-//        return $id;
-        $data = QrCode::size(512)
-            ->format('png')
-//            ->merge('/logo.jpg')
-            ->errorCorrection('M')
-            ->generate(
-                'https://twitter.com/HarryKir',
-            );
-
-        return response($data)
-            ->header('Content-type', 'image/png');
+        $transaction = BusinessTransaction::find($id);
+        $data['transaction'] = $transaction;
+        $pdf = Pdf::loadView('papi.pdf.receipt', $data)
+            ->setPaper([0, 0, 200, 400], 'portrait')
+            ->setOption('isHtml5ParserEnabled', true)
+            ->setOption('dpi', 150);
+        return $pdf->stream('receipt.pdf');
     }
 
 }

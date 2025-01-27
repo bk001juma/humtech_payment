@@ -35,6 +35,8 @@
                                     type="button" data-bs-toggle="modal" data-bs-target="#approve_{{$disbursement->id}}" data-whatever="@getbootstrap"><i class="icon icon-thumb-up"></i> </button>
                             <button class="btn-xs btn-warning"
                                     type="button" data-bs-toggle="modal" data-bs-target="#reject_{{$disbursement->id}}" data-whatever="@getbootstrap"><i class="icon icon-thumb-down"></i> </button>
+                            @elseif($disbursement->status == 'success')
+                                <span class="badge rounded-pill @if($disbursement->status == 'success')badge-light-success @elseif($disbursement->status == 'rejected') badge-light-danger @else badge-light-warning @endif  text-capitalize">Approved</span>
                             @endif
                         </td>
                         <td class="text-center">

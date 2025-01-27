@@ -25,6 +25,12 @@
 
                     <h3 class="pb-20"><strong>Amount: </strong> Tsh. <span id="amount">0.00 </span></h3>
 
+
+                    <div class="d-flex justify-content-center mt-3">
+                        <a href="{{route('receipt.download',41)}}" class="btn btn-primary" id="download-receipt" >
+                            Download Receipt
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

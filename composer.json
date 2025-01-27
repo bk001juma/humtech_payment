@@ -13,6 +13,7 @@
     "ext-curl": "*",
     "ext-intl": "*",
     "ext-openssl": "*",
+    "barryvdh/laravel-dompdf": "*",
     "creativeorange/gravatar": "^1.0",
     "doctrine/dbal": "^3.6",
     "google/recaptcha": "^1.3",
