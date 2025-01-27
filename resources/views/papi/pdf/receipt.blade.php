@@ -38,8 +38,8 @@
                 <div class="text-center" id="qrcode" style="margin: 10px 0;"></div>
 
                 <div class="d-flex justify-content-center align-items-center mt-3">
-                    <img src="{!!QrCode::format('png')->generate('Embed me into an e-mail!'), 'QrCode.png', 'image/png'!!}">
-                    {!! QrCode::size(100)->generate("Receipt:\nMerchant: ".$transaction->business->name."\nPhone: 0".substr($transaction->phone_number,3)."\nTrans ID: ".$transaction->operator_transaction_id."\nDate: ".date('d-m-Y H:i:s',strtotime($transaction->created_at))) !!}
+{{--                    <img src="{!! QrCode::size(100)->generate("Receipt:\nMerchant: ".$transaction->business->name."\nPhone: 0".substr($transaction->phone_number,3)."\nTrans ID: ".$transaction->operator_transaction_id."\nDate: ".date('d-m-Y H:i:s',strtotime($transaction->created_at))) !!}">--}}
+
                 </div>
 
                 <hr class="receipt" style="border-top: 1px dashed #000; margin: 10px 0;">
