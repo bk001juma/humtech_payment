@@ -15,7 +15,6 @@
                     <p><strong>Approved Date:<br> </strong>{{date('d-m-Y H:i:s',strtotime($disbursement->created_at))}}</p>
                     <p><strong>Approved By:<br> </strong>{{$disbursement->approver->first_name}} {{$disbursement->approver->last_name}}</p>
 
-
                     <hr class="receipt">
 
                     <h3 class="pb-20"><strong>Amount: </strong>{{number_format($disbursement->amount,2)}}TZS</h3>

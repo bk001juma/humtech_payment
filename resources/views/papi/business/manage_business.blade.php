@@ -106,11 +106,20 @@
                                 <!-- side-bar colleps block stat-->
                                 <div class="filter-block">
                                     <h4>Company Details</h4>
-                                    <ul>
-                                        <li>Name: {{$business->name}}</li>
-                                        <li>TIN: {{$business->tin}}</li>
-                                        <li>Email: {{$business->email}}</li>
-                                    </ul>
+                                    <table class="table">
+                                        <tr>
+                                            <td><b>Name:</b></td>
+                                            <td>{{$business->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>TIN:</b></td>
+                                            <td>{{$business->tin}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Email:</b></td>
+                                            <td>{{$business->email}}</td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -121,11 +130,20 @@
                                 <!-- side-bar colleps block stat-->
                                 <div class="filter-block">
                                     <h4>Physical Address</h4>
-                                    <ul>
-                                        <li>Name: {{$business->name}}</li>
-                                        <li>TIN: {{$business->tin}}</li>
-                                        <li>Email: {{$business->email}}</li>
-                                    </ul>
+                                    <table class="table">
+                                        <tr>
+                                            <td><b>Address:</b></td>
+                                            <td>Dae es salaam</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Country:</b></td>
+                                            <td>Tanzania</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Region:</b></td>
+                                            <td>Dar es salaam</td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -169,11 +187,11 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive user-datatable">
-                                                    <table class="display" id="basic-12">
+                                                    <table class="display" id="basic-6">
                                                         <thead>
                                                         <tr>
                                                             <th>Name</th>
-                                                            <th>Balance</th>
+                                                            <th>Balance (Tsh)</th>
                                                             <th>Status</th>
                                                             <th>Transactions</th>
                                                             <th>Action</th>
@@ -186,28 +204,19 @@
                                                                 <td>
                                                                     {{$product->name}}
                                                                 </td>
-                                                                <td>{{number_format($product->balance)}} TZS</td>
+                                                                <td><p class="pull-right">{{number_format($product->balance,2)}}</p></td>
                                                                 <td><span class="badge rounded-pill @if($product->status == 'active')badge-light-success @else badge-light-danger @endif  text-capitalize">{{$product->status}}</span></td>
-                                                                <td>{{number_format(count($product->transactions))}}</td>
+                                                                <td><p class="pull-right">{{number_format(count($product->transactions))}}</p> </td>
                                                                 <td>
                                                                     <ul class="action">
-                                                                        <li class="edit"> <a href="{{route('merchant.manage',$product->id)}}"><i class="icon-pencil-alt"></i></a></li>
-                                                                        <li class="delete"><a href="{{route('merchant.manage',$product->id)}}"><i class="icon-trash"></i></a></li>
+                                                                        <li class="edit"> <a><i class="icon-pencil-alt"></i></a></li>
+                                                                        <li class="delete"><a><i class="icon-trash"></i></a></li>
                                                                     </ul>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
 
                                                         </tbody>
-                                                        <tfoot>
-                                                        <tr>
-                                                            <th>Name</th>
-                                                            <th>Balance</th>
-                                                            <th>Status</th>
-                                                            <th>Transactions</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                        </tfoot>
                                                     </table>
                                                 </div>
                                             </div>

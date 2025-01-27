@@ -26,6 +26,8 @@
                             $transaction->operator_transaction_id,
                             $transaction->business_product->name,
                             date('d-m-Y H:i:s',strtotime($transaction->created_at)),
+                            $transaction->business->logo,
+                            route('receipt.download',$transaction->id)
                             ];
 
                     @endphp

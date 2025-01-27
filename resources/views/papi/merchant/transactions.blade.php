@@ -144,6 +144,8 @@
 
         var btn = document.getElementById("myBtn");
 
+        var logo = document.getElementById('logo');
+        var merchant = document.getElementById('merchant');
         var operator = document.getElementById('operator');
         var phone = document.getElementById('phone');
         var receipt = document.getElementById('receipt');
@@ -156,12 +158,15 @@
         var qr_code2 = document.getElementById('qr_code2');
 
         function getReceipt(user) {
+            logo.src = '/'+user[6];
+            merchant.textContent = user[0];
             operator.textContent = user[0];
             amount.textContent = user[1];
             phone.textContent = user[2];
             receipt.textContent = user[3];
             service.textContent = user[4];
             date.textContent = user[5];
+            a.href = user[7];
 
             console.log(user[1]);
 

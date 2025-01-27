@@ -50,7 +50,7 @@
                                         <th>Name</th>
                                         <th>Phone</th>
                                         <th>Merchant ID</th>
-                                        <th>Balance</th>
+                                        <th>Balance (Tsh)</th>
                                         <th>Business Type</th>
                                         <th>Products</th>
                                         <th>Status</th>
@@ -66,7 +66,7 @@
                                             </td>
                                             <td>{{$business->phone}}</td>
                                             <td>{{$business->id}}</td>
-                                            <td>{{number_format($business->balance)}} TZS</td>
+                                            <td> <p class="pull-right">{{number_format($business->balance,2)}}</p> </td>
                                             <td>{{$business->category}}</td>
                                             <td>{{count($business->products)}}</td>
                                             <td><span class="badge rounded-pill badge-light-success text-capitalize">{{$business->status}}</span></td>

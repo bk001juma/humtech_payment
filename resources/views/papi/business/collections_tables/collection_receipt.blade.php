@@ -27,7 +27,7 @@
 
 
                     <div class="d-flex justify-content-center mt-3">
-                        <a href="{{route('receipt.download',41)}}" class="btn btn-primary" id="download-receipt" >
+                        <a  class="btn btn-primary" id="download-receipt" >
                             Download Receipt
                         </a>
                     </div>

@@ -278,6 +278,8 @@
 
         var amount = document.getElementById('amount');
 
+        var a = document.getElementById('download-receipt');
+
         var qr_code = document.getElementById('imgcontainer');
         var qr_code2 = document.getElementById('qr_code2');
 
@@ -290,6 +292,7 @@
             receipt.textContent = user[3];
             service.textContent = user[4];
             date.textContent = user[5];
+            a.href = user[7];
 
             console.log(user[1]);
 
