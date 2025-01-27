@@ -296,9 +296,9 @@
             document.getElementById('qrcode').innerHTML = '';
 
             const qrcode = new QRCode(document.getElementById('qrcode'), {
-                text: "Receipt:" + "Merchant"+user[1]+"Phone: 0" + user[2] +"Receipt:" + user[3] ,
-                width: 128,
-                height: 128,
+                text: "Receipt:" + "\nMerchant: "+user[0]+"\nPhone: 0" + user[2] +"\nTrans ID: " + user[3] +"\nDate: "+user[5],
+                width: 100,
+                height: 100,
                 colorDark : '#000',
                 colorLight : '#fff',
                 correctLevel : QRCode.CorrectLevel.H

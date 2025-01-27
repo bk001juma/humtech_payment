@@ -19,7 +19,7 @@
                     <p><strong>Transaction Date:<br> </strong> <span id="date"></span> </p>
 
 
-                    <div class="text-center align-content-center" id="qrcode" style="align-content: center"></div>
+                    <div class="d-flex justify-content-center align-items-center" id="qrcode"></div>
 
                     <hr class="receipt">
 
