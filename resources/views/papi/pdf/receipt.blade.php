@@ -13,8 +13,16 @@ $png = QrCode::format('png')->size(100)->generate("Receipt:\nMerchant: ".$transa
 $png = base64_encode($png);
 @endphp
 
-
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Receipt</title>
+</head>
+<body>
 <div class="modal fade bd-qr-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+
      id="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content" style="border: 1px solid #000; padding: 0; margin: 0;">
@@ -43,7 +51,7 @@ $png = base64_encode($png);
                 <img src='data:image/png;base64,{{$png}}'>
 
                 <div class="d-flex justify-content-center align-items-center mt-3">
-{{--                    <img src="{!! QrCode::size(100)->generate() !!}">--}}
+                    {{--                    <img src="{!! QrCode::size(100)->generate() !!}">--}}
 
                 </div>
 
@@ -56,6 +64,7 @@ $png = base64_encode($png);
     </div>
 </div>
 
+</body>
 <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
 
 <script>
@@ -73,3 +82,5 @@ $png = base64_encode($png);
         });
     });
 </script>
+</html>
+
