@@ -13,58 +13,40 @@ $png = QrCode::format('png')->size(100)->generate("Receipt:\nMerchant: ".$transa
 $png = base64_encode($png);
 @endphp
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Receipt</title>
-</head>
-<body>
-<div class="modal fade bd-qr-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 
-     id="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content" style="border: 1px solid #000; padding: 0; margin: 0;">
-            <div class="modal-header"
-                 style="border-bottom: 1px dashed #000; text-align: center; justify-content: center; padding: 10px;">
-                <h3 class="modal-title fs-5" id="mySmallModalLabel" style="font-weight: bold;">Receipt</h3>
-            </div>
-            <div class="modal-body"
-                 style="font-family: 'Courier New', Courier, monospace; font-size: 14px; padding: 10px;">
-                <h2 class="text-center mb-3">
-                </h2>
-                <hr class="receipt" style="border-top: 1px dashed #000; margin: 10px 0;">
-
-                <p><strong>Merchant:</strong><br> {{$transaction->business->name}} </p>
-                <p><strong>Channel:</strong><br> {{$transaction->business->name}} </p>
-                <p><strong>Phone:</strong><br> 0{{substr($transaction->phone_number,3)}}</p>
-                <p><strong>Receipt:</strong><br> {{$transaction->operator_transaction_id}}</p>
-                <p><strong>Service:</strong><br> {{$transaction->business_product->name}}</p>
-                <p><strong>Transaction Date:</strong><br> {{date('d-m-Y H:i:s',strtotime($transaction->created_at))}}
-                </p>
-
-                <hr class="receipt" style="border-top: 1px dashed #000; margin: 10px 0;">
-
-                <div class="text-center" id="qrcode" style="margin: 10px 0;"></div>
-
-                <img src='data:image/png;base64,{{$png}}'>
-
-                <div class="d-flex justify-content-center align-items-center mt-3">
-                    {{--                    <img src="{!! QrCode::size(100)->generate() !!}">--}}
-
-                </div>
-
-                <hr class="receipt" style="border-top: 1px dashed #000; margin: 10px 0;">
-
-                <h3 class="text-center pb-20" style="font-weight: bold; margin-top: 15px;"><strong>Amount:</strong> Tsh.
-                    <span id="amount">{{number_format($transaction->amount,2)}}</span></h3>
-            </div>
-        </div>
-    </div>
+<div style="border-bottom: 1px dashed #000; text-align: center; justify-content: center; padding: 10px;">
+    <h3 class="modal-title fs-5" id="mySmallModalLabel" style="font-weight: bold;">Receipt</h3>
 </div>
+<div class="modal-body"
+     style="font-family: 'Courier New', Courier, monospace; font-size: 14px; padding: 10px;">
+    <h2 class="text-center mb-3">
+    </h2>
+    <hr class="receipt" style="border-top: 1px dashed #000; margin: 10px 0;">
 
-</body>
+    <p><strong>Merchant:</strong><br> {{$transaction->business->name}} </p>
+    <p><strong>Channel:</strong><br> {{$transaction->business->name}} </p>
+    <p><strong>Phone:</strong><br> 0{{substr($transaction->phone_number,3)}}</p>
+    <p><strong>Receipt:</strong><br> {{$transaction->operator_transaction_id}}</p>
+    <p><strong>Service:</strong><br> {{$transaction->business_product->name}}</p>
+    <p><strong>Transaction Date:</strong><br> {{date('d-m-Y H:i:s',strtotime($transaction->created_at))}}
+    </p>
+
+    <hr class="receipt" style="border-top: 1px dashed #000; margin: 10px 0;">
+
+    <div class="text-center" id="qrcode" style="margin: 10px 0;"></div>
+
+    <img src='data:image/png;base64,{{$png}}'>
+
+    <div class="d-flex justify-content-center align-items-center mt-3">
+        {{--                    <img src="{!! QrCode::size(100)->generate() !!}">--}}
+
+    </div>
+
+    <hr class="receipt" style="border-top: 1px dashed #000; margin: 10px 0;">
+
+    <h3 class="text-center pb-20" style="font-weight: bold; margin-top: 15px;"><strong>Amount:</strong> Tsh.
+        <span id="amount">{{number_format($transaction->amount,2)}}</span></h3>
+</div>
 <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
 
 <script>
@@ -82,5 +64,3 @@ $png = base64_encode($png);
         });
     });
 </script>
-</html>
-
