@@ -137,7 +137,7 @@ class BusinessController extends Controller
             ->setPaper([0, 0, 200, 400], 'portrait')
             ->setOption('isHtml5ParserEnabled', true)
             ->setOption('dpi', 150);
-        return $pdf->stream('receipt.pdf');
+        return $pdf->download('receipt.pdf');
     }
 
 }
