@@ -27,7 +27,7 @@ $png = base64_encode($png);
 
     <p><strong>Merchant:</strong><br> {{$transaction->business->name}} </p>
     <p><strong>Channel:</strong><br> {{$transaction->business->name}} </p>
-    <p><strong>Phone:</strong><br> 0{{substr($transaction->phone_number,3)}}</p>
+    <p><strong>Phone:</strong><br> 0{{substr($transaction->phone_number,3)}} <br>{{$transaction->note}}</p>
     <p><strong>Receipt:</strong><br> {{$transaction->operator_transaction_id}}</p>
     <p><strong>Service:</strong><br> {{$transaction->business_product->name}}</p>
     <p><strong>Date:</strong><br> {{date('d-m-Y H:i:s',strtotime($transaction->created_at))}}
