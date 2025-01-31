@@ -35,6 +35,7 @@ class PaymentController extends Controller
             $phone = $request['phone'];
             $trans_id = $request['transaction_id'];
             $amount = $request['amount'];
+            $note = $request['reg'];
             $operator_id = 0;
 
             if (!str_starts_with($phone, '255')){
@@ -73,6 +74,7 @@ class PaymentController extends Controller
             $transaction->amount = $amount;
             $transaction->unique_id = uniqid($operator_id == 1?'vod_':'air');
             $transaction->customer_id = $trans_id;
+            $transaction->note = $note;
             $transaction->type = 'credit';
             $transaction->charges = $amount * $product->business->tariff_percentage/100;
             $transaction->transaction_date = Carbon::now();

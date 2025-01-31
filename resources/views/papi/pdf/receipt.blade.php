@@ -7,7 +7,7 @@
         $transaction->operator_transaction_id,
         $transaction->business_product->name,
         date('d-m-Y H:i:s',strtotime($transaction->created_at)),
-        ];
+    ];
 
 $png = QrCode::format('png')->size(100)->generate("Receipt:\nMerchant: ".$transaction->business->name."\nPhone: 0".substr($transaction->phone_number,3)."\nTrans ID: ".$transaction->operator_transaction_id."\nDate: ".date('d-m-Y H:i:s',strtotime($transaction->created_at)));
 $png = base64_encode($png);
@@ -17,6 +17,7 @@ $png = base64_encode($png);
 <div style="border-bottom: 1px dashed #000; text-align: center; justify-content: center; padding: 10px;">
     <h3 class="modal-title fs-5" id="mySmallModalLabel" style="font-weight: bold;">Receipt</h3>
 </div>
+
 <div style="font-family: 'Courier New', Courier, monospace; font-size: 14px; padding: 10px; justify-content: center;">
     <h2 class="text-center mb-3" style="text-align: center;">
         {{$transaction->business->name}}
@@ -29,7 +30,7 @@ $png = base64_encode($png);
     <p><strong>Phone:</strong><br> 0{{substr($transaction->phone_number,3)}}</p>
     <p><strong>Receipt:</strong><br> {{$transaction->operator_transaction_id}}</p>
     <p><strong>Service:</strong><br> {{$transaction->business_product->name}}</p>
-    <p><strong>Transaction Date:</strong><br> {{date('d-m-Y H:i:s',strtotime($transaction->created_at))}}
+    <p><strong>Date:</strong><br> {{date('d-m-Y H:i:s',strtotime($transaction->created_at))}}
     </p>
 
     <hr class="receipt" style="border-top: 1px dashed #000; margin: 10px 0;">
