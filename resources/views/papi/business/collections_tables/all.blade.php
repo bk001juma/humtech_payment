@@ -35,7 +35,7 @@
                             {{$transaction->business->name}}
                         </td>
                         <td>{{$transaction->business_product->name}}</td>
-                        <td class="text-center">{{$transaction->phone_number}} </td>
+                        <td class="text-center">{{$transaction->phone_number}} <br>{{$transaction->note}} </td>
                         <td>{{$transaction->operator->name}}</td>
                         <td class="text-center"><span class="pull-right">{{number_format($transaction->amount,2)}}</span> </td>
                         <td class="text-center">
