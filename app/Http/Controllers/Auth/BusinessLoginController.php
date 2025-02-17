@@ -17,24 +17,21 @@ class BusinessLoginController extends Controller
 {
     use AuthenticatesUsers;
 
-     public function webLogin(Request $request)
+    public function webLogin(Request $request)
     {
         $this->validateLogin($request);
 
-        $user = User::where('email',$request['email'])->first();
+        $user = User::with('business')->where('email', $request['email'])->first();
 
-
-
-        if (isset($user->id)){
+        if (isset($user->id)) {
             if (Hash::check($request['password'], $user->password)) {
                 $this->resendOTP($user);
 
-                return redirect()->route('web.verifyOTP',['phone'=>substr($user->business->phone,7)]);
-            }else{
+                return redirect()->route('web.verifyOTP', ['phone' => substr($user->business->phone, 7)]);
+            } else {
                 return $this->sendFailedLoginResponse($request);
             }
-
-        }else{
+        } else {
             return $this->sendFailedLoginResponse($request);
         }
     }
@@ -42,7 +39,7 @@ class BusinessLoginController extends Controller
     public function verifyOTP(Request $request)
     {
         $phone = $request['phone'];
-        return view('auth.verify_otp',compact('phone'));
+        return view('auth.verify_otp', compact('phone'));
     }
 
     public function validateOTP(Request $request)
@@ -53,38 +50,35 @@ class BusinessLoginController extends Controller
 
         $OTP = TempOTP::where('otp', $request['otp'])->where('otp_session', Session::getId())->first();
 
-        if(isset($OTP->id)){
+        if (isset($OTP->id)) {
 
-            if (Carbon::now() > $OTP->created_at->addMinutes(5)){
-                return redirect()->back()->withErrors(['message'=>'OTP has expired']);
-            }else{
+            if (Carbon::now() > $OTP->created_at->addMinutes(5)) {
+                return redirect()->back()->withErrors(['message' => 'OTP has expired']);
+            } else {
 
                 $this->guard()->loginUsingId($OTP->user->id);
 
                 return redirect('/home');
             }
-
-          }else{
-            return redirect()->back()->withErrors(['message'=>'Invalid OTP']);
+        } else {
+            return redirect()->back()->withErrors(['message' => 'Invalid OTP']);
         }
-
-
     }
 
     public function resendOTP($user)
     {
         $business = $user->business;
         $business->otp()->create(
-            ['otp'=>rand(100000,999999),
-                'otp_session'=>Session::getId(),
-                'otp_expires_at'=>Carbon::now()->addMinutes(5),
-                'phone'=>$business->phone,
-                'user_id'=>$user->id,
-                ]
+            [
+                'otp' => rand(100000, 999999),
+                'otp_session' => Session::getId(),
+                'otp_expires_at' => Carbon::now()->addMinutes(5),
+                'phone' => $business->phone,
+                'user_id' => $user->id,
+            ]
         );
 
         $smsTrait = new SMSTrait();
-        $smsTrait->sendBEEMSMS($business->phone,"Your PAPI OTP is ".$business->otp->otp);
+        $smsTrait->sendBEEMSMS($business->phone, "Your PAPI OTP is " . $business->otp->otp);
     }
-
 }

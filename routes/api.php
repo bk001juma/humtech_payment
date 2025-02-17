@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\Payment\AirtelController;
+use App\Http\Controllers\Payment\TigoController;
 use App\Http\Controllers\Payment\VodacomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,14 @@ Route::prefix('airtel')->group(function () {
 
 
     Route::post('callback', [AirtelController::class, 'callBack']);
+
+});
+
+Route::prefix('tigo')->group(function () {
+
+    Route::get('get-token', [TigoController::class, 'getToken']);
+    Route::get('make-payment', [TigoController::class, 'makePayment']);
+    Route::post('callback', [TigoController::class, 'callback']);
 
 });
 
