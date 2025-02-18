@@ -15,9 +15,10 @@ class CreateW2aTransactionsTable extends Migration
             $table->string('msisdn', 12);
             $table->decimal('amount', 15, 2);
             $table->string('company_name', 6);
-            $table->string('customer_reference_id', 50);
+            $table->string('customer_reference_id', 50)->unique();
             $table->string('sender_name', 50);
             $table->unsignedBigInteger('operator_id')->nullable()->default(3);
+            $table->text('request_data')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
