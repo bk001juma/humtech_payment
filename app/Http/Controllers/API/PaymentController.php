@@ -157,7 +157,7 @@ class PaymentController extends Controller
                         $transaction->message = "Failed";
                         $transaction->status = "failed";
                     } else {
-                        $transaction->message = $output->json()['data']['transaction']['status'];
+                        $transaction->message = $output->json()['ResponseDescription'];
                         $transaction->status = "pending";
                     }
                     $transaction->save();
