@@ -13,7 +13,6 @@ class TigoController extends Controller
 {
     public function collect($phone, $amount, $trans_id)
     {
-        a:
         $operator = Operator::where('id', 3)->first();
 
         $headers = [
@@ -37,10 +36,6 @@ class TigoController extends Controller
         ];
 
         $response = Http::withHeaders($headers)->withoutVerifying()->post('https://44.234.229.98:9080/api/tigo/push', $data);
-
-        if (isset($response['error'])) {
-            goto a;
-        }
 
         try {
             $response = Http::withHeaders($headers)
