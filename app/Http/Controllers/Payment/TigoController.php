@@ -7,7 +7,7 @@ use App\Models\Merchant\BusinessTransaction;
 use App\Models\Payment\Operator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\Log;
 
 class TigoController extends Controller
 {
@@ -36,13 +36,25 @@ class TigoController extends Controller
             "ReferenceID" => $operator_reference_id,
         ];
 
-        $response = Http::withHeaders($headers)->post('https://44.234.229.98:9080/api/tigo/push', $data);
+        $response = Http::withHeaders($headers)->withoutVerifying()->post('https://44.234.229.98:9080/api/tigo/push', $data);
 
         if (isset($response['error'])) {
             goto a;
         }
 
-        return $response;
+        try {
+            $response = Http::withHeaders($headers)
+                ->withoutVerifying()
+                ->post('https://44.234.229.98:9080/api/tigo/push', $data);
+
+            Log::info('Tigo API status: ' . $response->status());
+            Log::info('Tigo API body: ' . $response->body());
+            Log::info('Tigo API json: ', $response->json() ?? ['no_json' => true]);
+            return $response;
+        } catch (\Exception $e) {
+            Log::error('Tigo API call failed: ' . $e->getMessage());
+            throw $e;
+        }
     }
 }
 
