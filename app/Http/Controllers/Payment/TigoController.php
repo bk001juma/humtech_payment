@@ -13,15 +13,14 @@ class TigoController extends Controller
 {
     public function collect($phone, $amount, $trans_id)
     {
-        $operator = Operator::where('id', 3)->first();
-
+        a:
         $headers = [
             'Content-Type' => 'application/json',
             'Username' => 'HUMTECHICT',
             'Password' => 'lseelAj',
         ];
 
-        $operator_reference_id = 'HUM' . now()->format('YmdHis') . rand(100, 999);
+        $operator_reference_id = 'HUM' . now()->format('ymdHis') . rand(1000, 9999);
 
         $bussinessTransact = BusinessTransaction::where('unique_id', $trans_id)->first();
         if ($bussinessTransact) {
@@ -35,8 +34,6 @@ class TigoController extends Controller
             "ReferenceID" => $operator_reference_id,
         ];
 
-        $response = Http::withHeaders($headers)->withoutVerifying()->post('https://44.234.229.98:9080/api/tigo/push', $data);
-
         try {
             $response = Http::withHeaders($headers)
                 ->withoutVerifying()
@@ -45,6 +42,12 @@ class TigoController extends Controller
             Log::info('Tigo API status: ' . $response->status());
             Log::info('Tigo API body: ' . $response->body());
             Log::info('Tigo API json: ', $response->json() ?? ['no_json' => true]);
+
+
+            if (isset($response['error'])) {
+                goto a;
+            }
+
             return $response;
         } catch (\Exception $e) {
             Log::error('Tigo API call failed: ' . $e->getMessage());
