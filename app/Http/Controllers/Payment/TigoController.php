@@ -13,7 +13,6 @@ class TigoController extends Controller
 {
     public function collect($phone, $amount, $trans_id)
     {
-        a:
         $headers = [
             'Content-Type' => 'application/json',
             'Username' => 'HUMTECHICT',
@@ -34,25 +33,40 @@ class TigoController extends Controller
             "ReferenceID" => $operator_reference_id,
         ];
 
-        try {
-            $response = Http::withHeaders($headers)
-                ->withoutVerifying()
-                ->post('https://44.234.229.98:9080/api/tigo/push', $data);
-
-            Log::info('Tigo API status: ' . $response->status());
-            Log::info('Tigo API body: ' . $response->body());
-            Log::info('Tigo API json: ', $response->json() ?? ['no_json' => true]);
+        Log::info('Calling Tigo API with data: ', $data);
 
 
-            if (isset($response['error'])) {
-                goto a;
+        $attempts = 0;
+        $maxAttempts = 3;
+
+        while ($attempts < $maxAttempts) {
+
+            try {
+                $response = Http::withHeaders($headers)
+                    ->withoutVerifying()
+                    ->post('https://44.234.229.98:9080/api/tigo/push', $data);
+
+                Log::info('Tigo API status: ' . $response->status());
+                Log::info('Tigo API body: ' . $response->body());
+                Log::info('Tigo API json: ', $response->json() ?? ['no_json' => true]);
+
+                if ($response->successful()) {
+                    return $response;
+                }
+
+                if (isset($response['error'])) {
+                    Log::warning('Tigo API error: ' . json_encode($response['error']));
+                }
+            } catch (\Exception $e) {
+                Log::error('Tigo API call failed: ' . $e->getMessage());
             }
 
-            return $response;
-        } catch (\Exception $e) {
-            Log::error('Tigo API call failed: ' . $e->getMessage());
-            throw $e;
+            $attempts++;
+            sleep(2);
         }
+
+        Log::error('Tigo API failed after ' . $maxAttempts . ' attempts');
+        return response()->json(['error' => 'Tigo API request failed'], 500);
     }
 }
 
