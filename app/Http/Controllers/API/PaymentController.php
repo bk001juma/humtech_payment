@@ -125,11 +125,15 @@ class PaymentController extends Controller
                 //                ProcessPaymentJob::dispatch($phone,$amount, $transaction->unique_id, $transaction, $product);
 
             } elseif ($operator_id == 2) {
+                Log::debug('Starting Operator 2 for transaction: ' . $transaction->unique_id);
+
 
                 $pool->add(function () use ($transaction, $amount, $phone) {
                     $air = new AirtelController();
                     return $air->collect($phone, $amount, $transaction->unique_id);
                 })->then(function ($output) use ($transaction, $pool) {
+                    Log::info('Operator 2 output: ' . $output);
+
                     if ($output->status() != 200) {
                         $transaction->message = "Failed";
                         $transaction->status = "failed";
@@ -141,10 +145,14 @@ class PaymentController extends Controller
 
                     $pool->stop();
                 })->catch(function ($exception) use ($transaction) {
+                    Log::error('Operator 2 failed: ' . $exception->getMessage());
+
                     // When an exception is thrown from within a process, it's caught and passed here.
                     $transaction->message = $exception->getMessage();
                     $transaction->save();
                 })->timeout(function () use ($transaction) {
+                    Log::warning('Operator 2 timed out');
+
                     // A process took too long to finish.
                     $transaction->message = "Timed Out";
                     $transaction->save();
