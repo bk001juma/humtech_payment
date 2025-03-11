@@ -11,6 +11,7 @@ use App\Models\Merchant\BusinessProduct;
 use App\Models\Merchant\BusinessTransaction;
 use App\Models\Payment\Operator;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Spatie\Async\Pool;
@@ -206,25 +207,44 @@ class PaymentController extends Controller
 
     public function checkStatus(Request $request, $id)
     {
-        $req = $request->headers->all();
+        try {
 
-        $key = base64_decode(str_replace('Basic ', '', $req['authorization'][0]));
+            $req = $request->headers->all();
 
-        $product = BusinessProduct::where('api_key', $key)->first();
+            $key = base64_decode(str_replace('Basic ', '', $req['authorization'][0]));
 
-        if (!isset($product->id)) {
-            return response()->json(['message' => 'invalid key'], status: 401);
-        }
+            Log::info('Authorization Key Extracted', ['key' => $key]);
 
-        $transaction = BusinessTransaction::where('unique_id', $id)->first();
+            $product = BusinessProduct::where('api_key', $key)->first();
 
-        if (!isset($transaction->id))
-            return response()->json(['message' => 'invalid transaction id'], status: 400);
+            if (!isset($product->id)) {
+                Log::warning('Invalid API Key', ['key' => $key]);
+                return response()->json(['message' => 'invalid key'], status: 401);
+            }
 
-        if ($transaction->status == "paid") {
-            return response()->json(['message' => 'paid', 'operator_transaction_id' => $transaction->operator_transaction_id], status: 202);
-        } else {
-            return response()->json(['message' => 'pending'], status: 205);
+            $transaction = BusinessTransaction::where('unique_id', $id)->first();
+
+            if (!isset($transaction->id)) {
+                Log::warning('Invalid Transaction ID', ['transaction_id' => $id]);
+                return response()->json(['message' => 'invalid transaction id'], status: 400);
+            }
+
+            Log::info('Transaction Found', ['transaction_id' => $transaction->unique_id, 'status' => $transaction->status]);
+
+            if ($transaction->status == "paid") {
+                Log::info('Transaction Paid', ['operator_transaction_id' => $transaction->operator_transaction_id]);
+                return response()->json(['message' => 'paid', 'operator_transaction_id' => $transaction->operator_transaction_id], status: 202);
+            } else {
+                Log::info('Transaction Pending', ['transaction_id' => $transaction->unique_id]);
+                return response()->json(['message' => 'pending'], status: 205);
+            }
+        } catch (Exception $e) {
+
+            Log::error('Error in checkStatus method', [
+                'error_message' => $e->getMessage(),
+                'transaction_id' => $id
+            ]);
+            return response()->json(['message' => 'An error occurred while checking the status'], 500);
         }
     }
 }
