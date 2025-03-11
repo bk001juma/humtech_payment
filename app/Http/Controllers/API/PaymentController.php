@@ -80,7 +80,7 @@ class PaymentController extends Controller
             $transaction->business_id = $product->business->id;
             $transaction->operator_id = $operator_id;
             $transaction->amount = $amount;
-            $transaction->unique_id = uniqid($operator_id == 1 ? 'vod_' : ($operator_id == 2 ? 'air_' : 'mixx_'));
+            $transaction->unique_id = uniqid($operator_id == 1 ? 'vod_' : ($operator_id == 2 ? 'air' : 'mixx_'));
             $transaction->customer_id = $trans_id;
             $transaction->note = $note;
             $transaction->type = 'credit';
