@@ -219,24 +219,24 @@ class PaymentController extends Controller
 
             if (!isset($product->id)) {
                 Log::warning('Invalid API Key', ['key' => $key]);
-                return response()->json(['message' => 'invalid key'], status: 401);
+                return response()->json(['message' => 'invalid key'], 401);
             }
 
             $transaction = BusinessTransaction::where('unique_id', $id)->first();
 
             if (!isset($transaction->id)) {
                 Log::warning('Invalid Transaction ID', ['transaction_id' => $id]);
-                return response()->json(['message' => 'invalid transaction id'], status: 400);
+                return response()->json(['message' => 'invalid transaction id'], 400);
             }
 
             Log::info('Transaction Found', ['transaction_id' => $transaction->unique_id, 'status' => $transaction->status]);
 
             if ($transaction->status == "paid") {
                 Log::info('Transaction Paid', ['operator_transaction_id' => $transaction->operator_transaction_id]);
-                return response()->json(['message' => 'paid', 'operator_transaction_id' => $transaction->operator_transaction_id], status: 202);
+                return response()->json(['message' => 'paid', 'operator_transaction_id' => $transaction->operator_transaction_id],  202);
             } else {
                 Log::info('Transaction Pending', ['transaction_id' => $transaction->unique_id]);
-                return response()->json(['message' => 'pending'], status: 205);
+                return response()->json(['message' => 'pending'],  205);
             }
         } catch (Exception $e) {
 
