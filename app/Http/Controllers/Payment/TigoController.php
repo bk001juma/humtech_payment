@@ -29,7 +29,7 @@ class TigoController extends Controller
 
         $data = [
             "CustomerMSISDN" => formatPhoneNumber($phone),
-            "Amount" => $amount,
+            "Amount" => intval($amount),
             "ReferenceID" => $operator_reference_id,
         ];
 
