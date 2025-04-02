@@ -6,7 +6,7 @@
                 <tr>
                     <th>Merchant</th>
                     <th>Service</th>
-                    <th>MSNID</th>
+                    <th>MSISDN</th>
                     <th>Recipient</th>
                     <th>Channel</th>
                     <th>Amount (TSH)</th>
