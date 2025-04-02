@@ -17,15 +17,17 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class BusinessController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $businesses = Business::get();
-        return view('papi.business.businesses',compact('businesses'));
+        return view('papi.business.businesses', compact('businesses'));
     }
 
 
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(
+            [
                 [
                     'email'                 => 'required|email|max:255|unique:users',
                 ],
@@ -56,57 +58,58 @@ class BusinessController extends Controller
         $user->save();
 
 
-        if (isset($request['image'])){
+        if (isset($request['image'])) {
             $imageTrait = new ImageTrait();
-            $request['logo'] = $imageTrait->uploadIMage($request['image'],'300,300',$request['name'],'business/logo');
+            $request['logo'] = $imageTrait->uploadIMage($request['image'], '300,300', $request['name'], 'business/logo');
         }
 
-        $user->businesses()->create($request->except('first_name','last_name','password'));
+        $user->businesses()->create($request->except('first_name', 'last_name', 'password'));
 
 
         return redirect()->back();
     }
 
-    public function manage($id){
+    public function manage($id)
+    {
         $business = Business::find($id);
 
-        return view('papi.business.manage_business',compact('business'));
+        return view('papi.business.manage_business', compact('business'));
     }
 
     public function transactions($id)
     {
         $user = Auth::user();
         $business = Business::find($id);
-        $transactions = $business->transactions()->orderBy('created_at','desc')->get();
+        $transactions = $business->transactions()->orderBy('created_at', 'desc')->get();
 
-        if (!$user->hasRole(['merchant','admin'])){
+        if (!$user->hasRole(['merchant', 'admin'])) {
             return redirect()->back();
         }
 
 
-        return view('papi.merchant.transactions',compact('business','transactions'));
+        return view('papi.merchant.transactions', compact('business', 'transactions'));
     }
 
     public function disbursements($id)
     {
         $user = Auth::user();
         $business = Business::find($id);
-        $transactions = $business->transactions()->orderBy('created_at','desc')->get();
+        $transactions = $business->transactions()->orderBy('created_at', 'desc')->get();
 
-        if (!$user->hasRole(['merchant','admin'])){
+        if (!$user->hasRole(['merchant', 'admin'])) {
             return redirect()->back();
         }
-        return view('papi.merchant.disbursements',compact('business','transactions'));
+        return view('papi.merchant.disbursements', compact('business', 'transactions'));
     }
 
     public function allDisbursements()
     {
         $user = Auth::user();
-        if ($user->hasRole(['admin'])){
+        if ($user->hasRole(['admin'])) {
             $disbursements = BusinessDisbursement::get();
-            $transactions = BusinessTransaction::orderBy('created_at','desc')->get();
+            $transactions = BusinessTransaction::orderBy('created_at', 'desc')->get();
 
-            return view('papi.business.all_disbursements',compact('disbursements','transactions'));
+            return view('papi.business.all_disbursements', compact('disbursements', 'transactions'));
         }
         return redirect()->back();
     }
@@ -115,15 +118,22 @@ class BusinessController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->hasRole(['admin'])){
-            $businesses = Business::get();
-            $transactions = BusinessTransaction::where('status','not like', '%failed%')->where('status','not like', '%voda_failed%')->orderBy('transaction_date','desc')->get();
-            $disbursements = BusinessDisbursement::get();
+        if ($user->hasRole(['admin'])) {
+            $businesses = Business::orderBy('id', 'desc')
+                ->orderBy('created_at', 'desc')->get();
+            $transactions = BusinessTransaction::where('status', 'not like', '%failed%')
+                ->where('status', 'not like', '%voda_failed%')
+                ->orderBy('transaction_date', 'desc')
+                ->orderBy('id', 'desc')
+                ->orderBy('created_at', 'desc')
+                ->get();
+            $disbursements = BusinessDisbursement::orderBy('id', 'desc')
+                ->orderBy('created_at', 'desc')->get();
 
             $sqr = QrCode::size(300)->generate('Hello, Laravel 11!');
 
 
-            return view('papi.business.all_transactions',compact('businesses','transactions','disbursements','sqr'));
+            return view('papi.business.all_transactions', compact('businesses', 'transactions', 'disbursements', 'sqr'));
         }
 
         return redirect()->back();
@@ -139,5 +149,4 @@ class BusinessController extends Controller
             ->setOption('dpi', 150);
         return $pdf->download('receipt.pdf');
     }
-
 }
