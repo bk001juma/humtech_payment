@@ -66,9 +66,9 @@ class PaymentController extends Controller
             }
 
             $old_transaction = BusinessTransaction::where('customer_id', $trans_id)->first();
-            if (isset($old_transaction->id)) {
-                return response()->json(['message' => 'Transaction id already exists'], 400);
-            }
+            // if (isset($old_transaction->id)) {
+            //     return response()->json(['message' => 'Transaction id already exists'], 400);
+            // }
 
             if ($operator_id == 0) {
                 return response()->json(['message' => 'Invalid operator'], 400);
