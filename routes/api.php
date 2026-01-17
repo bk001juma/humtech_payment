@@ -29,6 +29,7 @@ Route::prefix('vodacom')->group(function () {
 
     Route::get('create_session', [VodacomController::class, 'getSession']);
     Route::get('send_money', [VodacomController::class, 'sendToCustomer']);
+
 });
 
 Route::prefix('airtel')->group(function () {
@@ -40,6 +41,7 @@ Route::prefix('airtel')->group(function () {
 
 
     Route::post('callback', [AirtelController::class, 'callBack']);
+
 });
 
 Route::prefix('tigo')->group(function () {
@@ -47,12 +49,11 @@ Route::prefix('tigo')->group(function () {
     Route::get('get-token', [TigoController::class, 'getToken']);
     Route::get('make-payment', [TigoController::class, 'makePayment']);
     Route::post('callback', [TigoController::class, 'callback']);
+
 });
-
-Route::get('tigo-payment-test', [TigoController::class, 'collect']);
-
 
 Route::prefix('payment')->group(function () {
     Route::post('/initiate', [PaymentController::class, 'makePayment']);
     Route::get('/check/status/{id}', [PaymentController::class, 'checkStatus']);
 });
+

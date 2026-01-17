@@ -11,14 +11,8 @@ use Illuminate\Support\Facades\Log;
 
 class TigoController extends Controller
 {
-    // public function collect($phone, $amount, $trans_id)
-    // {
-    public function collect(Request $request)
+    public function collect($phone, $amount, $trans_id)
     {
-        $phone = $request->input('phone');
-        $amount = $request->input('amount');
-        $trans_id = $request->input('trans_id');
-
         $headers = [
             'Content-Type' => 'application/json',
             'Username' => 'HUMTECHICT',
