@@ -44,7 +44,7 @@ class TigoController extends Controller
             try {
                 $response = Http::withHeaders($headers)
                     ->withoutVerifying()
-                    ->post('https://mixx.papi.co.tz/api/tigo/push', $data);
+                    ->post('https://16.170.181.117:8090/api/tigo/push', $data);
 
                 Log::info('Tigo API status: ' . $response->status());
                 Log::info('Tigo API body: ' . $response->body());
