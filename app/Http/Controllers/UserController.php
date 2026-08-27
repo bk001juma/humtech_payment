@@ -13,6 +13,7 @@ use App\Models\Payment\Operator;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -84,6 +85,19 @@ class UserController extends Controller
         }elseif ($user->hasRole('merchant')) {
             $business = Auth::user()->businesses()->first();
 
+            if (!$business) {
+                Log::warning('Merchant user has no linked business.', [
+                    'user_id' => $user->id,
+                    'email' => $user->email,
+                ]);
+
+                Auth::logout();
+
+                return redirect('/login')->withErrors([
+                    'message' => 'Your merchant account is not linked to a business. Please contact the administrator.',
+                ]);
+            }
+
             // Get the monthly sums
         $monthlySums = DB::table('business_transactions')
             ->select(DB::raw("YEAR(created_at) as year, MONTH(created_at) as month, SUM(amount)  as total_amount"))->where('business_id',$business->id)->where('type','credit')->where('status','paid')
@@ -110,7 +124,7 @@ class UserController extends Controller
 
 
             $transactions = $business->transactions;
-            $disbursements = $business->disbursments;
+            $disbursements = $business->disbursements;
 
             $operator_percent = [];
             $operator_name = [];
@@ -142,7 +156,7 @@ class UserController extends Controller
             return [
                 'month' => $month->format('F'),
                 'total_amount' => $sum ? $sum->total_amount : 0,
-                'total_failed_amount' => $sum ? $failed_sum->total_amount : 0,
+                'total_failed_amount' => $failed_sum ? $failed_sum->total_amount : 0,
             ];
         });
 
