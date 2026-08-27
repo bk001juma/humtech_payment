@@ -95,4 +95,12 @@ return [
         'redirect'      => env('LINKEDIN_REDIRECT_URI'),
     ],
 
+    'beem' => [
+        'url' => env('BEEM_SMS_URL', 'https://apisms.beem.africa/v1/send'),
+        'api_key' => env('BEEM_API_KEY'),
+        'secret_key' => env('BEEM_SECRET_KEY'),
+        'sender_name' => env('BEEM_SENDER_NAME', 'VMS'),
+        'timeout' => env('BEEM_SMS_TIMEOUT', 15),
+    ],
+
 ];

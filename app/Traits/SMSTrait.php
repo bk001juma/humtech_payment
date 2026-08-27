@@ -2,61 +2,67 @@
 
 namespace App\Traits;
 
-use GuzzleHttp\Client;
-
 class SMSTrait
 {
-    public function sendBEEMSMS($phone,$sms,$id = 12,$sender_name = 'VMS')
+    public function sendBEEMSMS($phone, $sms, $id = 12, $sender_name = null)
     {
         $phone_no = $this->formatPhone($phone);
-        //        return '1';
-        $api_key = '382ce1c925a34ffd';
-        $secret_key = 'NDY4NWQ4NjliNzM3ZGRmM2QxZjI2MWMzY2RkY2E5MDNjOTQxYTQ0Y2U0YTJmNDg5ODUyMDdhY2IzZmM2YjgxYQ==';
-        // The data to send to the API
-        $postData = array(
+
+        $api_key = (string) config('services.beem.api_key');
+        $secret_key = (string) config('services.beem.secret_key');
+        $url = (string) config('services.beem.url', 'https://apisms.beem.africa/v1/send');
+        $sender_name = $sender_name ?: (string) config('services.beem.sender_name', 'VMS');
+        $timeout = (int) config('services.beem.timeout', 15);
+
+        if (!$api_key || !$secret_key || !$url || !$sender_name) {
+            throw new \RuntimeException('BEEM SMS configuration is incomplete.');
+        }
+
+        $postData = [
             'source_addr' => $sender_name,
-            'encoding'=>0,
+            'encoding' => 0,
             'schedule_time' => '',
             'message' => $sms,
             'recipients' => [
-                ['recipient_id' => $id,'dest_addr'=>trim($phone_no,'+')],
-//                ['recipient_id' => 102,'dest_addr'=>'255683772862']
-            ]
-        );
-        //.... Api url
-        $Url ='https://apisms.beem.africa/v1/send';
+                ['recipient_id' => $id, 'dest_addr' => trim($phone_no, '+')],
+            ],
+        ];
 
-        // Setup cURL
-        $ch = curl_init($Url);
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
+        $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-
-        curl_setopt_array($ch, array(
+        curl_setopt_array($ch, [
             CURLOPT_HEADER => 0,
             CURLOPT_FORBID_REUSE => true,
-            CURLOPT_CONNECTTIMEOUT => 1,
+            CURLOPT_CONNECTTIMEOUT => $timeout,
+            CURLOPT_TIMEOUT => $timeout,
             CURLOPT_DNS_CACHE_TIMEOUT => 100,
-            CURLOPT_POST => TRUE,
-            CURLOPT_RETURNTRANSFER => false,
-            CURLOPT_HTTPHEADER => array(
-                'Authorization:Basic ' . base64_encode("$api_key:$secret_key"),
-                'Content-Type: application/json'
-            ),
-            CURLOPT_POSTFIELDS => json_encode($postData)
-        ));
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => [
+                'Authorization: Basic ' . base64_encode("$api_key:$secret_key"),
+                'Content-Type: application/json',
+            ],
+            CURLOPT_POSTFIELDS => json_encode($postData),
+        ]);
 
-        // Send the request
         $response = curl_exec($ch);
 
-        // Check for errors
-        if($response === FALSE){
-            echo $response;
+        if ($response === false) {
+            $error = curl_error($ch);
+            curl_close($ch);
 
-            die(curl_error($ch));
+            throw new \RuntimeException('BEEM SMS request failed: ' . $error);
         }
-        $response;
+
+        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($statusCode >= 400) {
+            throw new \RuntimeException('BEEM SMS request failed with HTTP ' . $statusCode . ': ' . $response);
+        }
+
+        return $response;
     }
 
     public function formatPhone($phone): array|string|null

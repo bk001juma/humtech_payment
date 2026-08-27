@@ -68,9 +68,9 @@ class BusinessLoginController extends Controller
     public function resendOTP($user)
     {
         $business = $user->business;
-        $business->otp()->create(
+        $otp = $business->otp()->create(
             [
-                'otp' => rand(100000, 999999),
+                'otp' => random_int(100000, 999999),
                 'otp_session' => Session::getId(),
                 'otp_expires_at' => Carbon::now()->addMinutes(5),
                 'phone' => $business->phone,
@@ -79,6 +79,6 @@ class BusinessLoginController extends Controller
         );
 
         $smsTrait = new SMSTrait();
-        $smsTrait->sendBEEMSMS($business->phone, "Your PAPI OTP is " . $business->otp->otp);
+        $smsTrait->sendBEEMSMS($business->phone, "Your login OTP is {$otp->otp}. It expires in 5 minutes.");
     }
 }
