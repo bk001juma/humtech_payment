@@ -50,32 +50,35 @@
 
 
             @if(Auth::user()->hasRole('merchant'))
+                @php($merchantBusiness = Auth::user()->firstMerchantBusiness())
                 <li class="sidebar-main-title">
                     <div>
                         <h5 class="f-w-700 sidebar-title pt-3">Business</h5>
                     </div>
                 </li>
 
+                @if($merchantBusiness)
 
                 <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
-                    <a class="sidebar-link" href="{{route('business.transactions',Auth::user()->businesses()->first()->id)}}">
+                    <a class="sidebar-link" href="{{route('business.transactions',$merchantBusiness->id)}}">
                         <i class="icon icon-wallet"></i>
                         <h6>Collections</h6>
                     </a>
                 </li>
                 <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
-                    <a class="sidebar-link" href="{{route('business.disbursements',Auth::user()->businesses()->first()->id)}}">
+                    <a class="sidebar-link" href="{{route('business.disbursements',$merchantBusiness->id)}}">
                         <i class="icon iconly-Logout"></i>
                         <h6>Disbursements</h6>
                     </a>
                 </li>
 
                 <li class="sidebar-list"><i class="fa-solid fa-thumbtack"></i>
-                    <a class="sidebar-link" href="{{route('merchant.manage',Auth::user()->businesses()->first()->id)}}">
+                    <a class="sidebar-link" href="{{route('merchant.manage',$merchantBusiness->id)}}">
                         <i class="icon icon-settings"></i>
                         <h6>Settings</h6>
                     </a>
                 </li>
+                @endif
             @endif
 
         </ul>

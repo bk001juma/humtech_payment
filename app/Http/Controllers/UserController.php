@@ -83,7 +83,7 @@ class UserController extends Controller
 
             return view('papi.dashboard',compact('user','operator_name','operator_percent','transactions','disbursements','recent_transactions','failed','success','merchants','recent_disbursements'));
         }elseif ($user->hasRole('merchant')) {
-            $business = Auth::user()->businesses()->first();
+            $business = $user->firstMerchantBusiness();
 
             if (!$business) {
                 Log::warning('Merchant user has no linked business.', [

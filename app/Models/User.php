@@ -170,9 +170,19 @@ class User extends Authenticatable
         return $this->hasMany(Business::class);
     }
 
+    public function staffBusinesses()
+    {
+        return $this->belongsToMany(Business::class, 'business_user')->withTimestamps();
+    }
+
     public function business()
     {
         return $this->hasOne(Business::class);
+    }
+
+    public function firstMerchantBusiness(): ?Business
+    {
+        return $this->businesses()->first() ?: $this->staffBusinesses()->first();
     }
 
     public function disbursements()

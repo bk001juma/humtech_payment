@@ -3,6 +3,7 @@
 namespace App\Models\Merchant;
 
 use App\Models\TempOTP;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -46,5 +47,9 @@ class Business extends Model
         return $this->hasOne(TempOTP::class)->orderBy('created_at','desc');
     }
 
+    public function staffUsers()
+    {
+        return $this->belongsToMany(User::class, 'business_user')->withTimestamps();
+    }
 
 }

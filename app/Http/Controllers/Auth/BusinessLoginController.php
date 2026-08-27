@@ -77,7 +77,7 @@ class BusinessLoginController extends Controller
 
     public function resendOTP(User $user): string
     {
-        $business = $user->business;
+        $business = $user->firstMerchantBusiness();
         $phone = $this->resolveOtpPhoneForUser($user);
 
         if (!$phone) {
@@ -106,7 +106,7 @@ class BusinessLoginController extends Controller
             return $fromUser;
         }
 
-        $fromBusiness = trim((string) ($user->business?->phone ?? ''));
+        $fromBusiness = trim((string) ($user->firstMerchantBusiness()?->phone ?? ''));
 
         return $fromBusiness !== '' ? $fromBusiness : null;
     }
