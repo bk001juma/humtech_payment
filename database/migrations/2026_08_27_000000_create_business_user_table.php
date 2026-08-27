@@ -8,14 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
+        if (Schema::hasTable('business_user')) {
+            return;
+        }
+
         Schema::create('business_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('business_id')->constrained('businesses')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('role')->default('staff');
             $table->timestamps();
 
-            $table->unique(['business_id', 'user_id']);
+            $table->unique(['business_id', 'user_id'], 'business_user_unique');
         });
     }
 
