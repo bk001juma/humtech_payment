@@ -10,8 +10,8 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
 
 class BusinessLoginController extends Controller
 {
@@ -25,9 +25,19 @@ class BusinessLoginController extends Controller
 
         if (isset($user->id)) {
             if (Hash::check($request['password'], $user->password)) {
-                $this->resendOTP($user);
+                try {
+                    $phone = $this->resendOTP($user);
+                } catch (\Throwable $exception) {
+                    Log::error('OTP SMS delivery failed.', [
+                        'user_id' => $user->id,
+                        'phone' => $this->maskPhoneForDisplay($this->resolveOtpPhoneForUser($user)),
+                        'error' => $exception->getMessage(),
+                    ]);
 
-                return redirect()->route('web.verifyOTP', ['phone' => substr($user->business->phone, 7)]);
+                    return redirect()->back()->withErrors(['message' => 'Failed to send OTP to your phone. Please try again.']);
+                }
+
+                return redirect()->route('web.verifyOTP', ['phone' => $this->otpPhoneSuffix($phone)]);
             } else {
                 return $this->sendFailedLoginResponse($request);
             }
@@ -65,20 +75,61 @@ class BusinessLoginController extends Controller
         }
     }
 
-    public function resendOTP($user)
+    public function resendOTP(User $user): string
     {
         $business = $user->business;
-        $otp = $business->otp()->create(
-            [
-                'otp' => random_int(100000, 999999),
-                'otp_session' => Session::getId(),
-                'otp_expires_at' => Carbon::now()->addMinutes(5),
-                'phone' => $business->phone,
-                'user_id' => $user->id,
-            ]
-        );
+        $phone = $this->resolveOtpPhoneForUser($user);
+
+        if (!$phone) {
+            throw new \RuntimeException('No phone number configured for OTP.');
+        }
+
+        $otp = TempOTP::create([
+            'business_id' => $business?->id,
+            'user_id' => $user->id,
+            'otp' => random_int(100000, 999999),
+            'phone' => $phone,
+            'otp_session' => Session::getId(),
+            'otp_expires_at' => Carbon::now()->addMinutes(5),
+        ]);
 
         $smsTrait = new SMSTrait();
-        $smsTrait->sendBEEMSMS($business->phone, "Your login OTP is {$otp->otp}. It expires in 5 minutes.");
+        $smsTrait->sendBEEMSMS($phone, "Your login OTP is {$otp->otp}. It expires in 5 minutes.");
+
+        return $phone;
+    }
+
+    private function resolveOtpPhoneForUser(User $user): ?string
+    {
+        $fromUser = trim((string) ($user->phone ?? ''));
+        if ($fromUser !== '') {
+            return $fromUser;
+        }
+
+        $fromBusiness = trim((string) ($user->business?->phone ?? ''));
+
+        return $fromBusiness !== '' ? $fromBusiness : null;
+    }
+
+    private function otpPhoneSuffix(string $phone): string
+    {
+        $digits = preg_replace('/\D+/', '', $phone);
+
+        return $digits ? substr($digits, -3) : '';
+    }
+
+    private function maskPhoneForDisplay(?string $phone): string
+    {
+        $digits = preg_replace('/\D+/', '', (string) $phone);
+
+        if (!$digits) {
+            return 'unknown';
+        }
+
+        if (strlen($digits) <= 6) {
+            return str_repeat('*', strlen($digits));
+        }
+
+        return substr($digits, 0, 3).str_repeat('*', strlen($digits) - 6).substr($digits, -3);
     }
 }
